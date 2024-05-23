@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Hi-Ponic</string>
+    <string name="email">email</string>
 </resources>
