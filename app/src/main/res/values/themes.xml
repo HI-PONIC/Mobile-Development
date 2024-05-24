@@ -67,6 +67,16 @@
         <item name="android:paddingBottom">8dp</item>
     </style>
 
+    <style name="textFieldLogin">
+        <item name="boxStrokeColor">@color/login_outline_color</item>
+        <item name="android:textColorHint">#FBFADA</item>
+        <item name="android:textColor">#FBFADA</item>
+        <item name="hintTextColor">#FBFADA</item>
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/montserratlight</item>
+        <item name="endIconTint">#FBFADA</item>
+    </style>
+
     <style name="Title">
         <item name="android:fontFamily">@font/montserratbold</item>
         <item name="android:textSize">35sp</item>
