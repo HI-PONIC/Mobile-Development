@@ -17,9 +17,12 @@ coroutines = "1.7.3"
 circleimageview = "3.1.0"
 material3 = "1.2.1"
 glide = "4.16.0"
+viewpager2 = "1.0.0"
+composePreviewRenderer = "0.0.1-alpha01"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -40,6 +43,7 @@ circleimageview = { group = "de.hdodenhof", name = "circleimageview", version.re
 material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide" }
+compose-preview-renderer = { group = "com.android.tools.compose", name = "compose-preview-renderer", version.ref = "composePreviewRenderer" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
