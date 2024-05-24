@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.btnsignup.setOnClickListener {
-            intent = Intent(this, SignupActivity::class.java)
+            intent = Intent(this, homeMonitoringActivity::class.java)
             startActivity(intent)
         }
     }
