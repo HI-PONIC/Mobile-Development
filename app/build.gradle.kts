@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.compose.preview.renderer)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -70,4 +71,5 @@ dependencies {
     implementation("androidx.compose.material3:material3-adaptive-navigation-suite:1.3.0-beta01")
     implementation(libs.glide)
     annotationProcessor(libs.glide.compiler)
+    implementation(libs.androidx.viewpager2)
 }
