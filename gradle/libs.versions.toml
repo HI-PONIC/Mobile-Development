@@ -17,7 +17,7 @@ coroutines = "1.7.3"
 circleimageview = "3.1.0"
 material3 = "1.2.1"
 glide = "4.16.0"
-viewpager2 = "1.0.0"
+viewpager2 = "1.1.0"
 composePreviewRenderer = "0.0.1-alpha01"
 
 [libraries]
