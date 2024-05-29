@@ -15,6 +15,21 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".tentang_aplikasi"
+            android:exported="false" />
+        <activity
+            android:name=".change_password"
+            android:exported="false" />
+        <activity
+            android:name=".edit_username"
+            android:exported="false" />
+        <activity
+            android:name=".profile"
+            android:exported="false" />
+        <activity
+            android:name=".KnowledgeBase"
+            android:exported="false" />
+        <activity
             android:name=".homeMonitoringActivity"
             android:exported="false"
             android:label="@string/title_activity_home_monitoring" />
