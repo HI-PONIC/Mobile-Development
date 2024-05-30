@@ -21,6 +21,21 @@
             android:name=".CekKesehatanActivity"
             android:exported="false" />
         <activity
+            android:name=".tentang_aplikasi"
+            android:exported="false" />
+        <activity
+            android:name=".change_password"
+            android:exported="false" />
+        <activity
+            android:name=".edit_username"
+            android:exported="false" />
+        <activity
+            android:name=".profile"
+            android:exported="false" />
+        <activity
+            android:name=".KnowledgeBase"
+            android:exported="false" />
+        <activity
             android:name=".homeMonitoringActivity"
             android:exported="false"
             android:label="@string/title_activity_home_monitoring" />
@@ -29,8 +44,7 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
+            android:exported="false" />
         <activity
             android:name=".SignupActivity"
             android:exported="false"
