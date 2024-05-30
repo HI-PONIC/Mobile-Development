@@ -9,6 +9,8 @@
 
     <string name="title_activity_home_monitoring">home_monitoring</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_monitoring">Monitoring</string>
+    <string name="title_knowledge">Knowledge</string>
+    <string name="title_shop">Shop</string>
+    <string name="profile">Profile</string>
 </resources>

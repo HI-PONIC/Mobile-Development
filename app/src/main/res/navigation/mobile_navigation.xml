@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.hi_ponic.HomeMonitoringFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home_monitoring" />
+
+    <fragment
+        android:id="@+id/navigation_knowledge"
+        android:name="com.example.hi_ponic.KnowledgeBaseFragment"
+        android:label="@string/title_knowledge"
+        tools:layout="@layout/fragment_knowledge_base" />
+
+    <fragment
+        android:id="@+id/navigation_shop"
+        android:label="@string/title_shop"
+        tools:layout="" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.hi_ponic.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" />
+
+</navigation>

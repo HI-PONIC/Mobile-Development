@@ -30,16 +30,6 @@
             android:name=".edit_username"
             android:exported="false" />
         <activity
-            android:name=".profile"
-            android:exported="false" />
-        <activity
-            android:name=".KnowledgeBase"
-            android:exported="false" />
-        <activity
-            android:name=".homeMonitoringActivity"
-            android:exported="false"
-            android:label="@string/title_activity_home_monitoring" />
-        <activity
             android:name=".DetailHydroponicStatisticActivity"
             android:exported="false" />
         <activity
