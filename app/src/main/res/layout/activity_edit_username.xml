@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:background="#FBFADA"
     android:padding="16dp"
+    android:id="@+id/main"
     tools:context=".profile">
 
     <!-- Back Arrow and Title -->
