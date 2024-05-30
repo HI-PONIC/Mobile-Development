@@ -41,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_greeting"
         app:layout_constraintVertical_bias="1.0" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
         android:layout_width="84dp"
         android:layout_height="81dp"
@@ -75,5 +75,16 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_add"
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/card_layout" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="#12372A"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        app:menu="@menu/bottom_nav_menu"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
