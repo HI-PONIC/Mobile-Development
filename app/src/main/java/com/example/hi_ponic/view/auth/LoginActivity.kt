@@ -1,4 +1,4 @@
-package com.example.hi_ponic
+package com.example.hi_ponic.view.auth
 
 import android.graphics.Rect
 import android.os.Bundle
@@ -7,22 +7,23 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.hi_ponic.databinding.ActivityDetailHydroponicStatisticBinding
-import com.example.hi_ponic.databinding.ActivitySignupBinding
+import com.example.hi_ponic.R
+import com.example.hi_ponic.databinding.ActivityLoginBinding
 
-class SignupActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivitySignupBinding
+class LoginActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_signup)
+        setContentView(R.layout.activity_login)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        binding = ActivitySignupBinding.inflate(layoutInflater)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         keyboardAdjuster()

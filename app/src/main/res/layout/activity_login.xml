@@ -9,7 +9,7 @@
     android:background="#436850"
     android:padding="16dp"
     android:fitsSystemWindows="true"
-    tools:context=".LoginActivity">
+    tools:context=".view.auth.LoginActivity">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"

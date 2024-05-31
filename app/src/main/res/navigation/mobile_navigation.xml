@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.hi_ponic.HomeMonitoringFragment"
+        android:name="com.example.hi_ponic.view.monitoring.HomeMonitoringFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home_monitoring" />
 
     <fragment
         android:id="@+id/navigation_knowledge"
-        android:name="com.example.hi_ponic.KnowledgeBaseFragment"
+        android:name="com.example.hi_ponic.view.knowledgeBase.KnowledgeBaseFragment"
         android:label="@string/title_knowledge"
         tools:layout="@layout/fragment_knowledge_base" />
 
     <fragment
         android:id="@+id/navigation_shop"
-        android:name="com.example.hi_ponic.ShopFragment"
+        android:name="com.example.hi_ponic.view.shop.ShopFragment"
         android:label="@string/title_shop"
         tools:layout="@layout/fragment_shop" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.example.hi_ponic.ProfileFragment"
+        android:name="com.example.hi_ponic.view.profile.ProfileFragment"
         android:label="@string/profile"
         tools:layout="@layout/fragment_profile" />
 

@@ -1,4 +1,4 @@
-package com.example.hi_ponic
+package com.example.hi_ponic.view.monitoring
 
 import android.os.Bundle
 import android.view.ViewGroup
@@ -8,8 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
+import com.example.hi_ponic.R
 import com.example.hi_ponic.databinding.ActivityDetailHydroponicStatisticBinding
-import com.example.hi_ponic.databinding.ActivityMainBinding
+import com.example.hi_ponic.view.mainView.SectionPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 

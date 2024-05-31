@@ -15,32 +15,32 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
-            android:name=".PrediksiPanenActivity"
+            android:name=".view.monitoring.PrediksiPanenActivity"
             android:exported="false" />
         <activity
-            android:name=".CekKesehatanActivity"
+            android:name=".view.monitoring.CekKesehatanActivity"
             android:exported="false" />
         <activity
-            android:name=".tentang_aplikasi"
+            android:name=".view.profile.tentang_aplikasi"
             android:exported="false" />
         <activity
-            android:name=".change_password"
+            android:name=".view.profile.change_password"
             android:exported="false" />
         <activity
-            android:name=".edit_username"
+            android:name=".view.profile.edit_username"
             android:exported="false" />
         <activity
-            android:name=".DetailHydroponicStatisticActivity"
+            android:name=".view.monitoring.DetailHydroponicStatisticActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".view.auth.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".SignupActivity"
+            android:name=".view.auth.SignupActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".MainActivity"
+            android:name=".view.mainView.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

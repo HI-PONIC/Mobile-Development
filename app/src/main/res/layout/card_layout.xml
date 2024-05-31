@@ -10,7 +10,7 @@
     android:padding="8dp"
     android:background="@drawable/rounded_card_background"
     android:elevation="4dp"
-    tools:context=".MainActivity">
+    tools:context=".view.mainView.MainActivity">
 
     <TextView
         android:id="@+id/title"
