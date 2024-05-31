@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#FFFAE6"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Title -->
+
+        <!-- Tools Section -->
+
+        <TextView
+            android:layout_width="172dp"
+            android:layout_height="94dp"
+            android:fontFamily="@font/montserratbold"
+            android:paddingBottom="16dp"
+            android:text="Shop"
+            android:textSize="42sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tools"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"/>
+
+        <!-- Alat IOT Item -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#436850"
+            android:padding="16dp"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/alat_iot_image" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserratregular"
+                android:textColor="#FFFAE6"
+                android:paddingTop="8dp"
+                android:text="Alat IOT"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserratregular"
+                android:paddingTop="4dp"
+                android:text="Rp. 500.0000"
+                android:textColor="#FFFAE6" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:paddingTop="8dp"
+                android:textColor="#FFFAE6"
+                android:fontFamily="@font/montserratregular"
+                android:text="Pesan disini" />
+
+        </LinearLayout>
+
+        <!-- Hidroponic Placement Item -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#436850"
+            android:padding="16dp"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/Hidroponic_image" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hidroponic Placement"
+                android:textColor="#FFFAE6"
+                android:fontFamily="@font/montserratregular"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingTop="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFAE6"
+                android:fontFamily="@font/montserratregular"
+                android:text="Rp. 500.0000"
+                android:paddingTop="4dp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFAE6"
+                android:fontFamily="@font/montserratregular"
+                android:text="Pesan disini"
+                android:layout_gravity="right"
+                android:paddingTop="8dp"/>
+        </LinearLayout>
+
+        <!-- Bibit Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bibit"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"/>
+
+        <!-- Bibit Cabai Item 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#436850"
+            android:padding="16dp"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bibit_cabai"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bibit Cabai"
+                android:fontFamily="@font/montserratregular"
+                android:textColor="#FFFAE6"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingTop="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp. 500.0000"
+                android:fontFamily="@font/montserratregular"
+                android:textColor="#FFFAE6"
+                android:paddingTop="4dp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pesan disini"
+                android:fontFamily="@font/montserratregular"
+                android:textColor="#FFFAE6"
+                android:layout_gravity="right"
+                android:paddingTop="8dp"/>
+        </LinearLayout>
+
+        <!-- Bibit Cabai Item 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#436850"
+            android:padding="16dp"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bibit_sawi"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bibit Sawi"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserratregular"
+                android:textColor="#FFFAE6"
+                android:textStyle="bold"
+                android:paddingTop="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp. 500.0000"
+                android:fontFamily="@font/montserratregular"
+                android:textColor="#FFFAE6"
+                android:paddingTop="4dp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pesan disini"
+                android:fontFamily="@font/montserratregular"
+                android:textColor="#FFFAE6"
+                android:layout_gravity="right"
+                android:paddingTop="8dp"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+</ScrollView>
