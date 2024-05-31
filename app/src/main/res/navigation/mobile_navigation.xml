@@ -19,8 +19,9 @@
 
     <fragment
         android:id="@+id/navigation_shop"
+        android:name="com.example.hi_ponic.ShopFragment"
         android:label="@string/title_shop"
-        tools:layout="" />
+        tools:layout="@layout/fragment_shop" />
 
     <fragment
         android:id="@+id/navigation_profile"
