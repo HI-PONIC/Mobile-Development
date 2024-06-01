@@ -6,17 +6,25 @@ import android.os.Build
 import android.os.Bundle
 import android.view.ViewTreeObserver
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.hi_ponic.R
+import com.example.hi_ponic.data.pref.UserModel
 import com.example.hi_ponic.databinding.ActivityLoginBinding
+import com.example.hi_ponic.view.ViewModelFactory
 import com.example.hi_ponic.view.mainView.MainActivity
+import com.example.hi_ponic.view.mainView.MainViewModel
 
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+    private val viewModel by viewModels<LoginViewModel> {
+        ViewModelFactory.getInstance(this)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -40,7 +48,20 @@ class LoginActivity : AppCompatActivity() {
 
     private fun button() {
         binding.buttonLogin.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
+            val email = binding.emailEditText.toString()
+            viewModel.saveSession(UserModel(email, "sample_token"))
+            AlertDialog.Builder(this).apply {
+                setTitle("Yeah!")
+                setMessage("Anda berhasil login. Sudah tidak sabar untuk belajar ya?")
+                setPositiveButton("Lanjut") { _, _ ->
+                    val intent = Intent(context, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    finish()
+                }
+                create()
+                show()
+            }
             startActivity(intent)
         }
         binding.buttonSignup.setOnClickListener {
