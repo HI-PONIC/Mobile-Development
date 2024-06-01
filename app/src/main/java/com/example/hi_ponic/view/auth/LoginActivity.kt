@@ -1,6 +1,8 @@
 package com.example.hi_ponic.view.auth
 
+import android.content.Intent
 import android.graphics.Rect
+import android.os.Build
 import android.os.Bundle
 import android.view.ViewTreeObserver
 import androidx.activity.enableEdgeToEdge
@@ -9,6 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.hi_ponic.R
 import com.example.hi_ponic.databinding.ActivityLoginBinding
+import com.example.hi_ponic.view.mainView.MainActivity
 
 
 class LoginActivity : AppCompatActivity() {
@@ -26,7 +29,24 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_primary));
+        }
+
         keyboardAdjuster()
+
+        button()
+    }
+
+    private fun button() {
+        binding.buttonLogin.setOnClickListener {
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
+        binding.buttonSignup.setOnClickListener {
+            val intent = Intent(this,SignupActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun keyboardAdjuster() {

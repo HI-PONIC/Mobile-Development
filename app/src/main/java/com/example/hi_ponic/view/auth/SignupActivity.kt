@@ -1,6 +1,7 @@
 package com.example.hi_ponic.view.auth
 
 import android.graphics.Rect
+import android.os.Build
 import android.os.Bundle
 import android.view.ViewTreeObserver
 import androidx.activity.enableEdgeToEdge
@@ -24,6 +25,10 @@ class SignupActivity : AppCompatActivity() {
         }
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_primaryContainer));
+        }
 
         keyboardAdjuster()
     }
