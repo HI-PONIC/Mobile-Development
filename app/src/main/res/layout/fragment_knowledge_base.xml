@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.knowledgeBase.KnowledgeBaseFragment"
-    android:background="#FFFAE6">
+    android:background="#FBFADA">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
