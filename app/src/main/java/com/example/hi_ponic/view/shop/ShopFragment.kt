@@ -1,26 +1,23 @@
 package com.example.hi_ponic.view.shop
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.hi_ponic.R
+import com.example.hi_ponic.databinding.FragmentShopBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ShopFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ShopFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+
     private var param1: String? = null
     private var param2: String? = null
+    private var _binding: FragmentShopBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,21 +30,43 @@ class ShopFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_shop, container, false)
+    ): View {
+        _binding = FragmentShopBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Setting click listeners for each button
+        binding.buttonPesanAlatIot.setOnClickListener {
+            openLink("https://www.tokopedia.com/cncstorebandung/esp32-esp-32-doit-wifi-bluetooth-iot-esp-32s-development-board-38-pin?extParam=ivf%3Dfalse&src=topads")
+        }
+
+        binding.buttonPesanHidroponic.setOnClickListener {
+            openLink("https://www.tokopedia.com/happygardenindonesia/paket-hidroponik-wick-9-lubang-3-bak-lengkap-paket-super-hemat?extParam=ivf%3Dfalse&src=topads")
+        }
+
+        binding.buttonPesanBibitCabai.setOnClickListener {
+            openLink("https://www.tokopedia.com/benihbibitseribu/benih-seribuan-bibit-cabe-carolina-reaper-merah-cabai-terpedas-premium-prem-carolina-d8fb?extParam=ivf%3Dfalse%26src%3Dsearch")
+        }
+
+        binding.buttonPesanBibitSawi.setOnClickListener {
+            openLink("https://www.tokopedia.com/benihbibitseribu/bibit-sawi-manis-hongkong-unggul-benih-sayuran-seribuan-prem-swmanis-hk?extParam=ivf%3Dfalse%26src%3Dsearch")
+        }
+    }
+
+    private fun openLink(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(intent)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ShopFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             ShopFragment().apply {

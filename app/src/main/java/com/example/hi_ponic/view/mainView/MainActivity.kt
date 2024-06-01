@@ -38,12 +38,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         setSupportActionBar(binding.toolbar)
-        // Initialize BottomNavigationView and NavController
+
         val navView: BottomNavigationView = binding.bottomNavigationView
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
         val navController = navHostFragment.navController
 
-        // Setup AppBarConfiguration and NavController with the ActionBar
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home,

@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,6 +71,7 @@
                     android:textColor="#FFFAE6" />
 
                 <Button
+                    android:id="@+id/buttonPesanAlatIot"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -79,7 +79,6 @@
                     android:paddingTop="8dp"
                     android:text="Pesan disini"
                     android:textColor="#FFFAE6" />
-
             </LinearLayout>
 
             <!-- Hidroponic Placement Item -->
@@ -116,6 +115,7 @@
                     android:textColor="#FFFAE6" />
 
                 <Button
+                    android:id="@+id/buttonPesanHidroponic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -169,6 +169,7 @@
                     android:textColor="#FFFAE6" />
 
                 <Button
+                    android:id="@+id/buttonPesanBibitCabai"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -212,6 +213,7 @@
                     android:textColor="#FFFAE6" />
 
                 <Button
+                    android:id="@+id/buttonPesanBibitSawi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -220,8 +222,6 @@
                     android:text="Pesan disini"
                     android:textColor="#FFFAE6" />
             </LinearLayout>
-
-
         </LinearLayout>
     </ScrollView>
 </FrameLayout>
