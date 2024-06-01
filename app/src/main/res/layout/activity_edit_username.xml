@@ -8,94 +8,103 @@
     android:background="#FBFADA"
     android:padding="16dp"
     android:id="@+id/main"
-    tools:context=".profile">
+    tools:context=".view.profile.edit_username">
 
-    <!-- Back Arrow and Title -->
-    <ImageView
-        android:id="@+id/backIcon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/back_icon"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/titleTextView"
-        android:layout_marginStart="8dp"/>
-
-    <!-- Profile Picture -->
-
-    <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="228dp"
-        android:fontFamily="@font/montserratregular"
-        android:text="Edit Profile"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/backIcon"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/profileImageView"
-        android:layout_width="237dp"
-        android:layout_height="261dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/button_profile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
 
 
+        <!-- Back Arrow and Title -->
+        <ImageView
+            android:id="@+id/backIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/back_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/titleTextView"
+            android:layout_marginStart="8dp"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edittextusername"
-        style="@style/textFieldSignUp"
-        android:layout_width="377dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="28dp"
-        app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileImageView">
+        <!-- Profile Picture -->
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/usernameEditText"
-            style="@style/CustomTextInputEditText"
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="228dp"
+            android:fontFamily="@font/montserratregular"
+            android:text="Edit Profile"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/backIcon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/profileImageView"
+            android:layout_width="237dp"
+            android:layout_height="261dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/button_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edittextusername"
+            style="@style/textFieldSignUp"
             android:layout_width="match_parent"
-            android:layout_height="49dp"
-            android:ems="10"
-            android:hint="username"
-            android:textColor="#FBFADA" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profileImageView">
 
-    <Button
-        android:id="@+id/editProfileButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="#436850"
-        android:fontFamily="@font/montserratregular"
-        android:text="submit"
-        android:textColor="#FBFADA"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edittextusername" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/usernameEditText"
+                style="@style/CustomTextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:ems="10"
+                android:hint="username"
+                android:textColor="#FBFADA" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/aboutAppButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="172dp"
-        android:background="#436850"
-        android:fontFamily="@font/montserratregular"
-        android:text="Ubah Password"
-        android:textColor="#FBFADA"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editProfileButton" />
+        <Button
+            android:id="@+id/editProfileButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="#436850"
+            android:fontFamily="@font/montserratregular"
+            android:text="submit"
+            android:textColor="#FBFADA"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edittextusername" />
+
+        <Button
+            android:id="@+id/aboutAppButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="172dp"
+            android:background="#436850"
+            android:fontFamily="@font/montserratregular"
+            android:text="Ubah Password"
+            android:textColor="#FBFADA"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editProfileButton" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
