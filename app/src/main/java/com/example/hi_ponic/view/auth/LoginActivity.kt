@@ -16,7 +16,6 @@ import com.example.hi_ponic.data.pref.UserModel
 import com.example.hi_ponic.databinding.ActivityLoginBinding
 import com.example.hi_ponic.view.ViewModelFactory
 import com.example.hi_ponic.view.mainView.MainActivity
-import com.example.hi_ponic.view.mainView.MainViewModel
 
 
 class LoginActivity : AppCompatActivity() {

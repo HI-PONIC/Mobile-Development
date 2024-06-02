@@ -1,6 +1,5 @@
 package com.example.hi_ponic.view.mainView
 
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -15,7 +14,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.hi_ponic.R
 import com.example.hi_ponic.databinding.ActivityMainBinding
 import com.example.hi_ponic.view.ViewModelFactory
-import com.example.hi_ponic.view.auth.LoginActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {

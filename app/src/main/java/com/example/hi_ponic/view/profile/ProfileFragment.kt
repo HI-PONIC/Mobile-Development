@@ -6,24 +6,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.hi_ponic.R
+import androidx.fragment.app.viewModels
 import com.example.hi_ponic.databinding.FragmentProfileBinding
+import com.example.hi_ponic.view.ViewModelFactory
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 class ProfileFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
 
+    private val viewModel by viewModels<ProfileViewModel> {
+        ViewModelFactory.getInstance(requireContext())
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -38,34 +36,23 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.editProfileButton.setOnClickListener {
-            val intent = Intent(activity, edit_username::class.java)
+            val intent = Intent(requireContext(), edit_username::class.java)
             startActivity(intent)
         }
 
         binding.aboutAppButton.setOnClickListener {
-            val intent = Intent(activity, tentang_aplikasi::class.java)
+            val intent = Intent(requireContext(), tentang_aplikasi::class.java)
             startActivity(intent)
         }
 
 
         binding.logoutIcon.setOnClickListener {
-
+            viewModel.logout()
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

@@ -7,6 +7,8 @@ import com.example.hi_ponic.data.UserRepository
 import com.example.hi_ponic.di.Injection
 import com.example.hi_ponic.view.auth.LoginViewModel
 import com.example.hi_ponic.view.mainView.MainViewModel
+import com.example.hi_ponic.view.profile.ProfileFragment
+import com.example.hi_ponic.view.profile.ProfileViewModel
 
 class ViewModelFactory(private val repository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
 
@@ -18,6 +20,8 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(repository) as T
+            }modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
+                ProfileViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
