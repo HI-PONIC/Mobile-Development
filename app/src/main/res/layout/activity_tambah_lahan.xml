@@ -30,13 +30,6 @@
             android:textSize="35sp"
             android:textStyle="bold" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
-            android:layout_width="84dp"
-            android:layout_height="84dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/button_profile" />
-
     </LinearLayout>
 
     <com.google.android.material.card.MaterialCardView
