@@ -1,10 +1,13 @@
 package com.example.hi_ponic.view.auth
 
+
 import android.content.Intent
-import android.graphics.Rect
 import android.os.Build
 import android.os.Bundle
-import android.view.ViewTreeObserver
+import android.view.View
+import android.view.WindowInsets
+import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -12,76 +15,113 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.hi_ponic.R
-import com.example.hi_ponic.data.pref.UserModel
 import com.example.hi_ponic.databinding.ActivityLoginBinding
 import com.example.hi_ponic.view.ViewModelFactory
 import com.example.hi_ponic.view.mainView.MainActivity
 
-
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLoginBinding
-    private val viewModel by viewModels<LoginViewModel> {
+    private val loginViewModel by viewModels<LoginViewModel> {
         ViewModelFactory.getInstance(this)
     }
+    private lateinit var binding: ActivityLoginBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setupView()
+        button()
+        setupObservers()
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_primary));
-        }
-
-        keyboardAdjuster()
-
-        button()
     }
 
     private fun button() {
         binding.buttonLogin.setOnClickListener {
-            val email = binding.emailEditText.toString()
-            viewModel.saveSession(UserModel(email))
-            AlertDialog.Builder(this).apply {
-                setTitle("Yeah!")
-                setMessage("Anda berhasil login")
-                setPositiveButton("Lanjut") { _, _ ->
-                    val intent = Intent(context, MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                    startActivity(intent)
-                    finish()
-                }
-                create()
-                show()
+            val email = binding.emailEditText.text.toString()
+            val password = binding.passwordEditText.text.toString()
+
+            if (validateInput(email, password)) {
+                loginViewModel.login(email, password)
+                showLoading(true)
             }
-            startActivity(intent)
         }
         binding.buttonSignup.setOnClickListener {
-            val intent = Intent(this,SignupActivity::class.java)
+            val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
         }
     }
 
-    private fun keyboardAdjuster() {
-        binding.scrollView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                val r = Rect()
-                binding.scrollView.getWindowVisibleDisplayFrame(r)
-                val screenHeight: Int = binding.scrollView.rootView.height
-                val keypadHeight: Int = screenHeight - r.bottom
-                if (keypadHeight > screenHeight * 0.15) { // jika keyboard terlihat
-                    binding.scrollView.post {
-                        binding.scrollView.smoothScrollTo(0, binding.scrollView.bottom)
-                    }
-                }
+    private fun validateInput(email: String, password: String): Boolean {
+        var isValid = true
+        if (email.isEmpty()) {
+            binding.emailEditText.error = getString(R.string.masukkanemail)
+            isValid = false
+        }
+        if (password.isEmpty()) {
+            binding.passwordEditText.error = getString(R.string.masukkanpassword)
+            isValid = false
+        }
+        return isValid
+    }
+
+    private fun setupView() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+        }
+        supportActionBar?.hide()
+    }
+
+    private fun setupObservers() {
+        loginViewModel.loginUser.observe(this) { response ->
+                showSuccessDialog()
             }
-        })
+        loginViewModel.isLoading.observe(this) { isLoading ->
+            showLoading(isLoading)
+        }
+        loginViewModel.isError.observe(this) { errorMessage ->
+            if (!errorMessage.isNullOrEmpty()) {
+                showError(errorMessage)
+            }
+        }
+    }
+
+    private fun showSuccessDialog() {
+        AlertDialog.Builder(this).apply {
+            setMessage(getString(R.string.loginsukses))
+            setPositiveButton(getString(R.string.lanjutkelogin)) { _, _ ->
+                navigateToMain()
+            }
+            create()
+            show()
+        }
+    }
+
+    private fun navigateToMain() {
+        val intent = Intent(this, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+        startActivity(intent)
+        finish()
+    }
+
+    private fun showError(errorMessage: String) {
+        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressbarLogin.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE
     }
 }

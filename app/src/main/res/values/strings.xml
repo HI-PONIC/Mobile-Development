@@ -13,4 +13,8 @@
     <string name="title_knowledge">Knowledge</string>
     <string name="title_shop">Shop</string>
     <string name="profile">Profile</string>
+    <string name="masukkanemail">Masukkan Email</string>
+    <string name="masukkanpassword">Masukkan Password</string>
+    <string name="loginsukses">Login Berhasil</string>
+    <string name="lanjutkelogin">lanjut ke login</string>
 </resources>
