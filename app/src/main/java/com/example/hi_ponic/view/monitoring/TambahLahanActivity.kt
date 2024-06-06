@@ -41,8 +41,6 @@ class TambahLahanActivity : AppCompatActivity() {
             binding.TanggalEditText.setText(selectedDate)
         }, year, month, day)
 
-
-
         binding.edittextTanggalLayout.setEndIconOnClickListener {
             datePickerDialog.show()
         }
