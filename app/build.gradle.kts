@@ -69,7 +69,7 @@ dependencies {
     implementation(libs.circleimageview)
     implementation(libs.material3)
     implementation("androidx.compose.material3:material3-window-size-class:1.2.1")
-    implementation("androidx.compose.material3:material3-adaptive-navigation-suite:1.3.0-beta01")
+    implementation("androidx.compose.material3:material3-adaptive-navigation-suite:1.3.0-beta02")
     implementation(libs.glide)
     annotationProcessor(libs.glide.compiler)
     implementation(libs.androidx.viewpager2)
