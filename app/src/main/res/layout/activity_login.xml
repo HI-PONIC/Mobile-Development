@@ -34,9 +34,8 @@
                 android:textColor="#FBFADA"
                 android:textSize="35sp"
                 android:textStyle="bold"
+                android:layout_marginStart="23dp"
                 android:fontFamily="@font/montserratbold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.117"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
