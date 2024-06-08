@@ -14,14 +14,14 @@ data class SensorResponse(
 data class SensorData(
 
 	@field:SerializedName("temp")
-	val temp: Int? = null,
+	val temp: Float? = null,
 
 	@field:SerializedName("tds")
-	val tds: Int? = null,
+	val tds: Float? = null,
 
 	@field:SerializedName("ph")
-	val ph: Int? = null,
+	val ph: Float? = null,
 
 	@field:SerializedName("humidity")
-	val humidity: Int? = null
+	val humidity: Float? = null
 )
