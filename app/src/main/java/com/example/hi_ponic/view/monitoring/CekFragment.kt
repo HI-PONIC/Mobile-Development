@@ -1,60 +1,72 @@
 package com.example.hi_ponic.view.monitoring
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.hi_ponic.R
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.example.hi_ponic.databinding.FragmentCekBinding
+import com.example.hi_ponic.view.ViewModelFactory
+import com.example.hi_ponic.view.monitoring.ml.PrediksiPanenHelper
+import com.example.hi_ponic.view.monitoring.view_model.CekPanenViewModel
+import java.text.SimpleDateFormat
+import java.util.Arrays
+import java.util.Date
+import java.util.Locale
+import kotlin.math.roundToInt
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [CekFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CekFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentCekBinding
+
+    private val viewModel by viewModels<CekPanenViewModel> {
+        ViewModelFactory.getInstance(requireContext())
+    }
+    private lateinit var prediksiPanenHelper: PrediksiPanenHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cek, container, false)
+    ): View {
+        binding = FragmentCekBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CekFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CekFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        prediksiPanenHelper = PrediksiPanenHelper(
+            context = requireContext(),
+            onResult = { result ->
+                val currentDate = SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).format(Date())
+                binding.tvCekTerakhirHasilPanen.text = "Cek terakhir: $currentDate"
+
+                val roundedResult = result.toDouble().roundToInt()
+                val prediksiPanen = 45 - roundedResult
+
+                binding.tvHasilPrediksiPanen.text = "Estimasi panen: $prediksiPanen hari lagi"
+            },
+            onError = { errorMessage ->
+                Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
             }
+        )
+
+        binding.btnCekPanen.setOnClickListener {
+            // Manual input
+            val temp = 12.0
+            val tds = 30.0
+            val ph = 4.0
+            val humidity = 20.0
+            val inputArray = arrayOf(floatArrayOf(temp.toFloat(), tds.toFloat(), ph.toFloat(), humidity.toFloat()))
+            val input3DArray = arrayOf(inputArray)
+//            Log.d("predict", "Manual input3DArray: ${Arrays.deepToString(input3DArray)}")
+            prediksiPanenHelper.predict(input3DArray)
+        }
     }
 }

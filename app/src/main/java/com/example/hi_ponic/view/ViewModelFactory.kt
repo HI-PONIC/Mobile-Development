@@ -8,6 +8,7 @@ import com.example.hi_ponic.di.Injection
 import com.example.hi_ponic.view.auth.LoginViewModel
 import com.example.hi_ponic.view.auth.SignupViewModel
 import com.example.hi_ponic.view.mainView.MainViewModel
+import com.example.hi_ponic.view.monitoring.view_model.CekPanenViewModel
 import com.example.hi_ponic.view.profile.ProfileFragment
 import com.example.hi_ponic.view.profile.ProfileViewModel
 
@@ -25,6 +26,8 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
                 ProfileViewModel(repository) as T
             }modelClass.isAssignableFrom(SignupViewModel::class.java) -> {
                 SignupViewModel(repository) as T
+            }modelClass.isAssignableFrom(CekPanenViewModel::class.java) -> {
+                CekPanenViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

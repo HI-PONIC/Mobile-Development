@@ -17,4 +17,9 @@
     <string name="masukkanpassword">Masukkan Password</string>
     <string name="loginsukses">Login Berhasil</string>
     <string name="lanjutkelogin">lanjut ke login</string>
+    <string name="tflite_is_not_initialized_yet">TfLite is not initialized yet</string>
+    <string name="no_tflite_interpreter_loaded">No TFLite interpreter loaded</string>
+    <string name="model_loading_error">model error</string>
+    <string name="interpreter_initialization_failed">interpreter initialization failed</string>
+    <string name="inference_error">inference error</string>
 </resources>

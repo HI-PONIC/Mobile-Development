@@ -1,5 +1,6 @@
 package com.example.hi_ponic.view.mainView
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -14,6 +15,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.hi_ponic.R
 import com.example.hi_ponic.databinding.ActivityMainBinding
 import com.example.hi_ponic.view.ViewModelFactory
+import com.example.hi_ponic.view.auth.LoginActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -43,12 +45,12 @@ class MainActivity : AppCompatActivity() {
             getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_tertiaryContainer));
         }
 
-        //viewModel.getSession().observe(this) { user ->
-        //    if (!user.isLogin) {
-        //        startActivity(Intent(this, LoginActivity::class.java))
-        //        finish()
-        //    }
-        //}
+        viewModel.getSession().observe(this) { user ->
+            if (!user.isLogin) {
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            }
+        }
 
         setSupportActionBar(binding.toolbar)
 

@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView4"
@@ -118,19 +118,22 @@
                         android:text="Prediksi Hasil Panen" />
 
                     <TextView
+                        android:id="@+id/tvCekTerakhirHasilPanen"
                         style="@style/textStyleDescCek"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cek terakhir: 21-Mei-2024" />
+                        android:text="Cek terakhir: " />
 
                     <TextView
+                        android:id="@+id/tvHasilPrediksiPanen"
                         style="@style/textStyleDescCek"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:text="Hasil: Sehat" />
+                        android:text="Estimasi panen: " />
 
                     <Button
+                        android:id="@+id/btnCekPanen"
                         style="@style/textStyleDescCek"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -140,27 +143,7 @@
                         app:iconGravity="end" />
                 </LinearLayout>
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="120dp"
-                        android:layout_height="120dp">
-
-                        <ImageView
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/caramenanamseladasecaraorganik"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintDimensionRatio="1:1"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>

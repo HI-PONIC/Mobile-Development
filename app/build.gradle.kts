@@ -39,6 +39,7 @@ android {
         compose = true
         viewBinding = true
         buildConfig = true
+        mlModelBinding = true
     }
 
     composeOptions {
@@ -55,6 +56,8 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.tensorflow.lite.support)
+    implementation(libs.tensorflow.lite.metadata)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -75,4 +78,6 @@ dependencies {
     implementation(libs.glide)
     annotationProcessor(libs.glide.compiler)
     implementation(libs.androidx.viewpager2)
+    implementation(libs.play.services.tflite.java)
+    implementation(libs.play.services.tflite.gpu)
 }
