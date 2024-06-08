@@ -12,5 +12,4 @@ data class SignUpResponse(
 
 	@field:SerializedName("username")
 	val username: String? = null
-
 )
