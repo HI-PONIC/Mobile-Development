@@ -24,12 +24,13 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="56dp"
+                android:fontFamily="@font/montserratbold"
                 android:text="Join\nFuture\nFarming."
                 android:textColor="#12372A"
                 android:textSize="35sp"
-                android:layout_marginStart="39dp"
                 android:textStyle="bold"
-                android:fontFamily="@font/montserratbold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

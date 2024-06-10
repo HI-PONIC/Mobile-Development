@@ -1,6 +1,8 @@
 package com.example.hi_ponic.view.profile
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -16,6 +18,13 @@ class edit_username : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        // Menambahkan onClickListener untuk tombol ganti password
+        findViewById<Button>(R.id.gantipasword).setOnClickListener {
+            // Navigasi ke activity Ganti Password
+            val intent = Intent(this, change_password::class.java)
+            startActivity(intent)
         }
     }
 }

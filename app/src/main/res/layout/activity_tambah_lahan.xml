@@ -9,58 +9,47 @@
     android:padding="16dp"
     tools:context=".view.monitoring.TambahLahanActivity">
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/tv_greeting"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/montserratbold"
+        android:text="Monitoring"
+        android:textColor="#436850"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivDetail"
+        android:layout_width="303dp"
+        android:layout_height="266dp"
+        android:layout_marginTop="56dp"
+        android:contentDescription="Insert Photo"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image_dummy"
+        android:transitionName="photoTransition"
+        app:layout_constraintDimensionRatio="H,16:9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/tv_greeting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/montserratbold"
-            android:text="Monitoring"
-            android:textColor="#436850"
-            android:textSize="35sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardView"
-        android:layout_width="match_parent"
-        android:layout_height="320dp"
-        android:layout_margin="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-
-        <ImageView
-            android:id="@+id/ivDetail"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="Insert Photo"
-            android:scaleType="centerCrop"
-            android:src="@drawable/image_dummy"
-            android:transitionName="photoTransition" />
-
-    </com.google.android.material.card.MaterialCardView>
+        app:layout_constraintTop_toBottomOf="@id/tv_greeting" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edittextNamaTumbuhanLayout"
         style="@style/textFieldTambahLahan"
-        android:layout_width="290dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
+        app:layout_constraintTop_toBottomOf="@+id/ivDetail"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/NamaTumbuhanEditText"
@@ -74,15 +63,16 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edittextTanggalLayout"
-        android:layout_width="290dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edittextNamaTumbuhanLayout"
         app:endIconMode="custom"
-        app:endIconDrawable="@drawable/event_calender_date_note_svgrepo_com">
+        app:endIconDrawable="@drawable/event_calender_date_note_svgrepo_com"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/TanggalEditText"
@@ -97,13 +87,14 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edittextKodeAlatLayout"
-        android:layout_width="290dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittextTanggalLayout">
+        app:layout_constraintTop_toBottomOf="@+id/edittextTanggalLayout"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/KodeAlatEditText"
@@ -116,12 +107,13 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="349dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
         android:text="Submit"
-        android:layout_marginTop="16dp"
+        android:textColor="#FBFADA"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edittextKodeAlatLayout" />
 

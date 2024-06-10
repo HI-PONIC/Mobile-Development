@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="#436850"
+        android:padding="16dp"
         android:layout_margin="8dp"
         app:strokeColor="#12372A"
         app:layout_constraintBottom_toBottomOf="parent"
