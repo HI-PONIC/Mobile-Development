@@ -1,120 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FBFADA"
-    android:padding="16dp"
     tools:context=".view.monitoring.TambahLahanActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
-    <TextView
-        android:id="@+id/tv_greeting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:fontFamily="@font/montserratbold"
-        android:text="Monitoring"
-        android:textColor="#436850"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/ivDetail"
-        android:layout_width="303dp"
-        android:layout_height="266dp"
-        android:layout_marginTop="56dp"
-        android:contentDescription="Insert Photo"
-        android:scaleType="centerCrop"
-        android:src="@drawable/image_dummy"
-        android:transitionName="photoTransition"
-        app:layout_constraintDimensionRatio="H,16:9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_greeting" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edittextNamaTumbuhanLayout"
-        style="@style/textFieldTambahLahan"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivDetail"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/NamaTumbuhanEditText"
-            style="@style/CustomTextInputEditText"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Nama Tumbuhan"
-            android:textColor="#12372A" />
-    </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edittextTanggalLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittextNamaTumbuhanLayout"
-        app:endIconMode="custom"
-        app:endIconDrawable="@drawable/event_calender_date_note_svgrepo_com"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp">
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FBFADA"
+                android:minHeight="?attr/actionBarSize"
+                app:navigationIcon="@drawable/button_arrow" />
+        </com.google.android.material.appbar.AppBarLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/TanggalEditText"
-            style="@style/CustomTextInputEditText"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Tanggal"
-            android:textColor="#12372A" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:padding="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout5">
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edittextKodeAlatLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittextTanggalLayout"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp">
+            <TextView
+                android:id="@+id/tv_greeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserratbold"
+                android:text="Monitoring"
+                android:textColor="#436850"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/KodeAlatEditText"
-            style="@style/CustomTextInputEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Kode Alat"
-            android:textColor="#12372A" />
-    </com.google.android.material.textfield.TextInputLayout>
+            <ImageView
+                android:id="@+id/ivDetail"
+                android:layout_width="303dp"
+                android:layout_height="266dp"
+                android:layout_marginTop="56dp"
+                android:contentDescription="Insert Photo"
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_dummy"
+                android:transitionName="photoTransition"
+                app:layout_constraintDimensionRatio="H,16:9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_greeting" />
 
-    <Button
-        android:layout_width="349dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="24dp"
-        android:text="Submit"
-        android:textColor="#FBFADA"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittextKodeAlatLayout" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edittextNamaTumbuhanLayout"
+                style="@style/textFieldTambahLahan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivDetail">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/NamaTumbuhanEditText"
+                    style="@style/CustomTextInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Nama Tumbuhan"
+                    android:textColor="#12372A" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edittextTanggalLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:endIconDrawable="@drawable/event_calender_date_note_svgrepo_com"
+                app:endIconMode="custom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edittextNamaTumbuhanLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/TanggalEditText"
+                    style="@style/CustomTextInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Tanggal"
+                    android:textColor="#12372A" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edittextKodeAlatLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edittextTanggalLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/KodeAlatEditText"
+                    style="@style/CustomTextInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Kode Alat"
+                    android:textColor="#12372A" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:layout_width="349dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="24dp"
+                android:text="Submit"
+                android:textColor="#FBFADA"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.466"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edittextKodeAlatLayout" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

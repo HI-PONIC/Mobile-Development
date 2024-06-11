@@ -9,70 +9,84 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
-        <TextView
-            android:id="@+id/tv_greeting"
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout3"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="76dp"
-            android:fontFamily="@font/montserratbold"
-            android:text="Monitoring"
-            android:textColor="#436850"
-            android:textSize="35sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView4"
-            style="@style/cekTextTop"
-            android:layout_width="0dp"
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FBFADA"
+                android:minHeight="?attr/actionBarSize"
+                app:navigationIcon="@drawable/button_arrow" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Foto perkambangan dan Cek kesehatan"
+            android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_greeting" />
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout3">
 
-        <ImageView
-            android:id="@+id/ivDetail"
-            android:layout_width="380dp"
-            android:layout_height="345dp"
-            android:layout_marginTop="28dp"
-            android:contentDescription="Insert Photo"
-            android:scaleType="centerCrop"
-            android:src="@drawable/image_dummy"
-            android:transitionName="photoTransition"
-            app:layout_constraintDimensionRatio="H,16:9"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView4" />
+            <TextView
+                android:id="@+id/tv_greeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserratbold"
+                android:text="Monitoring"
+                android:textColor="#436850"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btnSubmit"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="244dp"
-            android:layout_height="54dp"
-            android:layout_marginTop="48dp"
-            android:text="Submit"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivDetail" />
+            <TextView
+                android:id="@+id/textView4"
+                style="@style/cekTextTop"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Foto perkambangan dan Cek kesehatan"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_greeting" />
+
+            <ImageView
+                android:id="@+id/ivDetail"
+                android:layout_width="380dp"
+                android:layout_height="345dp"
+                android:layout_marginTop="28dp"
+                android:contentDescription="Insert Photo"
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_dummy"
+                android:transitionName="photoTransition"
+                app:layout_constraintDimensionRatio="H,16:9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView4" />
+
+            <Button
+                android:id="@+id/btnSubmit"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="244dp"
+                android:layout_height="54dp"
+                android:layout_marginTop="48dp"
+                android:text="Submit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivDetail" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- TextView Greeting -->
-
-    <!-- TextView Deskripsi -->
-
-    <!-- ImageView -->
-
-    <!-- Button -->
-
 
 </ScrollView>

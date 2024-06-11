@@ -32,6 +32,13 @@ class DetailHydroponicStatisticActivity : AppCompatActivity() {
 
         setTabLayout()
         pageLayout()
+        topAppbarHandle()
+    }
+
+    private fun topAppbarHandle() {
+        binding.topAppbar.setNavigationOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
     }
 
     private fun pageLayout() {

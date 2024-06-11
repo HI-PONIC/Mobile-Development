@@ -54,6 +54,7 @@
                         android:text="Hasil: Sehat" />
 
                     <Button
+                        android:id="@+id/btnCekKesehatanTanaman"
                         style="@style/textStyleDescCek"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

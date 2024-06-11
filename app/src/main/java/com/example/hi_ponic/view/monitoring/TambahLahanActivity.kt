@@ -61,6 +61,13 @@ class TambahLahanActivity : AppCompatActivity() {
         binding.edittextTanggalLayout.setEndIconOnClickListener {
             datePickerDialog.show()
         }
+        topAppbarHandle()
+    }
+
+    private fun topAppbarHandle() {
+        binding.topAppBar.setNavigationOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
     }
 
     private fun pickImage() {

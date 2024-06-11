@@ -41,8 +41,14 @@ class CekKesehatanActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         openGalleryOrCamera()
+        topAppbarHandle()
     }
 
+    private fun topAppbarHandle() {
+        binding.topAppBar.setNavigationOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+    }
     private fun openGalleryOrCamera() {
         binding.ivDetail.setOnClickListener{
             pickImage()
