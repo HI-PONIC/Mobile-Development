@@ -1,5 +1,6 @@
 package com.example.hi_ponic.view.monitoring
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.hi_ponic.R
 import com.example.hi_ponic.data.pref.PanenPreference
-import com.example.hi_ponic.data.pref.PanenModel
 import com.example.hi_ponic.data.pref.panenDataStore
 import com.example.hi_ponic.databinding.FragmentCekBinding
 import com.example.hi_ponic.view.ViewModelFactory
@@ -81,6 +80,11 @@ class CekFragment : Fragment() {
             val inputArray = arrayOf(floatArrayOf(temp.toFloat(), tds.toFloat(), ph.toFloat(), humidity.toFloat()))
             val input3DArray = arrayOf(inputArray)
             prediksiPanenHelper.predict(input3DArray)
+        }
+
+        binding.btnCekKesehatanTanaman.setOnClickListener {
+            val intent = Intent(requireContext(),CekKesehatanActivity::class.java)
+            startActivity(intent)
         }
     }
 
