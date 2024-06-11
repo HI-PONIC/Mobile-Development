@@ -33,11 +33,8 @@
         </activity>
         <activity
             android:name=".view.monitoring.CekKesehatanActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
+
         </activity>
         <activity
             android:name=".view.profile.tentang_aplikasi"
@@ -50,7 +47,9 @@
             android:exported="false" />
         <activity
             android:name=".view.monitoring.DetailHydroponicStatisticActivity"
-            android:exported="false" />
+            android:exported="false">
+
+        </activity>
         <activity
             android:name=".view.auth.LoginActivity"
             android:exported="false" />
@@ -60,7 +59,12 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".view.mainView.MainActivity"
-            android:exported="true"/>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"

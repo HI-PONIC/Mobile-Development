@@ -4,13 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.hi_ponic.data.Response.SignUpResponse
 import com.example.hi_ponic.data.UserRepository
+import com.example.hi_ponic.data.response.ErrorResponse
 import kotlinx.coroutines.launch
 
 class SignupViewModel(private val userRepository: UserRepository) : ViewModel() {
-    private val _registerUser = MutableLiveData<SignUpResponse>()
-    val registerUser: LiveData<SignUpResponse> = _registerUser
+    private val _registerUser = MutableLiveData<ErrorResponse>()
+    val registerUser: LiveData<ErrorResponse> = _registerUser
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading

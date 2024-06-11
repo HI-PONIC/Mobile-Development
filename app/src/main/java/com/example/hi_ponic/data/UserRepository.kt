@@ -1,11 +1,9 @@
 package com.example.hi_ponic.data
 
-import com.example.hi_ponic.data.Response.LoginResponse
 import com.example.hi_ponic.data.Response.SensorResponse
-import com.example.hi_ponic.data.Response.SignUpResponse
 import com.example.hi_ponic.data.pref.UserModel
 import com.example.hi_ponic.data.pref.UserPreference
-import com.example.hi_ponic.data.retrofit.ApiConfig
+import com.example.hi_ponic.data.response.ErrorResponse
 import com.example.hi_ponic.data.retrofit.ApiService
 import kotlinx.coroutines.flow.Flow
 
@@ -25,11 +23,11 @@ class UserRepository private constructor(
         userPreference.logout()
     }
 
-    suspend fun login(identifier: String,password: String ):LoginResponse{
-        return apiService.login(identifier,password)
-    }
+//    suspend fun login(identifier: String,password: String ):LoginResponse{
+//        return apiService.login(identifier,password)
+//    }
 
-    suspend fun register(password: String,email: String, username: String): SignUpResponse{
+    suspend fun register(password: String,email: String, username: String): ErrorResponse{
         return apiService.register(username,email,password)
     }
 
