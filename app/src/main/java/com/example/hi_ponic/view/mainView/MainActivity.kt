@@ -45,12 +45,12 @@ class MainActivity : AppCompatActivity() {
             getWindow().setStatusBarColor(getResources().getColor(R.color.md_theme_tertiaryContainer));
         }
 
-//        viewModel.getSession().observe(this) { user ->
-//            if (!user.isLogin) {
-//                startActivity(Intent(this, LoginActivity::class.java))
-//                finish()
-//            }
-//        }
+        viewModel.getSession().observe(this) { user ->
+            if (!user.isLogin) {
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            }
+        }
 
         setSupportActionBar(binding.toolbar)
 

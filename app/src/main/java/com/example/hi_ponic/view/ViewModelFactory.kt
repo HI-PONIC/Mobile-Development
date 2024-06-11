@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.hi_ponic.data.UserRepository
-//import com.example.hi_ponic.di.Injection
+import com.example.hi_ponic.di.Injection
 import com.example.hi_ponic.view.auth.LoginViewModel
 import com.example.hi_ponic.view.auth.SignupViewModel
 import com.example.hi_ponic.view.mainView.MainViewModel
@@ -42,9 +42,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
         @JvmStatic
         fun getInstance(context: Context): ViewModelFactory {
             if (INSTANCE == null) {
-//                synchronized(ViewModelFactory::class.java) {
-//                    INSTANCE = ViewModelFactory(Injection.provideRepository(context))
-//                }
+                synchronized(ViewModelFactory::class.java) {
+                    INSTANCE = ViewModelFactory(Injection.provideRepository(context))
+                }
             }
             return INSTANCE as ViewModelFactory
         }
