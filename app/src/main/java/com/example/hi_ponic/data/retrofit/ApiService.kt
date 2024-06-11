@@ -1,5 +1,6 @@
 package com.example.hi_ponic.data.retrofit
 
+import com.example.hi_ponic.data.Response.LoginResponse
 import com.example.hi_ponic.data.Response.SensorResponse
 import com.example.hi_ponic.data.response.ErrorResponse
 import retrofit2.http.Field
@@ -17,12 +18,12 @@ interface ApiService {
         @Field("password") password: String
     ): ErrorResponse
 
-//    @FormUrlEncoded
-//    @POST("auth/login")
-//    suspend fun login(
-//        @Field("identifier") identifier: String,
-//        @Field("password") password: String
-//    ): LoginResponse
+    @FormUrlEncoded
+    @POST("auth/login")
+    suspend fun login(
+        @Field("identifier") identifier: String,
+        @Field("password") password: String
+    ): LoginResponse
 
     @GET("sensor")
     suspend fun getSensorData(): SensorResponse

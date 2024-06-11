@@ -1,5 +1,6 @@
 package com.example.hi_ponic.data
 
+import com.example.hi_ponic.data.Response.LoginResponse
 import com.example.hi_ponic.data.Response.SensorResponse
 import com.example.hi_ponic.data.pref.UserModel
 import com.example.hi_ponic.data.pref.UserPreference
@@ -23,9 +24,9 @@ class UserRepository private constructor(
         userPreference.logout()
     }
 
-//    suspend fun login(identifier: String,password: String ):LoginResponse{
-//        return apiService.login(identifier,password)
-//    }
+    suspend fun login(identifier: String,password: String ): LoginResponse {
+        return apiService.login(identifier,password)
+    }
 
     suspend fun register(password: String,email: String, username: String): ErrorResponse{
         return apiService.register(username,email,password)

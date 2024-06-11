@@ -44,15 +44,15 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun button() {
-//        binding.buttonLogin.setOnClickListener {
-//            val email = binding.emailEditText.text.toString()
-//            val password = binding.passwordEditText.text.toString()
-//
-//            if (validateInput(email, password)) {
-//                loginViewModel.login(email, password)
-//                showLoading(true)
-//            }
-//        }
+        binding.buttonLogin.setOnClickListener {
+            val email = binding.emailEditText.text.toString()
+            val password = binding.passwordEditText.text.toString()
+
+            if (validateInput(email, password)) {
+                loginViewModel.login(email, password)
+                showLoading(true)
+            }
+        }
         binding.buttonSignup.setOnClickListener {
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
@@ -85,17 +85,17 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setupObservers() {
-//        loginViewModel.loginUser.observe(this) { response ->
-//                showSuccessDialog()
-//            }
-//        loginViewModel.isLoading.observe(this) { isLoading ->
-//            showLoading(isLoading)
-//        }
-//        loginViewModel.isError.observe(this) { errorMessage ->
-//            if (!errorMessage.isNullOrEmpty()) {
-//                showError(errorMessage)
-//            }
-//        }
+        loginViewModel.loginUser.observe(this) { response ->
+                showSuccessDialog()
+            }
+        loginViewModel.isLoading.observe(this) { isLoading ->
+            showLoading(isLoading)
+        }
+        loginViewModel.isError.observe(this) { errorMessage ->
+            if (!errorMessage.isNullOrEmpty()) {
+                showError(errorMessage)
+            }
+        }
     }
 
     private fun showSuccessDialog() {
