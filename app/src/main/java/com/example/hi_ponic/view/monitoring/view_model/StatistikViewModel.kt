@@ -7,23 +7,23 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hi_ponic.data.Response.SensorData
 import com.example.hi_ponic.data.UserRepository
-import com.google.gson.Gson
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class CekPanenViewModel(private val repository: UserRepository) : ViewModel() {
+class StatistikViewModel(private val repository: UserRepository) : ViewModel() {
 
-    private val _cekPanen = MutableLiveData<SensorData>()
-    val cekPanen: LiveData<SensorData> = _cekPanen
+    private val _dataStatistik = MutableLiveData<SensorData>()
+    val dataStatistik: LiveData<SensorData> = _dataStatistik
 
     init {
-        getSensorValue()
+        observeRTSensorValue()
     }
 
-    private fun getSensorValue() {
+    private fun observeRTSensorValue() {
         viewModelScope.launch {
             try {
                 repository.observeSensorValues().collect { sensorData ->
-                    _cekPanen.postValue(sensorData.sensorData!!)
+                    _dataStatistik.postValue(sensorData.sensorData!!)
                 }
             } catch (e: Exception) {
                 Log.d("error", "sensor error", e)

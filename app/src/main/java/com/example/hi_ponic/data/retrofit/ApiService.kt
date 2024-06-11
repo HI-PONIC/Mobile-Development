@@ -25,6 +25,6 @@ interface ApiService {
         @Field("password") password: String
     ): LoginResponse
 
-    @GET("sensor")
+    @GET("iot/device/allSensor")
     suspend fun getSensorData(): SensorResponse
 }

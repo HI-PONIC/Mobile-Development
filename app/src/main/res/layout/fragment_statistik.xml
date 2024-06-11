@@ -47,7 +47,7 @@
                     style="@style/cardTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="pH 8" />
+                    android:text="pH -" />
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
@@ -70,25 +70,25 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/tvIntensitasCahaya"
+                    android:id="@+id/tvTDS"
                     style="@style/cardTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Intensitas Cahaya" />
+                    android:text="TDS" />
 
                 <ImageView
                     android:id="@+id/ivIntensitasCahaya"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:src="@drawable/intentsitascahaya" />
+                    android:src="@drawable/test_tube_01_stroke_rounded" />
 
                 <TextView
-                    android:id="@+id/tvIntensitasCahayaValue"
+                    android:id="@+id/tvTDSValue"
                     style="@style/cardTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="7500 xl" />
+                    android:text="- ppm" />
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
@@ -129,7 +129,7 @@
                     style="@style/cardTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="70% RH" />
+                    android:text="- RH" />
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
@@ -169,7 +169,7 @@
                     style="@style/cardTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="24 C" />
+                    android:text="- C" />
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>

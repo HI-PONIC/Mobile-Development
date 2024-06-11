@@ -22,4 +22,8 @@
     <string name="model_loading_error">model error</string>
     <string name="interpreter_initialization_failed">interpreter initialization failed</string>
     <string name="inference_error">inference error</string>
+    <string name="humidity_format">%1$s RH</string>
+    <string name="temperature_format">%1$s °C</string>
+    <string name="tds_format">%1$s ppm</string>
+    <string name="ph_format">pH %1$s</string>
 </resources>

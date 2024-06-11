@@ -72,14 +72,18 @@ class CekFragment : Fragment() {
         loadSavedData()
 
         binding.btnCekPanen.setOnClickListener {
-            // Manual input
-            val temp = 12.0
-            val tds = 30.0
-            val ph = 4.0
-            val humidity = 20.0
-            val inputArray = arrayOf(floatArrayOf(temp.toFloat(), tds.toFloat(), ph.toFloat(), humidity.toFloat()))
-            val input3DArray = arrayOf(inputArray)
-            prediksiPanenHelper.predict(input3DArray)
+            viewModel.cekPanen.observe(viewLifecycleOwner){ data ->
+                val temp = data.temp?.toFloat()
+                val tds = data.tds?.toFloat()
+                val ph = data.ph?.toFloat()
+                val humidity = data.humidity?.toFloat()
+
+                val inputArray = arrayOf(floatArrayOf(temp!!, tds!!, ph!!, humidity!!))
+                val input3DArray = arrayOf(inputArray)
+                prediksiPanenHelper.predict(input3DArray)
+            }
+
+
         }
 
         binding.btnCekKesehatanTanaman.setOnClickListener {

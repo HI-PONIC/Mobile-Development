@@ -10,7 +10,6 @@ data class SensorResponse(
 	@field:SerializedName("status")
 	val status: String? = null
 )
-
 data class SensorData(
 
 	@field:SerializedName("temp")
