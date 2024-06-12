@@ -64,7 +64,7 @@
                 android:id="@+id/ivDetail"
                 android:layout_width="380dp"
                 android:layout_height="345dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="12dp"
                 android:contentDescription="Insert Photo"
                 android:scaleType="centerCrop"
                 android:src="@drawable/image_dummy"
@@ -75,14 +75,25 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView4" />
 
+
+            <TextView
+                android:id="@+id/tvHasilKlasifikasi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="hasil"
+                app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
+                app:layout_constraintTop_toBottomOf="@+id/ivDetail"
+                tools:layout_editor_absoluteX="178dp" />
+
             <Button
                 android:id="@+id/btnSubmit"
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="244dp"
                 android:layout_height="54dp"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="84dp"
                 android:text="Submit"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ivDetail" />
         </androidx.constraintlayout.widget.ConstraintLayout>

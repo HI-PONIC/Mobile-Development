@@ -47,6 +47,7 @@
                         android:text="Cek terakhir: 21-Mei-2024" />
 
                     <TextView
+                        android:id="@+id/HasilKlasisifikasi"
                         style="@style/textStyleDescCek"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

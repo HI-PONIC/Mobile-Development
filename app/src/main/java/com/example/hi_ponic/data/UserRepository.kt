@@ -2,6 +2,7 @@ package com.example.hi_ponic.data
 
 import com.example.hi_ponic.data.Response.LoginResponse
 import com.example.hi_ponic.data.Response.SensorResponse
+import com.example.hi_ponic.data.Response.PredictConditionResponse
 import com.example.hi_ponic.data.pref.UserModel
 import com.example.hi_ponic.data.pref.UserPreference
 import com.example.hi_ponic.data.response.ErrorResponse
@@ -11,6 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.Dispatchers
+import okhttp3.MultipartBody
 
 class UserRepository private constructor(
     private val userPreference: UserPreference,
@@ -52,6 +54,10 @@ class UserRepository private constructor(
             }
         }
     }.flowOn(Dispatchers.IO)
+
+    suspend fun uploadImage(file: MultipartBody.Part): PredictConditionResponse {
+        return apiService.uploadImage(file)
+    }
 
     companion object {
         fun getInstance(
