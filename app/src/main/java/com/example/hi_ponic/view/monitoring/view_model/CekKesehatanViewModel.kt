@@ -14,9 +14,17 @@ class CekKesehatanViewModel(private val userRepository: UserRepository) : ViewMo
     private val _predictResult = MutableLiveData<PredictConditionResponse>()
     val predictResult: LiveData<PredictConditionResponse> = _predictResult
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
+    fun setLoading(isLoading: Boolean) {
+        _isLoading.value = isLoading
+    }
+
     fun uploadImage(file: MultipartBody.Part) {
         viewModelScope.launch {
             try {
+                _isLoading.value = true // Ensure loading is set to true when upload starts
                 val response = userRepository.uploadImage(file)
                 if (response.status == "success") {
                     _predictResult.value = response
@@ -32,7 +40,11 @@ class CekKesehatanViewModel(private val userRepository: UserRepository) : ViewMo
                     status = "error"
                 )
                 Log.e("CekKesehatanViewModel", "Upload error: ${e.message}")
+            } finally {
+                _isLoading.value = false // Ensure loading is set to false when upload ends
             }
         }
     }
 }
+
+

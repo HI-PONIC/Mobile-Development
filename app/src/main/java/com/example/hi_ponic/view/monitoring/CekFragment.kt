@@ -1,6 +1,9 @@
 package com.example.hi_ponic.view.monitoring
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.hi_ponic.data.pref.PanenPreference
 import com.example.hi_ponic.data.pref.panenDataStore
 import com.example.hi_ponic.databinding.FragmentCekBinding
@@ -46,6 +50,14 @@ class CekFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Register broadcast receiver
+        val filter = IntentFilter("com.example.hi_ponic.RESULT_ACTION")
+        LocalBroadcastManager.getInstance(requireContext()).registerReceiver(resultReceiver, filter)
+
+        // Load saved data
+        loadSavedData()
+
 
         prediksiPanenHelper = PrediksiPanenHelper(
             context = requireContext(),
@@ -92,13 +104,27 @@ class CekFragment : Fragment() {
         }
     }
 
+    private val resultReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            loadSavedData()
+        }
+    }
+
     private fun loadSavedData() {
         lifecycleScope.launch {
+            val sharedPreferences = requireContext().getSharedPreferences("CekKesehatanPrefs", Context.MODE_PRIVATE)
+            val lastResult = sharedPreferences.getString("lastResult", "No result")
             val panenData = panenPreference.getPanenData().first()
             if (panenData.lastCheckDate.isNotEmpty() && panenData.predictionResult != -1) {
                 binding.tvCekTerakhirHasilPanen.text = "Cek terakhir: ${panenData.lastCheckDate}"
                 binding.tvHasilPrediksiPanen.text = "Estimasi panen: ${panenData.predictionResult} hari lagi"
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // Unregister broadcast receiver
+        LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(resultReceiver)
     }
 }

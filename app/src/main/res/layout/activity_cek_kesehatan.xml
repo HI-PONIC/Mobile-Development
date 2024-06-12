@@ -32,6 +32,7 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout3">
 
@@ -75,15 +76,28 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView4" />
 
-
             <TextView
                 android:id="@+id/tvHasilKlasifikasi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="52dp"
                 android:text="hasil"
                 app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
-                app:layout_constraintTop_toBottomOf="@+id/ivDetail"
-                tools:layout_editor_absoluteX="178dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ivDetail"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/tvHasilmessege"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="hasil 2"
+                app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ivDetail"
+                app:layout_constraintVertical_bias="0.937" />
 
             <Button
                 android:id="@+id/btnSubmit"
@@ -91,13 +105,21 @@
                 android:layout_width="244dp"
                 android:layout_height="54dp"
                 android:layout_marginTop="84dp"
-                android:text="Submit"
+                android:text="submit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ivDetail" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </ScrollView>

@@ -9,6 +9,7 @@ data class PredictConditionResponse(
 
 	@field:SerializedName("status")
 	val status: String? = null
+
 )
 
 data class Data(
@@ -18,4 +19,5 @@ data class Data(
 
 	@field:SerializedName("message")
 	val message: String? = null
+
 )

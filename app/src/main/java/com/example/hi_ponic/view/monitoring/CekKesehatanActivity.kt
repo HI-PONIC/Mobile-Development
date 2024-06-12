@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -17,6 +18,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.hi_ponic.BuildConfig
 import com.example.hi_ponic.R
 import com.example.hi_ponic.databinding.ActivityCekKesehatanBinding
@@ -36,7 +38,6 @@ class CekKesehatanActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<CekKesehatanViewModel> {
         ViewModelFactory.getInstance(this)
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,17 +52,27 @@ class CekKesehatanActivity : AppCompatActivity() {
             insets
         }
 
-
         openGalleryOrCamera()
         topAppbarHandle()
         handleSubmitButton()
-
 
         viewModel.predictResult.observe(this) { response ->
             response?.let {
                 val resultMessage = it.data?.result ?: "No result"
                 binding.tvHasilKlasifikasi.text = resultMessage
+                val respondMessage = it.data?.message ?: "No result"
+                binding.tvHasilmessege.text = respondMessage
                 showSnackbar(resultMessage)
+            }
+        }
+
+        viewModel.isLoading.observe(this) { isLoading ->
+            if (isLoading) {
+                binding.progressBar.visibility = View.VISIBLE
+                binding.btnSubmit.visibility = View.GONE
+            } else {
+                binding.progressBar.visibility = View.GONE
+                binding.btnSubmit.visibility = View.VISIBLE
             }
         }
     }
@@ -71,8 +82,6 @@ class CekKesehatanActivity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
     }
-
-
 
     private fun openGalleryOrCamera() {
         binding.ivDetail.setOnClickListener {
@@ -117,7 +126,6 @@ class CekKesehatanActivity : AppCompatActivity() {
         builder.show()
     }
 
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
@@ -150,6 +158,7 @@ class CekKesehatanActivity : AppCompatActivity() {
     private fun handleSubmitButton() {
         binding.btnSubmit.setOnClickListener {
             if (::selectedFile.isInitialized) {
+                viewModel.setLoading(true)
                 uploadImage(selectedFile)
             } else {
                 Toast.makeText(this, "Please select an image first", Toast.LENGTH_SHORT).show()
@@ -163,7 +172,27 @@ class CekKesehatanActivity : AppCompatActivity() {
         viewModel.uploadImage(body)
     }
 
+    private fun showResult(result: String) {
+        // Save the result in Shared Preferences
+        val sharedPreferences = getSharedPreferences("CekKesehatanPrefs", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("lastResult", result)
+        editor.apply()
+
+        // Notify the fragment about the new result
+        val intent = Intent("com.example.hi_ponic.RESULT_ACTION")
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
+
+        // Display the result
+        binding.tvHasilKlasifikasi.text = result
+        viewModel.setLoading(false)
+    }
+
     private fun showSnackbar(result: String) {
         Snackbar.make(binding.root, result, Snackbar.LENGTH_LONG).show()
+        showResult(result) // Call showResult to save and display the result
     }
+
 }
+
+

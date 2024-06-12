@@ -30,12 +30,7 @@
             android:exported="false" />
         <activity
             android:name=".view.monitoring.CekKesehatanActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"/>
         <activity
             android:name=".view.profile.tentang_aplikasi"
             android:exported="false" />
@@ -47,8 +42,11 @@
             android:exported="false" />
         <activity
             android:name=".view.monitoring.DetailHydroponicStatisticActivity"
-            android:exported="false">
-
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".view.auth.LoginActivity"
