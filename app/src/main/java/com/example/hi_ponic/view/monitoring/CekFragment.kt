@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.example.hi_ponic.R
 import com.example.hi_ponic.data.pref.PanenPreference
 import com.example.hi_ponic.data.pref.panenDataStore
 import com.example.hi_ponic.databinding.FragmentCekBinding
@@ -63,12 +64,13 @@ class CekFragment : Fragment() {
             context = requireContext(),
             onResult = { result ->
                 val currentDate = SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).format(Date())
-                binding.tvCekTerakhirHasilPanen.text = "Cek terakhir: $currentDate"
+                binding.tvCekTerakhirHasilPanen.text = getString(R.string.cek_terakhir, currentDate)
 
                 val roundedResult = result.toDouble().roundToInt()
                 val prediksiPanen = 45 - roundedResult
 
-                binding.tvHasilPrediksiPanen.text = "Estimasi panen: $prediksiPanen hari lagi"
+                binding.tvHasilPrediksiPanen.text =
+                    getString(R.string.estimasi_panen_hari_lagi, prediksiPanen)
 
                 // Save to DataStore
                 lifecycleScope.launch {
@@ -85,10 +87,10 @@ class CekFragment : Fragment() {
 
         binding.btnCekPanen.setOnClickListener {
             viewModel.cekPanen.observe(viewLifecycleOwner){ data ->
-                val temp = data.temp?.toFloat()
-                val tds = data.tds?.toFloat()
-                val ph = data.ph?.toFloat()
-                val humidity = data.humidity?.toFloat()
+                val temp = data.temp
+                val tds = data.tds
+                val ph = data.ph
+                val humidity = data.humidity
 
                 val inputArray = arrayOf(floatArrayOf(temp!!, tds!!, ph!!, humidity!!))
                 val input3DArray = arrayOf(inputArray)

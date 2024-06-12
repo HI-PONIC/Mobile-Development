@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hi_ponic.data.Response.SensorData
 import com.example.hi_ponic.data.UserRepository
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -25,6 +26,7 @@ class StatistikViewModel(private val repository: UserRepository) : ViewModel() {
                 repository.observeSensorValues().collect { sensorData ->
                     _dataStatistik.postValue(sensorData.sensorData!!)
                 }
+                delay(120000)
             } catch (e: Exception) {
                 Log.d("error", "sensor error", e)
             }

@@ -19,7 +19,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="36dp"
             android:fontFamily="@font/montserratbold"
-            android:text="Hi Fathia!"
+            android:text="Hi !"
             android:textColor="#000000"
             android:textSize="35sp"
             android:textStyle="bold"

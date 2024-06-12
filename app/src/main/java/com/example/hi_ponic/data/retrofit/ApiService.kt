@@ -4,10 +4,12 @@ import com.example.hi_ponic.data.Response.LoginResponse
 import com.example.hi_ponic.data.Response.PredictConditionResponse
 import com.example.hi_ponic.data.Response.SensorResponse
 import com.example.hi_ponic.data.response.ErrorResponse
+import com.example.hi_ponic.data.response.TambahTanamanResponse
 import okhttp3.MultipartBody
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
@@ -35,6 +37,14 @@ interface ApiService {
         @Part image: MultipartBody.Part
     ): PredictConditionResponse
 
-    @GET("sensor")
+    @GET("iot/device/allSensor")
     suspend fun getSensorData(): SensorResponse
+
+    @Multipart
+    @POST("")
+    suspend fun addPlant(
+        @Field("name") name: String,
+        @Field("date_added") date_added: String,
+        @Field("image") image: MultipartBody.Part
+    ):TambahTanamanResponse
 }

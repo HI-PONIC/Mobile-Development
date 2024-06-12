@@ -6,6 +6,7 @@ import com.example.hi_ponic.data.Response.PredictConditionResponse
 import com.example.hi_ponic.data.pref.UserModel
 import com.example.hi_ponic.data.pref.UserPreference
 import com.example.hi_ponic.data.response.ErrorResponse
+import com.example.hi_ponic.data.response.TambahTanamanResponse
 import com.example.hi_ponic.data.retrofit.ApiService
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -27,6 +28,10 @@ class UserRepository private constructor(
         return userPreference.getSession()
     }
 
+    fun getName(): Flow<String> {
+        return userPreference.getName()
+    }
+
     suspend fun logout() {
         userPreference.logout()
     }
@@ -39,8 +44,8 @@ class UserRepository private constructor(
         return apiService.register(username, email, password)
     }
 
-    suspend fun getSensorValue(): SensorResponse {
-        return apiService.getSensorData()
+    suspend fun addPlant(name: String,  date_added: String, image: MultipartBody.Part): TambahTanamanResponse{
+        return apiService.addPlant(name, date_added,image)
     }
 
     fun observeSensorValues(): Flow<SensorResponse> = flow {
@@ -48,7 +53,7 @@ class UserRepository private constructor(
             try {
                 val sensorData = apiService.getSensorData()
                 emit(sensorData)
-                delay(60000) // Delay for 60 seconds (1 minute) before fetching data again
+                delay(120000) // Delay for 60 seconds (1 minute) before fetching data again
             } catch (e: Exception) {
                 // Handle error
             }

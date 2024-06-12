@@ -33,7 +33,7 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel()  {
         viewModelScope.launch {
             try {
                 val response = repository.login(email, password)
-                val user = UserModel(email)
+                val user = UserModel(response.loginResult?.name.toString(),email)
                 saveSession(user)
                 _isLoading.value = false
                 _loginUser.value = response
