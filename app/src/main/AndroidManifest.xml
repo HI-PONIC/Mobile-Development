@@ -7,8 +7,11 @@
         android:required="true" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -23,6 +26,18 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".view.knowledgeBase.Knowledgebase4"
+            android:exported="false" />
+        <activity
+            android:name=".view.knowledgeBase.Knowledgebase3"
+            android:exported="false" />
+        <activity
+            android:name=".view.knowledgeBase.Knowledgebase2"
+            android:exported="false" />
+        <activity
+            android:name=".view.knowledgeBase.Knowledgebase1"
+            android:exported="false" />
+        <activity
             android:name=".view.knowledgeBase.DetailKnowledgeBaseActivity"
             android:exported="false" />
         <activity
@@ -30,13 +45,13 @@
             android:exported="false" />
         <activity
             android:name=".view.monitoring.CekKesehatanActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".view.profile.tentang_aplikasi"
             android:exported="false" />
         <activity
             android:name=".view.profile.change_password"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".view.profile.edit_username"
             android:exported="false" />
@@ -45,6 +60,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -57,7 +73,7 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".view.mainView.MainActivity"
-            android:exported="false"/>
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -69,4 +85,5 @@
                 android:resource="@xml/file_paths" />
         </provider>
     </application>
+
 </manifest>
