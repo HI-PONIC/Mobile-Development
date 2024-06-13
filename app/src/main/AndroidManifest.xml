@@ -45,24 +45,20 @@
             android:exported="false" />
         <activity
             android:name=".view.monitoring.CekKesehatanActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".view.profile.tentang_aplikasi"
             android:exported="false" />
         <activity
             android:name=".view.profile.change_password"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".view.profile.edit_username"
             android:exported="false" />
         <activity
             android:name=".view.monitoring.DetailHydroponicStatisticActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".view.auth.LoginActivity"
@@ -73,7 +69,12 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".view.mainView.MainActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -85,5 +86,4 @@
                 android:resource="@xml/file_paths" />
         </provider>
     </application>
-
 </manifest>

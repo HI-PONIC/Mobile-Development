@@ -51,7 +51,7 @@ class SignupActivity : AppCompatActivity() {
 
             showLoading(true)
 
-            viewmodel.register(name, email, password)
+            viewmodel.register(password, email, name)
 
             viewmodel.isLoading.observe(this) { showLoading(it) }
 

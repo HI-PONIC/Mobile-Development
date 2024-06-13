@@ -10,7 +10,9 @@ import com.example.hi_ponic.view.auth.SignupViewModel
 import com.example.hi_ponic.view.mainView.MainViewModel
 import com.example.hi_ponic.view.monitoring.view_model.CekKesehatanViewModel
 import com.example.hi_ponic.view.monitoring.view_model.CekPanenViewModel
+import com.example.hi_ponic.view.monitoring.view_model.HomeMonitoringViewModel
 import com.example.hi_ponic.view.monitoring.view_model.StatistikViewModel
+import com.example.hi_ponic.view.monitoring.view_model.TambahLahanViewModel
 import com.example.hi_ponic.view.profile.ProfileFragment
 import com.example.hi_ponic.view.profile.ProfileViewModel
 
@@ -36,6 +38,10 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(StatistikViewModel::class.java) -> {
                 StatistikViewModel(repository) as T
+            }modelClass.isAssignableFrom(HomeMonitoringViewModel::class.java) -> {
+                HomeMonitoringViewModel(repository) as T
+            }modelClass.isAssignableFrom(TambahLahanViewModel::class.java) -> {
+                TambahLahanViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

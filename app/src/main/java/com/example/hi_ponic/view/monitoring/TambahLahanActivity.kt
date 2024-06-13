@@ -42,8 +42,34 @@ class TambahLahanActivity : AppCompatActivity() {
         dateInput()
 
         binding.ivDetail.setOnClickListener {
-            // Panggil method untuk memilih gambar dari galeri atau kamera
             pickImage()
+        }
+
+        onSubmit()
+    }
+
+    private fun onSubmit() {
+        binding.btnSubmit.setOnClickListener {
+            val namaTumbuhan = binding.NamaTumbuhanEditText.text.toString()
+            val tanggal = binding.TanggalEditText.text.toString()
+
+            if (namaTumbuhan.isEmpty() || tanggal.isEmpty()) {
+                Toast.makeText(this, "Harap isi semua data", Toast.LENGTH_SHORT).show()
+            } else {
+                AlertDialog.Builder(this).apply {
+                    setTitle("Konfirmasi")
+                    setMessage("Apakah Anda yakin ingin menyimpan data ini?")
+                    setPositiveButton("Ya") { _, _ ->
+                        // Tambahkan logika penyimpanan data di sini
+                        Toast.makeText(this@TambahLahanActivity, "Data berhasil disimpan", Toast.LENGTH_SHORT).show()
+                    }
+                    setNegativeButton("Tidak") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    create()
+                    show()
+                }
+            }
         }
     }
 

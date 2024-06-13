@@ -22,7 +22,7 @@ class SignupViewModel(private val userRepository: UserRepository) : ViewModel() 
         _isLoading.value = true
         viewModelScope.launch {
             try {
-                val response = userRepository.register(name, email, password)
+                val response = userRepository.register(password, email, name)
                 _isLoading.value = false
                 _registerUser.value = response
             } catch (e: Exception) {

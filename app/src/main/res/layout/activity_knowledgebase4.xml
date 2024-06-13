@@ -1,10 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FBFADA"
+    android:orientation="vertical"
     tools:context=".view.knowledgeBase.Knowledgebase4">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FBFADA"
+            android:minHeight="?attr/actionBarSize"
+            app:navigationIcon="@drawable/button_arrow" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="Cara Memulai Budidaya Hidroponik"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="169dp"
+                android:layout_marginTop="16dp"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"
+                android:src="@drawable/memulaibudidayahidroponik"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+            <TextView
+                android:id="@+id/tv_description"
+                style="@style/description"
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="Memulai budidaya hidroponik tidaklah sulit jika Anda memahami langkah-langkah dasarnya. Berikut adalah panduan untuk memulai sistem hidroponik sederhana di rumah."
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <TextView
+                android:id="@+id/textView5"
+                style="@style/descriptionBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="Langkah-langkah Memulai:"
+                app:layout_constraintTop_toBottomOf="@+id/tv_description"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <TextView
+                android:id="@+id/tv_step1"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="1. Pilih Sistem Hidroponik yang Tepat: Tentukan jenis sistem yang ingin digunakan, seperti sistem rakit apung, NFT, atau aeroponik."
+                app:layout_constraintTop_toBottomOf="@+id/textView5"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <TextView
+                android:id="@+id/tv_step2"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="2. Siapkan Alat dan Bahan: Termasuk reservoir, pompa, media tumbuh, dan nutrisi hidroponik."
+                app:layout_constraintTop_toBottomOf="@+id/tv_step1" />
+
+            <TextView
+                android:id="@+id/tv_step3"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="3. Instalasi Sistem: Rakit semua komponen sesuai petunjuk, pastikan semua bagian berfungsi dengan baik."
+                app:layout_constraintTop_toBottomOf="@+id/tv_step2" />
+
+            <TextView
+                android:id="@+id/tv_step4"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="4. Tanam Bibit: Pilih bibit tanaman yang cocok untuk hidroponik, seperti selada, bayam, atau tomat. Tanam bibit pada media tumbuh."
+                app:layout_constraintTop_toBottomOf="@+id/tv_step3" />
+
+            <TextView
+                android:id="@+id/tv_step5"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="5. Pemeliharaan dan Pemantauan: Pantau pertumbuhan tanaman, pastikan nutrisi dan pH air dalam kondisi optimal."
+                app:layout_constraintTop_toBottomOf="@+id/tv_step4" />
+
+            <TextView
+                android:id="@+id/tv_tip"
+                style="@style/descriptionBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="Tips Sukses:"
+                app:layout_constraintTop_toBottomOf="@+id/tv_step5" />
+
+            <TextView
+                android:id="@+id/tv_tip1"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="1. Pemilihan Lokasi: Pastikan sistem mendapatkan cahaya yang cukup atau gunakan lampu grow light jika di dalam ruangan."
+                app:layout_constraintTop_toBottomOf="@+id/tv_tip" />
+
+            <TextView
+                android:id="@+id/tv_tip2"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="2. Kualitas Air: Gunakan air yang bersih dan bebas dari kontaminan."
+                app:layout_constraintTop_toBottomOf="@+id/tv_tip1" />
+
+            <TextView
+                android:id="@+id/tv_tip3"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="3. Nutrisi: Gunakan nutrisi khusus hidroponik yang sudah diformulasikan untuk kebutuhan tanaman."
+                app:layout_constraintTop_toBottomOf="@+id/tv_tip2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
