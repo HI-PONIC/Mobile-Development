@@ -177,6 +177,7 @@ class CekKesehatanActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("CekKesehatanPrefs", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString("lastResult", result)
+        editor.putString("lastImagePath", selectedFile.path) // Save image path
         editor.apply()
 
         // Notify the fragment about the new result

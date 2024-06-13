@@ -51,3 +51,7 @@ data class PanenModel(
     val lastCheckDate: String,
     val predictionResult: Int
 )
+
+data class cekkesehatan(
+    val lastCheckDate: String,
+)

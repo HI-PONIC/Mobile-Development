@@ -1,9 +1,12 @@
+// CekFragment.kt
+
 package com.example.hi_ponic.view.monitoring
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +25,7 @@ import com.example.hi_ponic.view.monitoring.ml.PrediksiPanenHelper
 import com.example.hi_ponic.view.monitoring.view_model.CekPanenViewModel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -59,7 +63,6 @@ class CekFragment : Fragment() {
         // Load saved data
         loadSavedData()
 
-
         prediksiPanenHelper = PrediksiPanenHelper(
             context = requireContext(),
             onResult = { result ->
@@ -82,11 +85,8 @@ class CekFragment : Fragment() {
             }
         )
 
-        // Load saved data
-        loadSavedData()
-
         binding.btnCekPanen.setOnClickListener {
-            viewModel.cekPanen.observe(viewLifecycleOwner){ data ->
+            viewModel.cekPanen.observe(viewLifecycleOwner) { data ->
                 val temp = data.temp
                 val tds = data.tds
                 val ph = data.ph
@@ -96,31 +96,42 @@ class CekFragment : Fragment() {
                 val input3DArray = arrayOf(inputArray)
                 prediksiPanenHelper.predict(input3DArray)
             }
-
-
         }
 
         binding.btnCekKesehatanTanaman.setOnClickListener {
-            val intent = Intent(requireContext(),CekKesehatanActivity::class.java)
+            val intent = Intent(requireContext(), CekKesehatanActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+
+    private fun loadSavedData() {
+        lifecycleScope.launch {
+            val sharedPreferences = requireContext().getSharedPreferences("CekKesehatanPrefs", Context.MODE_PRIVATE)
+            val lastResult = sharedPreferences.getString("lastResult", "No result")
+            val lastImagePath = sharedPreferences.getString("lastImagePath", null)
+
+            binding.HasilKlasisifikasi.text = "Hasil: $lastResult"
+
+            if (lastImagePath != null) {
+                val file = File(lastImagePath)
+                if (file.exists()) {
+                    val bitmap = BitmapFactory.decodeFile(file.path)
+                    binding.gambarupdate.setImageBitmap(bitmap)
+                }
+            }
+
+            val panenData = panenPreference.getPanenData().first()
+            if (panenData.lastCheckDate.isNotEmpty() && panenData.predictionResult != -1) {
+                binding.tvCekTerakhirHasilPanen.text = "Cek terakhir: ${panenData.lastCheckDate}"
+                binding.tvHasilPrediksiPanen.text = "Estimasi panen: ${panenData.predictionResult} hari lagi"
+            }
         }
     }
 
     private val resultReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             loadSavedData()
-        }
-    }
-
-    private fun loadSavedData() {
-        lifecycleScope.launch {
-            val sharedPreferences = requireContext().getSharedPreferences("CekKesehatanPrefs", Context.MODE_PRIVATE)
-            val lastResult = sharedPreferences.getString("lastResult", "No result")
-            val panenData = panenPreference.getPanenData().first()
-            if (panenData.lastCheckDate.isNotEmpty() && panenData.predictionResult != -1) {
-                binding.tvCekTerakhirHasilPanen.text = "Cek terakhir: ${panenData.lastCheckDate}"
-                binding.tvHasilPrediksiPanen.text = "Estimasi panen: ${panenData.predictionResult} hari lagi"
-            }
         }
     }
 
