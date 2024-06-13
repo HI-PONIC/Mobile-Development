@@ -1,10 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FBFADA"
+    android:orientation="vertical"
     tools:context=".view.knowledgeBase.Knowledgebase3">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FBFADA"
+            android:minHeight="?attr/actionBarSize"
+            app:navigationIcon="@drawable/button_arrow" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="Cara Menggunakan Alat IoT dalam Hidroponik"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="169dp"
+                android:layout_marginTop="16dp"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"
+                android:src="@drawable/panduanmenggunakanalatiot"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+            <TextView
+                android:id="@+id/tv_description"
+                style="@style/description"
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="Menggunakan alat IoT dalam sistem hidroponik memerlukan beberapa langkah dasar, mulai dari pembelian alat hingga pemasangan sensor dan pemantauan data. Berikut adalah panduan sederhana untuk memulai."
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <TextView
+                android:id="@+id/textView5"
+                style="@style/descriptionBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginTop="16dp"
+                android:text="Langkah-langkah Menggunakan Alat IoT"
+                app:layout_constraintTop_toBottomOf="@+id/tv_description"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <TextView
+                android:id="@+id/tv_step1"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="1. Beli Alat IoT di Toko Resmi Tokopedia Kami: Langkah pertama adalah membeli alat IoT yang Anda butuhkan untuk sistem hidroponik. Pastikan Anda membeli dari toko resmi kami di Tokopedia untuk mendapatkan produk berkualitas dan layanan purna jual yang baik."
+                app:layout_constraintTop_toBottomOf="@+id/textView5"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <TextView
+                android:id="@+id/tv_step2"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="2. Tempelkan Box IoT di Media Hidroponik: Setelah alat tiba, tempelkan box IoT yang berisi perangkat utama di media hidroponik Anda. Box ini akan menjadi pusat pengolahan data dari semua sensor yang terhubung."
+                app:layout_constraintTop_toBottomOf="@+id/tv_step1" />
+
+            <TextView
+                android:id="@+id/tv_step3"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="3. Masukkan Sensor pH dan TDS ke dalam Air: Masukkan sensor pH dan TDS (Total Dissolved Solids) ke dalam reservoir atau larutan nutrisi di sistem hidroponik. Sensor ini akan mengukur tingkat keasaman dan konsentrasi nutrisi dalam air."
+                app:layout_constraintTop_toBottomOf="@+id/tv_step2" />
+
+            <TextView
+                android:id="@+id/tv_step4"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="4. Letakkan Sensor Intensitas Cahaya di Atas Media Hidroponik: Tempatkan sensor intensitas cahaya di atas media hidroponik, di area yang menerima cahaya langsung. Sensor ini akan memantau jumlah cahaya yang diterima oleh tanaman."
+                app:layout_constraintTop_toBottomOf="@+id/tv_step3" />
+
+            <TextView
+                android:id="@+id/tv_tip"
+                style="@style/descriptionBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginTop="16dp"
+                android:text="Tips Tambahan untuk Pengguna:"
+                app:layout_constraintTop_toBottomOf="@+id/tv_step4" />
+
+            <TextView
+                android:id="@+id/tv_tip1"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="Rutin Periksa Koneksi: Pastikan semua sensor terhubung dengan baik ke box IoT dan perangkat lunak pemantauan."
+                app:layout_constraintTop_toBottomOf="@+id/tv_tip" />
+
+            <TextView
+                android:id="@+id/tv_tip2"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="Baca Manual: Selalu baca manual produk untuk memahami cara pemasangan dan penggunaan yang benar."
+                app:layout_constraintTop_toBottomOf="@+id/tv_tip1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

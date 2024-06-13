@@ -7,7 +7,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
@@ -20,7 +19,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.hi_ponic.R
 import com.example.hi_ponic.databinding.ActivityTambahLahanBinding
-import java.util.*
+import java.util.Calendar
 
 class TambahLahanActivity : AppCompatActivity() {
 
@@ -42,8 +41,34 @@ class TambahLahanActivity : AppCompatActivity() {
         dateInput()
 
         binding.ivDetail.setOnClickListener {
-            // Panggil method untuk memilih gambar dari galeri atau kamera
             pickImage()
+        }
+
+        onSubmit()
+    }
+
+    private fun onSubmit() {
+        binding.btnSubmit.setOnClickListener {
+            val namaTumbuhan = binding.NamaTumbuhanEditText.text.toString()
+            val tanggal = binding.TanggalEditText.text.toString()
+
+            if (namaTumbuhan.isEmpty() || tanggal.isEmpty()) {
+                Toast.makeText(this, "Harap isi semua data", Toast.LENGTH_SHORT).show()
+            } else {
+                AlertDialog.Builder(this).apply {
+                    setTitle("Konfirmasi")
+                    setMessage("Apakah Anda yakin ingin menyimpan data ini?")
+                    setPositiveButton("Ya") { _, _ ->
+                        // Tambahkan logika penyimpanan data di sini
+                        Toast.makeText(this@TambahLahanActivity, "Data berhasil disimpan", Toast.LENGTH_SHORT).show()
+                    }
+                    setNegativeButton("Tidak") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    create()
+                    show()
+                }
+            }
         }
     }
 
@@ -86,7 +111,7 @@ class TambahLahanActivity : AppCompatActivity() {
                 }
                 options[item] == "Pilih dari Galeri" -> {
                     val pickPhoto = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                    startActivityForResult(pickPhoto, 1) // 1 untuk kode permintaan
+                    startActivityForResult(pickPhoto, 1)
                 }
                 options[item] == "Batal" -> {
                     dialog.dismiss()

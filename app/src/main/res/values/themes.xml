@@ -87,7 +87,10 @@
         <item name="android:fontFamily">@font/montserratregular</item>
         <item name="android:textSize">14sp</item>
     </style>
-
+    <style name="descriptionBold">
+        <item name="android:fontFamily">@font/montserratbold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
     <style name="cardStyle">
         <item name="cardBackgroundColor">#436850</item>
     </style>
