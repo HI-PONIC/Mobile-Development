@@ -70,6 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="4dp"
+                android:layout_marginTop="16dp"
                 android:text="Langkah-langkah Memulai:"
                 app:layout_constraintTop_toBottomOf="@+id/tv_description"
                 tools:layout_editor_absoluteX="16dp" />
@@ -126,6 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="4dp"
+                android:layout_marginTop="16dp"
                 android:text="Tips Sukses:"
                 app:layout_constraintTop_toBottomOf="@+id/tv_step5" />
 
