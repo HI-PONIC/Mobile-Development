@@ -24,12 +24,22 @@ class KnowledgeBaseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.imageView3.setOnClickListener{
+        binding.cardView1.setOnClickListener{
+            val intent = Intent(requireContext(),Knowledgebase1::class.java)
+            startActivity(intent)
+        }
+
+        binding.cardView2.setOnClickListener{
+            val intent = Intent(requireContext(),Knowledgebase2::class.java)
+            startActivity(intent)
+        }
+
+        binding.cardView3.setOnClickListener{
             val intent = Intent(requireContext(),Knowledgebase3::class.java)
             startActivity(intent)
         }
 
-        binding.imageView4.setOnClickListener{
+        binding.cardView4.setOnClickListener{
             val intent = Intent(requireContext(),Knowledgebase4::class.java)
             startActivity(intent)
         }

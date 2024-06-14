@@ -1,339 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FBFADA"
-    tools:context=".view.knowledgeBase.Knowledgebase2">
+    android:orientation="vertical"
+    tools:context=".view.knowledgeBase.Knowledgebase3">
 
-    <ImageView
-        android:id="@+id/imageView"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="145dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/optimisasinutrisidanair"
-        app:layout_constraintBottom_toTopOf="@id/titleTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/montserratbold"
-        android:text="Cara IoT Mengoptimalkan Nutrisi dan Kualitas Air dalam Hidroponik"
-        android:textAppearance="?attr/textAppearanceHeadline6"
-        android:textColor="@android:color/black"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/articleTextView1"
-        app:layout_constraintStart_toStartOf="@+id/articleTextView1"
-        app:layout_constraintTop_toBottomOf="@id/imageView" />
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FBFADA"
+            android:minHeight="?attr/actionBarSize"
+            app:navigationIcon="@drawable/button_arrow" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
-        android:id="@+id/articleTextView1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/montserratregular"
-        android:text="Penggunaan teknologi IoT dalam hidroponik memungkinkan pengoptimalan nutrisi dan kualitas air dengan cara yang lebih efektif dan efisien. IoT memungkinkan pengumpulan data secara real-time dari berbagai sensor yang ditempatkan di sistem hidroponik, sehingga memudahkan pemantauan dan pengontrolan kondisi lingkungan tanaman."
-        android:textAppearance="?attr/textAppearanceBody1"
-        android:textSize="10sp"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/titleTextView"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <!-- Cara IoT Mengoptimalkan Nutrisi dan Kualitas Air Title -->
-    <TextView
-        android:id="@+id/articleTextView2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="12sp"
-        android:fontFamily="@font/montserratmedium"
-        android:text="Cara IoT Mengoptimalkan Nutrisi dan Kualitas Air:"
-        android:textStyle="bold"
-        android:textAppearance="?attr/textAppearanceBody1"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/articleTextView1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
 
-    <!-- Sensor pH Title -->
-    <TextView
-        android:id="@+id/articleTextView3_1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="10sp"
-        android:fontFamily="@font/montserratregular"
-        android:text="Sensor pH:"
-        android:textStyle="bold"
-        android:textAppearance="?attr/textAppearanceBody1"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/articleTextView2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+            <TextView
+                android:id="@+id/titleTextView"
+                style="@style/Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="Cara IoT Mengoptimalkan Nutrisi dan Kualitas Air dalam Hidroponik"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="16dp" />
 
-    <!-- Sensor pH Description -->
-    <TextView
-        android:id="@+id/articleTextView3_2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="10sp"
-        android:fontFamily="@font/montserratregular"
-        android:text="Berfungsi untuk mengukur tingkat keasaman larutan nutrisi. pH yang tepat penting untuk penyerapan nutrisi yang efektif oleh tanaman."
-        android:textAppearance="?attr/textAppearanceBody1"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/articleTextView3_1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="169dp"
+                android:layout_marginTop="16dp"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"
+                android:src="@drawable/optimisasinutrisidanair"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
-    <!-- Sensor Kelembaban Title -->
-    <TextView
-        android:id="@+id/articleTextView3_3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="10sp"
-        android:fontFamily="@font/montserratregular"
-        android:text="Sensor Kelembaban:"
-        android:textStyle="bold"
-        android:textAppearance="?attr/textAppearanceBody1"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/articleTextView3_2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+            <TextView
+                android:id="@+id/articleTextView1"
+                style="@style/description"
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="Penggunaan teknologi IoT dalam hidroponik memungkinkan pengoptimalan nutrisi dan kualitas air dengan cara yang lebih efektif dan efisien. IoT memungkinkan pengumpulan data secara real-time dari berbagai sensor yang ditempatkan di sistem hidroponik, sehingga memudahkan pemantauan dan pengontrolan kondisi lingkungan tanaman."
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                tools:layout_editor_absoluteX="16dp" />
 
-    <!-- Sensor Kelembaban Description -->
-    <TextView
-        android:id="@+id/articleTextView3_4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="10sp"
-        android:fontFamily="@font/montserratregular"
-        android:text="Berfungsi untuk mengukur tingkat kelembaban udara di sekitar tanaman. Kelembaban yang tepat membantu mencegah masalah seperti jamur dan penyakit lainnya."
-        android:textAppearance="?attr/textAppearanceBody1"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/articleTextView3_3"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+            <TextView
+                android:id="@+id/articleTextView2"
+                style="@style/descriptionBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginTop="16dp"
+                android:text="Cara IoT Mengoptimalkan Nutrisi dan Kualitas Air:"
+                app:layout_constraintTop_toBottomOf="@+id/articleTextView1"
+                tools:layout_editor_absoluteX="16dp" />
 
-    <!-- Sensor Intensitas Cahaya Title -->
-    <TextView
-        android:id="@+id/articleTextView3_5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="10sp"
-        android:fontFamily="@font/montserratregular"
-        android:text="Sensor Intensitas Cahaya:"
-        android:textStyle="bold"
-        android:textAppearance="?attr/textAppearanceBody1"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/articleTextView3_4"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+            <TextView
+                android:id="@+id/articleTextView3_1"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginTop="16dp"
+                android:text="Sensor pH:"
+                app:layout_constraintTop_toBottomOf="@+id/articleTextView2"
+                tools:layout_editor_absoluteX="16dp" />
 
-    <!-- Sensor Intensitas Cahaya Description -->
-    <TextView
-        android:id="@+id/articleTextView3_6"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="10sp"
-        android:fontFamily="@font/montserratregular"
-        android:text="Berfungsi untuk memantau intensitas cahaya yang diterima oleh tanaman. Cahaya yang cukup penting untuk fotosintesis dan pertumbuhan tanaman."
-        android:textAppearance="?attr/textAppearanceBody1"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/articleTextView3_5"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+            <TextView
+                android:id="@+id/articleTextView3_2"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="Berfungsi untuk mengukur tingkat keasaman larutan nutrisi. pH yang tepat penting untuk penyerapan nutrisi yang efektif oleh tanaman."
+                app:layout_constraintTop_toBottomOf="@+id/articleTextView3_1" />
 
-    <!-- Sensor Suhu Title -->
-    <TextView
-        android:id="@+id/articleTextView3_7"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="10sp"
-        android:fontFamily="@font/montserratregular"
-        android:text="Sensor Suhu:"
-        android:textStyle="bold"
-        android:textAppearance="?attr/textAppearanceBody1"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/articleTextView3_6"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+            <TextView
+                android:id="@+id/articleTextView3_3"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginTop="16dp"
+                android:text="Sensor Kelembaban:"
+                app:layout_constraintTop_toBottomOf="@+id/articleTextView3_2"
+                tools:layout_editor_absoluteX="16dp" />
 
-    <!-- Sensor Suhu Description -->
-    <TextView
-        android:id="@+id/articleTextView3_8"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="10sp"
-        android:fontFamily="@font/montserratregular"
-        android:text="Berfungsi untuk mengukur suhu lingkungan dan suhu larutan nutrisi. Suhu yang tepat penting untuk pertumbuhan dan kesehatan tanaman."
-        android:textAppearance="?attr/textAppearanceBody1"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/articleTextView3_7"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+            <TextView
+                android:id="@+id/articleTextView3_4"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="Berfungsi untuk mengukur tingkat kelembaban udara di sekitar tanaman. Kelembaban yang tepat membantu mencegah masalah seperti jamur dan penyakit lainnya."
+                app:layout_constraintTop_toBottomOf="@+id/articleTextView3_3" />
 
-    <!-- Teknologi IoT dalam Hidroponik Title -->
-    <TextView
-        android:id="@+id/articleTextView4_1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="12sp"
-        android:fontFamily="@font/montserratmedium"
-        android:text="Teknologi IoT dalam Hidroponik:"
-        android:textStyle="bold"
-        android:textAppearance="?attr/textAppearanceBody1"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/articleTextView3_8"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+            <TextView
+                android:id="@+id/articleTextView3_5"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginTop="16dp"
+                android:text="Sensor Intensitas Cahaya:"
+                app:layout_constraintTop_toBottomOf="@+id/articleTextView3_4"
+                tools:layout_editor_absoluteX="16dp" />
 
-    <!-- Teknologi IoT dalam Hidroponik Description -->
-    <TextView
-        android:id="@+id/articleTextView4_2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="10sp"
-        android:fontFamily="@font/montserratregular"
-        android:text="IoT memungkinkan pengumpulan data dari sensor-sensor tersebut untuk kemudian dianalisis dan digunakan dalam pengambilan keputusan. Dengan data ini, petani dapat mengatur nutrisi, cahaya, dan kelembaban secara otomatis untuk menciptakan kondisi optimal bagi tanaman."
-        android:textAppearance="?attr/textAppearanceBody1"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/articleTextView4_1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+            <TextView
+                android:id="@+id/articleTextView3_6"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="Berfungsi untuk memantau intensitas cahaya yang diterima oleh tanaman. Cahaya yang cukup penting untuk fotosintesis dan pertumbuhan tanaman."
+                app:layout_constraintTop_toBottomOf="@+id/articleTextView3_5" />
 
-    <!-- Manfaat IoT dalam Hidroponik Title -->
-    <TextView
-        android:id="@+id/articleTextView5_1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="12sp"
-        android:fontFamily="@font/montserratmedium"
-        android:text="Manfaat IoT dalam Hidroponik:"
-        android:textStyle="bold"
-        android:textAppearance="?attr/textAppearanceBody1"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/articleTextView4_2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+            <TextView
+                android:id="@+id/articleTextView3_7"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginTop="16dp"
+                android:text="Sensor Suhu:"
+                app:layout_constraintTop_toBottomOf="@+id/articleTextView3_6"
+                tools:layout_editor_absoluteX="16dp" />
 
-    <!-- Manfaat IoT dalam Hidroponik Description -->
-    <!-- Manfaat IoT dalam Hidroponik Title -->
-    <TextView
-        android:id="@+id/articleTextView5_1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="12sp"
-        android:fontFamily="@font/montserratmedium"
-        android:text="Manfaat IoT dalam Hidroponik:"
-        android:textStyle="bold"
-        android:textAppearance="?attr/textAppearanceBody1"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/articleTextView4_2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+            <TextView
+                android:id="@+id/articleTextView3_8"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="Berfungsi untuk mengukur suhu lingkungan dan suhu larutan nutrisi. Suhu yang tepat penting untuk pertumbuhan dan kesehatan tanaman."
+                app:layout_constraintTop_toBottomOf="@+id/articleTextView3_7" />
 
-    <!-- Manfaat 1 -->
-    <TextView
-        android:id="@+id/articleTextView5_2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="10sp"
-        android:fontFamily="@font/montserratregular"
-        android:text="1. Penggunaan sumber daya yang lebih efisien, mengurangi limbah nutrisi dan air."
-        android:textAppearance="?attr/textAppearanceBody1"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/articleTextView5_1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+            <TextView
+                android:id="@+id/articleTextView4_1"
+                style="@style/descriptionBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginTop="16dp"
+                android:text="Teknologi IoT dalam Hidroponik:"
+                app:layout_constraintTop_toBottomOf="@+id/articleTextView3_8"
+                tools:layout_editor_absoluteX="16dp" />
 
-    <!-- Manfaat 2 -->
-    <TextView
-        android:id="@+id/articleTextView5_3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="10sp"
-        android:fontFamily="@font/montserratregular"
-        android:text="2. Peningkatan hasil panen dan kualitas tanaman."
-        android:textAppearance="?attr/textAppearanceBody1"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/articleTextView5_2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+            <TextView
+                android:id="@+id/articleTextView4_2"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="IoT memungkinkan pengumpulan data dari sensor-sensor tersebut untuk kemudian dianalisis dan digunakan dalam pengambilan keputusan. Dengan data ini, petani dapat mengatur nutrisi, cahaya, dan kelembaban secara otomatis untuk menciptakan kondisi optimal bagi tanaman."
+                app:layout_constraintTop_toBottomOf="@+id/articleTextView4_1" />
 
-    <!-- Manfaat 3 -->
-    <TextView
-        android:id="@+id/articleTextView5_4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="10sp"
-        android:fontFamily="@font/montserratregular"
-        android:text="3. Pemantauan yang lebih akurat dan respon cepat terhadap perubahan lingkungan."
-        android:textAppearance="?attr/textAppearanceBody1"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/articleTextView5_3"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+            <TextView
+                android:id="@+id/articleTextView5_1"
+                style="@style/descriptionBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginTop="16dp"
+                android:text="Manfaat IoT dalam Hidroponik:"
+                app:layout_constraintTop_toBottomOf="@+id/articleTextView4_2"
+                tools:layout_editor_absoluteX="16dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/articleTextView5_2"
+                style="@style/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="Penggunaan IoT dalam hidroponik memberikan banyak manfaat, seperti peningkatan efisiensi penggunaan air dan nutrisi, peningkatan hasil panen, dan pengurangan risiko kegagalan tanaman."
+                app:layout_constraintTop_toBottomOf="@+id/articleTextView5_1" />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

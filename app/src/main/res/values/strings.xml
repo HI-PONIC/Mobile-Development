@@ -29,4 +29,5 @@
     <string name="cek_terakhir">Cek terakhir: %1$s</string>
     <string name="estimasi_panen_hari_lagi">Estimasi panen: %1$d hari lagi</string>
     <string name="hi">Hi %1$s!</string>
+    <string name="name">%1$s</string>
 </resources>

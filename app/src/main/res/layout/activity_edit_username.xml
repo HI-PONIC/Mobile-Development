@@ -41,7 +41,7 @@
                 android:id="@+id/profileImageView"
                 android:layout_width="237dp"
                 android:layout_height="261dp"
-                android:src="@drawable/button_profile"
+                android:src="@drawable/profile_base"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

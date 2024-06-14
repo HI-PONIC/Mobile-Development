@@ -7,13 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import com.example.hi_ponic.R
+import com.example.hi_ponic.data.pref.UserPreference
+import com.example.hi_ponic.data.pref.dataStore
 import com.example.hi_ponic.databinding.FragmentProfileBinding
 import com.example.hi_ponic.view.ViewModelFactory
-
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var userPreference: UserPreference
 
     private val viewModel by viewModels<ProfileViewModel> {
         ViewModelFactory.getInstance(requireContext())
@@ -21,7 +28,8 @@ class ProfileFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        // Initialize userPreference here
+        userPreference = UserPreference.getInstance(requireContext().dataStore)
     }
 
     override fun onCreateView(
@@ -45,9 +53,17 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
 
-
         binding.logoutIcon.setOnClickListener {
             viewModel.logout()
+        }
+
+        setName()
+    }
+
+    private fun setName() {
+        lifecycleScope.launch {
+            val name = userPreference.getName().first()
+            binding.usernameTextView.text = getString(R.string.name, name)
         }
     }
 

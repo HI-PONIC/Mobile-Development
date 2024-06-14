@@ -81,6 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="4dp"
+                android:layout_marginTop="16dp"
                 android:text="1. Beli Alat IoT di Toko Resmi Tokopedia Kami: Langkah pertama adalah membeli alat IoT yang Anda butuhkan untuk sistem hidroponik. Pastikan Anda membeli dari toko resmi kami di Tokopedia untuk mendapatkan produk berkualitas dan layanan purna jual yang baik."
                 app:layout_constraintTop_toBottomOf="@+id/textView5"
                 tools:layout_editor_absoluteX="16dp" />
@@ -91,6 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="4dp"
+                android:layout_marginTop="16dp"
                 android:text="2. Tempelkan Box IoT di Media Hidroponik: Setelah alat tiba, tempelkan box IoT yang berisi perangkat utama di media hidroponik Anda. Box ini akan menjadi pusat pengolahan data dari semua sensor yang terhubung."
                 app:layout_constraintTop_toBottomOf="@+id/tv_step1" />
 
@@ -100,6 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="4dp"
+                android:layout_marginTop="16dp"
                 android:text="3. Masukkan Sensor pH dan TDS ke dalam Air: Masukkan sensor pH dan TDS (Total Dissolved Solids) ke dalam reservoir atau larutan nutrisi di sistem hidroponik. Sensor ini akan mengukur tingkat keasaman dan konsentrasi nutrisi dalam air."
                 app:layout_constraintTop_toBottomOf="@+id/tv_step2" />
 
@@ -109,6 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="4dp"
+                android:layout_marginTop="16dp"
                 android:text="4. Letakkan Sensor Intensitas Cahaya di Atas Media Hidroponik: Tempatkan sensor intensitas cahaya di atas media hidroponik, di area yang menerima cahaya langsung. Sensor ini akan memantau jumlah cahaya yang diterima oleh tanaman."
                 app:layout_constraintTop_toBottomOf="@+id/tv_step3" />
 
@@ -137,6 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="4dp"
+                android:layout_marginTop="16dp"
                 android:text="Baca Manual: Selalu baca manual produk untuk memahami cara pemasangan dan penggunaan yang benar."
                 app:layout_constraintTop_toBottomOf="@+id/tv_tip1" />
 

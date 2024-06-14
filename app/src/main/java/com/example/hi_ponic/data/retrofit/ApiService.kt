@@ -41,7 +41,7 @@ interface ApiService {
     suspend fun getSensorData(): SensorResponse
 
     @Multipart
-    @POST("")
+    @POST("plants")
     suspend fun addPlant(
         @Field("name") name: String,
         @Field("date_added") date_added: String,

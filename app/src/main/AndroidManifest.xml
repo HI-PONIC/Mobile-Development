@@ -57,9 +57,7 @@
             android:exported="false" />
         <activity
             android:name=".view.monitoring.DetailHydroponicStatisticActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"/>
         <activity
             android:name=".view.auth.LoginActivity"
             android:exported="false" />
