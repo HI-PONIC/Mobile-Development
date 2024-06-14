@@ -38,9 +38,6 @@
             android:name=".view.knowledgeBase.Knowledgebase1"
             android:exported="false" />
         <activity
-            android:name=".view.knowledgeBase.DetailKnowledgeBaseActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.monitoring.TambahLahanActivity"
             android:exported="false" />
         <activity

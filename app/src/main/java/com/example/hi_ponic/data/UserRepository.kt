@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.Dispatchers
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 class UserRepository private constructor(
     private val userPreference: UserPreference,
@@ -44,8 +45,8 @@ class UserRepository private constructor(
         return apiService.register(username, email, password)
     }
 
-    suspend fun addPlant(name: String,  date_added: String, image: MultipartBody.Part): TambahTanamanResponse{
-        return apiService.addPlant(name, date_added,image)
+    suspend fun addPlant(token: String, name: RequestBody, date_added: RequestBody, image: MultipartBody.Part) {
+        apiService.addPlant(token, name, date_added, image)
     }
 
     fun observeSensorValues(): Flow<SensorResponse> = flow {

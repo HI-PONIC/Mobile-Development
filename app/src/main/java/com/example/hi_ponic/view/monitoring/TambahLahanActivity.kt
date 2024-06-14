@@ -5,25 +5,45 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.hi_ponic.BuildConfig
 import com.example.hi_ponic.R
 import com.example.hi_ponic.databinding.ActivityTambahLahanBinding
+import com.example.hi_ponic.view.ViewModelFactory
+import com.example.hi_ponic.view.mainView.MainActivity
+import com.example.hi_ponic.view.monitoring.view_model.TambahLahanViewModel
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 class TambahLahanActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTambahLahanBinding
+    private lateinit var currentPhotoPath: String
+    private lateinit var photoURI: Uri
+    private lateinit var selectedFile: File
+
+    private val viewModel by viewModels<TambahLahanViewModel> {
+        ViewModelFactory.getInstance(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,37 +59,8 @@ class TambahLahanActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         dateInput()
-
-        binding.ivDetail.setOnClickListener {
-            pickImage()
-        }
-
-        onSubmit()
-    }
-
-    private fun onSubmit() {
-        binding.btnSubmit.setOnClickListener {
-            val namaTumbuhan = binding.NamaTumbuhanEditText.text.toString()
-            val tanggal = binding.TanggalEditText.text.toString()
-
-            if (namaTumbuhan.isEmpty() || tanggal.isEmpty()) {
-                Toast.makeText(this, "Harap isi semua data", Toast.LENGTH_SHORT).show()
-            } else {
-                AlertDialog.Builder(this).apply {
-                    setTitle("Konfirmasi")
-                    setMessage("Apakah Anda yakin ingin menyimpan data ini?")
-                    setPositiveButton("Ya") { _, _ ->
-                        // Tambahkan logika penyimpanan data di sini
-                        Toast.makeText(this@TambahLahanActivity, "Data berhasil disimpan", Toast.LENGTH_SHORT).show()
-                    }
-                    setNegativeButton("Tidak") { dialog, _ ->
-                        dialog.dismiss()
-                    }
-                    create()
-                    show()
-                }
-            }
-        }
+        binding.ivDetail.setOnClickListener { pickImage() }
+        handleSubmitButton()
     }
 
     private fun dateInput() {
@@ -78,15 +69,21 @@ class TambahLahanActivity : AppCompatActivity() {
         val month: Int = calendar.get(Calendar.MONTH)
         val day: Int = calendar.get(Calendar.DAY_OF_MONTH)
 
-        val datePickerDialog = DatePickerDialog(this, { _, selectedyear, selectedMonth, selectedDay ->
-            val selectedDate = "$selectedDay/$selectedMonth/$selectedyear"
-            binding.TanggalEditText.setText(selectedDate)
+        val datePickerDialog = DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDay ->
+            val selectedDate = Calendar.getInstance().apply {
+                set(selectedYear, selectedMonth, selectedDay)
+            }.time
+            val formattedDate = formatDateToISOString(selectedDate)
+            binding.TanggalEditText.setText(formattedDate)
         }, year, month, day)
 
-        binding.edittextTanggalLayout.setEndIconOnClickListener {
-            datePickerDialog.show()
-        }
+        binding.edittextTanggalLayout.setEndIconOnClickListener { datePickerDialog.show() }
         topAppbarHandle()
+    }
+
+    private fun formatDateToISOString(date: Date): String {
+        val isoFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+        return isoFormat.format(date)
     }
 
     private fun topAppbarHandle() {
@@ -96,44 +93,111 @@ class TambahLahanActivity : AppCompatActivity() {
     }
 
     private fun pickImage() {
-        val options = arrayOf<CharSequence>("Ambil Foto", "Pilih dari Galeri", "Batal")
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        builder.setTitle("Pilih Sumber Gambar")
-        builder.setItems(options) { dialog, item ->
-            when {
-                options[item] == "Ambil Foto" -> {
-                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 100)
-                    } else {
-                        val takePicture = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                        startActivityForResult(takePicture, 0) // 0 untuk kode permintaan
+        val options = arrayOf("Take photo", "Choose from gallery", "Cancel")
+        AlertDialog.Builder(this).apply {
+            setTitle("Pick Image")
+            setItems(options) { dialog, item ->
+                when (options[item]) {
+                    "Take photo" -> {
+                        if (ContextCompat.checkSelfPermission(this@TambahLahanActivity, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(this@TambahLahanActivity, arrayOf(Manifest.permission.CAMERA), 100)
+                        } else {
+                            takePhoto()
+                        }
                     }
-                }
-                options[item] == "Pilih dari Galeri" -> {
-                    val pickPhoto = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                    startActivityForResult(pickPhoto, 1)
-                }
-                options[item] == "Batal" -> {
-                    dialog.dismiss()
+                    "Choose from gallery" -> {
+                        val pickFile = Intent(Intent.ACTION_GET_CONTENT).apply {
+                            type = "*/*"
+                            addCategory(Intent.CATEGORY_OPENABLE)
+                        }
+                        startActivityForResult(Intent.createChooser(pickFile, "Choose a file"), 1)
+                    }
+                    "Cancel" -> dialog.dismiss()
                 }
             }
+            show()
         }
-        builder.show()
+    }
+
+    private fun takePhoto() {
+        val takePicture = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        val photoFile: File = createCustomTempFile(applicationContext)
+        currentPhotoPath = photoFile.absolutePath
+        photoURI = FileProvider.getUriForFile(
+            this,
+            "${BuildConfig.APPLICATION_ID}.fileprovider",
+            photoFile
+        )
+        takePicture.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+        startActivityForResult(takePicture, 0)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
-                0 -> {
-                    val selectedImage: Bitmap = data!!.extras!!.get("data") as Bitmap
-                    binding.ivDetail.setImageBitmap(selectedImage)
-                }
-                1 -> {
-                    val selectedImage: Uri? = data!!.data
-                    binding.ivDetail.setImageURI(selectedImage)
-                }
+                0 -> handleCameraImage()
+                1 -> handleGalleryImage(data)
             }
         }
+    }
+
+    private fun handleCameraImage() {
+        val file = File(currentPhotoPath)
+        if (file.exists()) {
+            selectedFile = file.reduceFileImage()
+            val bitmap = BitmapFactory.decodeFile(selectedFile.path)
+            binding.ivDetail.setImageBitmap(bitmap)
+        } else {
+            Toast.makeText(this, "Error: File not found", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun handleGalleryImage(data: Intent?) {
+        val selectedImageUri: Uri? = data?.data
+        selectedImageUri?.let {
+            val file = uriToFile(it, applicationContext)
+            selectedFile = file.reduceFileImage()
+            val bitmap = BitmapFactory.decodeFile(selectedFile.path)
+            binding.ivDetail.setImageBitmap(bitmap)
+        }
+    }
+
+    private fun handleSubmitButton() {
+        binding.btnSubmit.setOnClickListener {
+            if (::selectedFile.isInitialized) {
+                val namaTumbuhan = binding.NamaTumbuhanEditText.text.toString()
+                val tanggal = binding.TanggalEditText.text.toString()
+
+                if (namaTumbuhan.isEmpty() || tanggal.isEmpty()) {
+                    Toast.makeText(this, "Harap isi semua data", Toast.LENGTH_SHORT).show()
+                } else {
+                    showConfirmationDialog(namaTumbuhan, tanggal)
+                }
+            } else {
+                Toast.makeText(this, "Please select an image first", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun showConfirmationDialog(namaTumbuhan: String, tanggal: String) {
+        AlertDialog.Builder(this).apply {
+            setTitle("Konfirmasi")
+            setMessage("Apakah Anda yakin ingin menyimpan data ini?")
+            setPositiveButton("Ya") { _, _ ->
+                viewModel.addPlant(namaTumbuhan, tanggal, createMultipartBody(selectedFile))
+                Toast.makeText(this@TambahLahanActivity, "Data berhasil disimpan", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this@TambahLahanActivity, MainActivity::class.java)
+                startActivity(intent)
+            }
+            setNegativeButton("Tidak") { dialog, _ -> dialog.dismiss() }
+            create()
+            show()
+        }
+    }
+
+    private fun createMultipartBody(file: File): MultipartBody.Part {
+        val requestFile = file.asRequestBody("image/png".toMediaTypeOrNull())
+        return MultipartBody.Part.createFormData("image", file.name, requestFile)
     }
 }

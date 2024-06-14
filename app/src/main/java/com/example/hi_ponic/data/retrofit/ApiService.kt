@@ -6,6 +6,7 @@ import com.example.hi_ponic.data.Response.SensorResponse
 import com.example.hi_ponic.data.response.ErrorResponse
 import com.example.hi_ponic.data.response.TambahTanamanResponse
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -41,10 +42,11 @@ interface ApiService {
     suspend fun getSensorData(): SensorResponse
 
     @Multipart
-    @POST("plants")
+    @POST("plants") // update the endpoint accordingly
     suspend fun addPlant(
-        @Field("name") name: String,
-        @Field("date_added") date_added: String,
-        @Field("image") image: MultipartBody.Part
-    ):TambahTanamanResponse
+        @Header("Authorization") token: String,
+        @Part("name") name: RequestBody,
+        @Part("date_added") date_added: RequestBody,
+        @Part image: MultipartBody.Part
+    ): TambahTanamanResponse
 }

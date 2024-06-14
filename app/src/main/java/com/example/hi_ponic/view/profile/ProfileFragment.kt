@@ -48,6 +48,7 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
 
+
         binding.aboutAppButton.setOnClickListener {
             val intent = Intent(requireContext(), tentang_aplikasi::class.java)
             startActivity(intent)
@@ -57,13 +58,19 @@ class ProfileFragment : Fragment() {
             viewModel.logout()
         }
 
-        setName()
+        setData()
+
     }
 
-    private fun setName() {
+
+
+    private fun setData() {
         lifecycleScope.launch {
             val name = userPreference.getName().first()
+            val email = userPreference.getSession().first().email
             binding.usernameTextView.text = getString(R.string.name, name)
+
+            binding.emailTextView.text = email
         }
     }
 
