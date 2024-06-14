@@ -6,6 +6,7 @@ import com.example.hi_ponic.data.Response.PredictConditionResponse
 import com.example.hi_ponic.data.pref.UserModel
 import com.example.hi_ponic.data.pref.UserPreference
 import com.example.hi_ponic.data.response.ErrorResponse
+import com.example.hi_ponic.data.response.ListTanamanResponse
 import com.example.hi_ponic.data.response.TambahTanamanResponse
 import com.example.hi_ponic.data.retrofit.ApiService
 import kotlinx.coroutines.delay
@@ -47,6 +48,10 @@ class UserRepository private constructor(
 
     suspend fun addPlant(token: String, name: RequestBody, date_added: RequestBody, image: MultipartBody.Part) {
         apiService.addPlant(token, name, date_added, image)
+    }
+
+    suspend fun getPlant(token: String):ListTanamanResponse{
+        return apiService.getPlan(token)
     }
 
     fun observeSensorValues(): Flow<SensorResponse> = flow {

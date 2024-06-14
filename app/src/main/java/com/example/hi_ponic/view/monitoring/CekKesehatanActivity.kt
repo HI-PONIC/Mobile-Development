@@ -19,12 +19,12 @@ import androidx.core.content.FileProvider
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import com.example.hi_ponic.BuildConfig
 import com.example.hi_ponic.R
 import com.example.hi_ponic.databinding.ActivityCekKesehatanBinding
 import com.example.hi_ponic.view.ViewModelFactory
 import com.example.hi_ponic.view.monitoring.view_model.CekKesehatanViewModel
 import com.google.android.material.snackbar.Snackbar
+import de.hdodenhof.circleimageview.BuildConfig
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -59,7 +59,6 @@ class CekKesehatanActivity : AppCompatActivity() {
         viewModel.predictResult.observe(this) { response ->
             response?.let {
                 val resultMessage = it.data?.result ?: "No result"
-                binding.tvHasilKlasifikasi.text = resultMessage
                 val respondMessage = it.data?.message ?: "No result"
                 binding.tvHasilmessege.text = respondMessage
                 showSnackbar(resultMessage)
@@ -183,9 +182,6 @@ class CekKesehatanActivity : AppCompatActivity() {
         // Notify the fragment about the new result
         val intent = Intent("com.example.hi_ponic.RESULT_ACTION")
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
-
-        // Display the result
-        binding.tvHasilKlasifikasi.text = result
         viewModel.setLoading(false)
     }
 

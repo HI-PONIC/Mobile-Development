@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hi_ponic.R
+import com.example.hi_ponic.data.adapter.ListLahanAdapter
 import com.example.hi_ponic.data.pref.UserPreference
 import com.example.hi_ponic.data.pref.dataStore
+import com.example.hi_ponic.data.response.PlantsItem
 import com.example.hi_ponic.databinding.FragmentHomeMonitoringBinding
 import com.example.hi_ponic.view.ViewModelFactory
 import com.example.hi_ponic.view.monitoring.view_model.HomeMonitoringViewModel
@@ -52,6 +55,30 @@ class HomeMonitoringFragment : Fragment() {
         }
 
         setName()
+        setList()
+    }
+
+    private fun setList() {
+        viewModel.getPlant()
+        viewModel.plantData.observe(viewLifecycleOwner){data->
+            val adapter = ListLahanAdapter()
+            adapter.submitList(data.plants)
+            adapter.setOnItemClickCallback(object : ListLahanAdapter.OnItemClickCallback{
+                override fun OnItemCLicked(data: PlantsItem) {
+                    selectedPlant(data)
+                }
+            })
+            binding.recyclerView.adapter = adapter
+            binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        }
+
+    }
+
+    private fun selectedPlant(plantsItem: PlantsItem) {
+        val toDetail = Intent(requireContext(),DetailHydroponicStatisticActivity::class.java)
+        toDetail.putExtra(DetailHydroponicStatisticActivity.EXTRA_TANGGAL, plantsItem.dateAdded)
+        toDetail.putExtra(DetailHydroponicStatisticActivity.EXTRA_TUMBUHAN, plantsItem.name)
+        startActivity(toDetail)
     }
 
     private fun setName() {

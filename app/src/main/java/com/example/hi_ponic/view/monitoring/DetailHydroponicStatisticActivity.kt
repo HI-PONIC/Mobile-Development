@@ -84,5 +84,7 @@ class DetailHydroponicStatisticActivity : AppCompatActivity() {
             R.string.statistik,
             R.string.cek
         )
+        const val EXTRA_TUMBUHAN = "extra_tumbuhan"
+        const val EXTRA_TANGGAL = "extra_tanggal"
     }
 }

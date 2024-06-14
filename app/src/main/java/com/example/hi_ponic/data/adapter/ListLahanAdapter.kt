@@ -1,51 +1,70 @@
 package com.example.hi_ponic.data.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.hi_ponic.R
+import com.example.hi_ponic.data.adapter.ListLahanAdapter.MyViewHolder.Companion.DIFF_CALLBACK
 import com.example.hi_ponic.data.response.PlantsItem
+import com.example.hi_ponic.databinding.CardLayoutBinding
+import com.example.hi_ponic.view.monitoring.DetailHydroponicStatisticActivity
 
-class ListLahanAdapter(
-    private val TanamanList: List<PlantsItem>,
-    private val listener: OnAdapterListener
-) : RecyclerView.Adapter<ListLahanAdapter.ViewHolder>() {
+class ListLahanAdapter : ListAdapter<PlantsItem, ListLahanAdapter.MyViewHolder>(DIFF_CALLBACK) {
+    private lateinit var onItemClickCallback: OnItemClickCallback
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val image: ImageView = itemView.findViewById(R.id.image)
-        val name: TextView = itemView.findViewById(R.id.Plant)
-        val dateadded: TextView = itemView.findViewById(R.id.TanggalTanam)
-
+    interface OnItemClickCallback {
+        fun OnItemCLicked(data: PlantsItem)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.card_layout, parent, false)
-        return ViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val binding = CardLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MyViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = TanamanList[position]
-        holder.name.text = item.name
-        holder.dateadded.text = item.dateAdded
-        Glide.with(holder.itemView.context)
-            .load(item.image)
-            .error(R.drawable.ic_launcher_background)
-            .into(holder.image)
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
 
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val plant = getItem(position)
+        holder.bind(plant)
         holder.itemView.setOnClickListener {
-            listener.onClick(item)
+            onItemClickCallback.OnItemCLicked(plant)
+
+            val intent = Intent(holder.itemView.context, DetailHydroponicStatisticActivity::class.java)
         }
     }
 
-    override fun getItemCount(): Int {
-        return TanamanList.size
+    class MyViewHolder(private val binding: CardLayoutBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(plantsItem: PlantsItem) {
+            binding.Plant.text = plantsItem.name
+            binding.TanggalTanam.text = plantsItem.dateAdded
+//            Glide.with(holder.itemView.context)
+//                .load(item.image)
+//                .error(R.drawable.ic_launcher_background)
+//                .into(holder.image)
+        }
+
+        companion object {
+            val DIFF_CALLBACK = object : DiffUtil.ItemCallback<PlantsItem>() {
+                override fun areItemsTheSame(
+                    oldItem: PlantsItem,
+                    newItem: PlantsItem
+                ): Boolean {
+                    return oldItem == newItem
+                }
+
+                override fun areContentsTheSame(
+                    oldItem: PlantsItem,
+                    newItem: PlantsItem
+                ): Boolean {
+                    return oldItem == newItem
+                }
+            }
+        }
     }
 
-    interface OnAdapterListener {
-        fun onClick(story: PlantsItem)
-    }
 }
