@@ -4,6 +4,7 @@ import com.example.hi_ponic.data.Response.LoginResponse
 import com.example.hi_ponic.data.Response.PredictConditionResponse
 import com.example.hi_ponic.data.Response.SensorResponse
 import com.example.hi_ponic.data.response.ErrorResponse
+import com.example.hi_ponic.data.response.ListTanamanResponse
 import com.example.hi_ponic.data.response.TambahTanamanResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -49,4 +50,9 @@ interface ApiService {
         @Part("date_added") date_added: RequestBody,
         @Part image: MultipartBody.Part
     ): TambahTanamanResponse
+
+    @GET("GetPlant")
+    suspend fun getPlan(
+        @Header("Authorization") token: String
+    ): ListTanamanResponse
 }

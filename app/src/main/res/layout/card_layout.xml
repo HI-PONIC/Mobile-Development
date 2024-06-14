@@ -13,7 +13,7 @@
     tools:context=".view.mainView.MainActivity">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/Plant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -24,22 +24,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.288" />
+        app:layout_constraintVertical_bias="0.285" />
 
     <TextView
-        android:id="@+id/plant"
+        android:id="@+id/TanggalTanam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/montserratregular"
-        android:text="Tanaman: Selada"
+        android:text="Tangal Tanam:"
         android:textColor="@android:color/black"
-        android:textSize="10dp"
+        android:textSize="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/title"
+        app:layout_constraintEnd_toEndOf="@+id/Plant"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/title"
-        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintStart_toStartOf="@+id/Plant"
+        app:layout_constraintTop_toBottomOf="@+id/Plant"
         app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
@@ -49,8 +49,8 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/image"
-        app:layout_constraintStart_toEndOf="@+id/title"
-        app:layout_constraintTop_toTopOf="@+id/title"
+        app:layout_constraintStart_toEndOf="@+id/Plant"
+        app:layout_constraintTop_toTopOf="@+id/Plant"
         app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
@@ -65,6 +65,7 @@
                 android:src="@drawable/icon_humidity_home" />
 
             <TextView
+                android:id="@+id/humidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserratregular"
@@ -87,6 +88,7 @@
                 android:src="@drawable/icon_ph_home" />
 
             <TextView
+                android:id="@+id/ph"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserratregular"
@@ -109,6 +111,7 @@
                 android:src="@drawable/icon_inten_home" />
 
             <TextView
+                android:id="@+id/inten"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserratregular"
@@ -131,6 +134,7 @@
                 android:src="@drawable/icon_temp_home" />
 
             <TextView
+                android:id="@+id/temp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserratregular"
