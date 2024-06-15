@@ -2,7 +2,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:flow_verticalAlign="center"
     android:layout_width="390dp"
     android:layout_height="80dp"
     android:layout_marginBottom="16dp"
@@ -27,7 +26,7 @@
         app:layout_constraintVertical_bias="0.285" />
 
     <TextView
-        android:id="@+id/TanggalTanam"
+        android:id="@+id/TanggalTanamview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -42,108 +41,130 @@
         app:layout_constraintTop_toBottomOf="@+id/Plant"
         app:layout_constraintVertical_bias="0.0" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/TanggalTanam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/montserratregular"
+        android:text="Tangal Tanam:"
+        android:textColor="@android:color/black"
+        android:textSize="7dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/Plant"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Plant"
+        app:layout_constraintTop_toBottomOf="@+id/TanggalTanamview"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/conditions"
-        android:layout_width="144dp"
-        android:layout_height="37dp"
-        android:orientation="horizontal"
+        android:layout_width="134dp"
+        android:layout_height="47dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/image"
+        app:layout_constraintHorizontal_bias="0.706"
         app:layout_constraintStart_toEndOf="@+id/Plant"
-        app:layout_constraintTop_toTopOf="@+id/Plant"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.529">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="21dp"
-                android:layout_height="27dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/icon_humidity_home" />
-
-            <TextView
-                android:id="@+id/humidity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserratregular"
-                android:gravity="center"
-                android:text="70% RH"
-                android:textColor="@android:color/black"
-                android:textSize="8sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/humidity_icon"
+            android:layout_width="21dp"
+            android:layout_height="27dp"
             android:layout_marginStart="8dp"
-            android:orientation="vertical">
+            android:layout_marginTop="4dp"
+            android:src="@drawable/icon_humidity_home"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="27dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/icon_ph_home" />
+        <TextView
+            android:id="@+id/humidity"
+            android:layout_width="35dp"
+            android:layout_height="9dp"
+            android:fontFamily="@font/montserratregular"
+            android:gravity="center"
+            android:text="70% RH"
+            android:textColor="@android:color/black"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toEndOf="@+id/humidity_icon"
+            app:layout_constraintStart_toStartOf="@+id/humidity_icon"
+            app:layout_constraintTop_toBottomOf="@+id/humidity_icon" />
 
-            <TextView
-                android:id="@+id/ph"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserratregular"
-                android:gravity="center"
-                android:text="pH 8"
-                android:textColor="@android:color/black"
-                android:textSize="8sp" />
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/ph_icon"
+            android:layout_width="23dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/icon_ph_home"
+            app:layout_constraintStart_toEndOf="@+id/humidity_icon"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <TextView
+            android:id="@+id/ph"
+            android:layout_width="24dp"
+            android:layout_height="11dp"
+            android:fontFamily="@font/montserratregular"
+            android:gravity="center"
+            android:text="pH 8"
+            android:textColor="@android:color/black"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toEndOf="@+id/ph_icon"
+            app:layout_constraintStart_toStartOf="@+id/ph_icon"
+            app:layout_constraintTop_toBottomOf="@+id/ph_icon" />
+
+        <ImageView
+            android:id="@+id/inten_icon"
+            android:layout_width="29dp"
+            android:layout_height="27dp"
             android:layout_marginStart="8dp"
-            android:orientation="vertical">
+            android:layout_marginTop="4dp"
+            android:src="@drawable/test_tube_01_stroke_rounded_1"
+            app:layout_constraintStart_toEndOf="@+id/ph_icon"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="27dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/icon_inten_home" />
+        <TextView
+            android:id="@+id/inten"
+            android:layout_width="29dp"
+            android:layout_height="11dp"
+            android:fontFamily="@font/montserratregular"
+            android:gravity="center"
+            android:text="7500 lx"
+            android:textColor="@android:color/black"
+            android:textSize="8sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ph"
+            app:layout_constraintEnd_toEndOf="@+id/inten_icon"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/inten_icon"
+            app:layout_constraintTop_toBottomOf="@+id/inten_icon"
+            app:layout_constraintVertical_bias="0.0" />
 
-            <TextView
-                android:id="@+id/inten"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserratregular"
-                android:gravity="center"
-                android:text="7500 lx"
-                android:textColor="@android:color/black"
-                android:textSize="8sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/temp_icon"
+            android:layout_width="24dp"
+            android:layout_height="27dp"
             android:layout_marginStart="8dp"
-            android:orientation="vertical">
+            android:layout_marginTop="4dp"
+            android:src="@drawable/icon_temp_home"
+            app:layout_constraintStart_toEndOf="@+id/inten_icon"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="27dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/icon_temp_home" />
+        <TextView
+            android:id="@+id/temp"
+            android:layout_width="24dp"
+            android:layout_height="10dp"
+            android:fontFamily="@font/montserratregular"
+            android:gravity="center"
+            android:text="24°C"
+            android:textColor="@android:color/black"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toEndOf="@+id/temp_icon"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/inten"
+            app:layout_constraintTop_toBottomOf="@+id/temp_icon" />
 
-            <TextView
-                android:id="@+id/temp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserratregular"
-                android:gravity="center"
-                android:text="24°C"
-                android:textColor="@android:color/black"
-                android:textSize="8sp" />
-        </LinearLayout>
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/image"
