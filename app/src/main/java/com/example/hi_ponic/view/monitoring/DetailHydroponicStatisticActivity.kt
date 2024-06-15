@@ -13,6 +13,9 @@ import com.example.hi_ponic.databinding.ActivityDetailHydroponicStatisticBinding
 import com.example.hi_ponic.view.mainView.SectionPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import java.text.SimpleDateFormat
+import java.util.Locale
+import java.util.TimeZone
 
 class DetailHydroponicStatisticActivity : AppCompatActivity() {
 
@@ -40,8 +43,21 @@ class DetailHydroponicStatisticActivity : AppCompatActivity() {
         val tanaman = intent.getStringExtra(EXTRA_TUMBUHAN)
         val tanggal = intent.getStringExtra(EXTRA_TANGGAL)
 
-        binding.TanggalTanam.text = "Tanggal Tanam : $tanggal"
+        binding.TanggalTanam.text = "Tanggal Tanam : ${formatDateString(tanggal.toString())}"
         binding.tvTumbuhan.text = tanaman
+    }
+
+    private fun formatDateString(dateString: String): String {
+        return try {
+            val inputFormat =
+                SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+            inputFormat.timeZone = TimeZone.getTimeZone("UTC")
+            val outputFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+            val date = inputFormat.parse(dateString)
+            date?.let { outputFormat.format(it) } ?: dateString
+        } catch (e: Exception) {
+            dateString
+        }
     }
 
     private fun topAppbarHandle() {

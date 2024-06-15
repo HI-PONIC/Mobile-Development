@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,67 +9,91 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"> <!-- Changed to match_parent -->
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv_greeting"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="36dp"
-            android:fontFamily="@font/montserratbold"
-            android:text="Hi elvindo!"
-            android:textColor="#000000"
-            android:textSize="35sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/profile_image"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/list_hidroponik"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tv_greeting"
+                android:layout_width="233dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="36dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserratbold"
+                android:text="Hi !"
+                android:textColor="#000000"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/profile_image"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="84dp"
+                android:layout_height="81dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/profile_base"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="52dp"
-            android:fontFamily="@font/montserratregular"
-            android:text="List Hidroponic :"
-            android:textColor="#000000"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_greeting" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
-            android:layout_width="84dp"
-            android:layout_height="81dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/profile_base"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/list_hidroponik"
+                android:layout_width="115dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/montserratregular"
+                android:text="List Hidroponic :"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/recycler_view"
+                app:layout_constraintEnd_toStartOf="@+id/btn_add"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                app:layout_constraintVertical_bias="1.0" />
 
-        <ImageView
-            android:id="@+id/btn_add"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/icon_add"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_greeting" />
+            <ImageView
+                android:id="@+id/btn_add"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/icon_add"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:clipToPadding="false"
             android:padding="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_add"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
             tools:listitem="@layout/card_layout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -67,7 +67,7 @@ class CekFragment : Fragment() {
             context = requireContext(),
             onResult = { result ->
                 val currentDate = SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).format(Date())
-                binding.tvCekTerakhirHasilPanen.text = getString(R.string.cek_terakhir, currentDate)
+                binding.tvCekTerakhirHasilPanen.text = currentDate
 
                 val roundedResult = result.toDouble().roundToInt()
                 val prediksiPanen = 45 - roundedResult
@@ -123,7 +123,7 @@ class CekFragment : Fragment() {
 
             val panenData = panenPreference.getPanenData().first()
             if (panenData.lastCheckDate.isNotEmpty() && panenData.predictionResult != -1) {
-                binding.tvCekTerakhirHasilPanen.text = "Cek terakhir: ${panenData.lastCheckDate}"
+                binding.tvCekTerakhirHasilPanen.text = "${panenData.lastCheckDate}"
                 binding.tvHasilPrediksiPanen.text = "Estimasi panen: ${panenData.predictionResult} hari lagi"
             }
         }
