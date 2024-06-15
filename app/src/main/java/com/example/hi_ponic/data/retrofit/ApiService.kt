@@ -42,6 +42,9 @@ interface ApiService {
     @GET("iot/device/allSensor")
     suspend fun getSensorData(): SensorResponse
 
+    @GET("")
+    suspend fun getEverageSensorData(): SensorResponse
+
     @Multipart
     @POST("plants") // update the endpoint accordingly
     suspend fun addPlant(
@@ -51,7 +54,7 @@ interface ApiService {
         @Part image: MultipartBody.Part
     ): TambahTanamanResponse
 
-    @GET("plants")
+    @GET("Plants")
     suspend fun getPlan(
         @Header("Authorization") token: String
     ): ListTanamanResponse
