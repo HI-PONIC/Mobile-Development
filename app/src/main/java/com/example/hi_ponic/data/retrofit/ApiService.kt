@@ -51,7 +51,7 @@ interface ApiService {
         @Part image: MultipartBody.Part
     ): TambahTanamanResponse
 
-    @GET("GetPlant")
+    @GET("plants")
     suspend fun getPlan(
         @Header("Authorization") token: String
     ): ListTanamanResponse

@@ -23,23 +23,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.285" />
-
-    <TextView
-        android:id="@+id/TanggalTanamview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/montserratregular"
-        android:text="Tangal Tanam:"
-        android:textColor="@android:color/black"
-        android:textSize="7dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/Plant"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/Plant"
-        app:layout_constraintTop_toBottomOf="@+id/Plant"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.357" />
 
     <TextView
         android:id="@+id/TanggalTanam"
@@ -54,13 +38,12 @@
         app:layout_constraintEnd_toEndOf="@+id/Plant"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/Plant"
-        app:layout_constraintTop_toBottomOf="@+id/TanggalTanamview"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/Plant" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/conditions"
-        android:layout_width="134dp"
-        android:layout_height="47dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/image"
         app:layout_constraintHorizontal_bias="0.706"
