@@ -32,8 +32,6 @@ class ListLahanAdapter : ListAdapter<PlantsItem, ListLahanAdapter.MyViewHolder>(
         holder.bind(plant)
         holder.itemView.setOnClickListener {
             onItemClickCallback.OnItemCLicked(plant)
-
-            val intent = Intent(holder.itemView.context, DetailHydroponicStatisticActivity::class.java)
         }
     }
 

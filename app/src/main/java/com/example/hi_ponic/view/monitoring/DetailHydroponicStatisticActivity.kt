@@ -33,6 +33,15 @@ class DetailHydroponicStatisticActivity : AppCompatActivity() {
         setTabLayout()
         pageLayout()
         topAppbarHandle()
+        setData()
+    }
+
+    private fun setData() {
+        val tanaman = intent.getStringExtra(EXTRA_TUMBUHAN)
+        val tanggal = intent.getStringExtra(EXTRA_TANGGAL)
+
+        binding.TanggalTanam.text = "Tanggal Tanam : $tanggal"
+        binding.tvTumbuhan.text = tanaman
     }
 
     private fun topAppbarHandle() {
