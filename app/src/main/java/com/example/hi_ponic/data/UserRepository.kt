@@ -46,6 +46,21 @@ class UserRepository private constructor(
         return apiService.register(username, email, password)
     }
 
+    suspend fun resetPassword(code : String, newPassword : String):ErrorResponse{
+        return apiService.resetPassword(code, newPassword)
+    }
+    suspend fun forgotPassword(email: String): ErrorResponse{
+        return apiService.forgotPassword(email)
+    }
+
+    suspend fun changeUsername(newUsername : String): ErrorResponse{
+        return apiService.changeUsername(newUsername)
+    }
+
+    suspend fun changePassword(newPassword: String, currentPassword: String): ErrorResponse{
+        return apiService.changePassword(newPassword, currentPassword)
+    }
+
     suspend fun addPlant(token: String, name: RequestBody, date_added: RequestBody, image: MultipartBody.Part) {
         apiService.addPlant(token, name, date_added, image)
     }

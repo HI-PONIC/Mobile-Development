@@ -58,4 +58,26 @@ interface ApiService {
     suspend fun getPlan(
         @Header("Authorization") token: String
     ): ListTanamanResponse
+
+    @POST("/password/reset-password")
+    suspend fun resetPassword(
+        @Field("code") code : String,
+        @Field("newPassword") newPassword: String
+    ): ErrorResponse
+
+    @POST("/password/forgot-password")
+    suspend fun forgotPassword(
+        @Field("email") email: String
+    ):ErrorResponse
+
+    @POST("/auth/change-username")
+    suspend fun changeUsername(
+        @Field("newUsername") username : String
+    ): ErrorResponse
+
+    @POST("/auth/change-password")
+    suspend fun changePassword(
+        @Field("newPassword") newPassword : String,
+        @Field("currentPassword") currentPassword : String
+    ): ErrorResponse
 }
