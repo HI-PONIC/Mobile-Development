@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,35 +9,41 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"> <!-- Changed to match_parent -->
+        android:layout_height="wrap_content">
+
 
         <TextView
             android:id="@+id/tv_greeting"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="233dp"
+            android:layout_height="46dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="36dp"
             android:fontFamily="@font/montserratbold"
-            android:text="Hi elvindo!"
+            android:text="Hi !"
             android:textColor="#000000"
             android:textSize="35sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/profile_image"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/list_hidroponik"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="115dp"
+            android:layout_height="18dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="52dp"
             android:fontFamily="@font/montserratregular"
             android:text="List Hidroponic :"
             android:textColor="#000000"
             android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/recycler_view"
+            app:layout_constraintEnd_toStartOf="@+id/btn_add"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_greeting" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_greeting"
+            app:layout_constraintVertical_bias="1.0" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
@@ -61,14 +68,16 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="411dp"
+            android:layout_height="576dp"
             android:clipToPadding="false"
             android:padding="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_add"
+            app:layout_constraintVertical_bias="0.0"
             tools:listitem="@layout/card_layout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
