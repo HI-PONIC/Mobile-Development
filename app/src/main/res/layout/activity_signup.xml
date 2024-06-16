@@ -152,6 +152,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         app:indicatorColor="#12372A"
+        android:indeterminateTint="#12372A"
         android:visibility="gone"
         tools:visibility="visible"/>
 

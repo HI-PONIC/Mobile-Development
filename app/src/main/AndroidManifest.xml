@@ -25,6 +25,12 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".view.auth.ResetPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.auth.ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.knowledgeBase.Knowledgebase4"
             android:exported="false" />
         <activity
@@ -41,21 +47,19 @@
             android:exported="false" />
         <activity
             android:name=".view.monitoring.CekKesehatanActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".view.profile.tentang_aplikasi"
             android:exported="false" />
         <activity
             android:name=".view.profile.change_password"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".view.profile.edit_username"
             android:exported="false" />
         <activity
             android:name=".view.monitoring.DetailHydroponicStatisticActivity"
-            android:exported="false">
-        </activity>
-
+            android:exported="false" />
         <activity
             android:name=".view.auth.LoginActivity"
             android:exported="false" />
@@ -68,9 +72,11 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
@@ -80,6 +86,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
     </application>
+
 </manifest>

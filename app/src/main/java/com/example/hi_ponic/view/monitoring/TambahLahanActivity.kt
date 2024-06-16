@@ -69,13 +69,14 @@ class TambahLahanActivity : AppCompatActivity() {
         val month: Int = calendar.get(Calendar.MONTH)
         val day: Int = calendar.get(Calendar.DAY_OF_MONTH)
 
-        val datePickerDialog = DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDay ->
-            val selectedDate = Calendar.getInstance().apply {
-                set(selectedYear, selectedMonth, selectedDay)
-            }.time
-            val formattedDate = formatDateToISOString(selectedDate)
-            binding.TanggalEditText.setText(formattedDate)
-        }, year, month, day)
+        val datePickerDialog =
+            DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDay ->
+                val selectedDate = Calendar.getInstance().apply {
+                    set(selectedYear, selectedMonth, selectedDay)
+                }.time
+                val formattedDate = formatDateToISOString(selectedDate)
+                binding.TanggalEditText.setText(formattedDate)
+            }, year, month, day)
 
         binding.edittextTanggalLayout.setEndIconOnClickListener { datePickerDialog.show() }
         topAppbarHandle()
@@ -99,12 +100,21 @@ class TambahLahanActivity : AppCompatActivity() {
             setItems(options) { dialog, item ->
                 when (options[item]) {
                     "Take photo" -> {
-                        if (ContextCompat.checkSelfPermission(this@TambahLahanActivity, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                            ActivityCompat.requestPermissions(this@TambahLahanActivity, arrayOf(Manifest.permission.CAMERA), 100)
+                        if (ContextCompat.checkSelfPermission(
+                                this@TambahLahanActivity,
+                                Manifest.permission.CAMERA
+                            ) != PackageManager.PERMISSION_GRANTED
+                        ) {
+                            ActivityCompat.requestPermissions(
+                                this@TambahLahanActivity,
+                                arrayOf(Manifest.permission.CAMERA),
+                                100
+                            )
                         } else {
                             takePhoto()
                         }
                     }
+
                     "Choose from gallery" -> {
                         val pickFile = Intent(Intent.ACTION_GET_CONTENT).apply {
                             type = "*/*"
@@ -112,6 +122,7 @@ class TambahLahanActivity : AppCompatActivity() {
                         }
                         startActivityForResult(Intent.createChooser(pickFile, "Choose a file"), 1)
                     }
+
                     "Cancel" -> dialog.dismiss()
                 }
             }
@@ -186,15 +197,38 @@ class TambahLahanActivity : AppCompatActivity() {
             setMessage("Apakah Anda yakin ingin menyimpan data ini?")
             setPositiveButton("Ya") { _, _ ->
                 viewModel.addPlant(namaTumbuhan, tanggal, createMultipartBody(selectedFile))
-                Toast.makeText(this@TambahLahanActivity, "Data berhasil disimpan", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this@TambahLahanActivity, MainActivity::class.java)
-                startActivity(intent)
             }
             setNegativeButton("Tidak") { dialog, _ -> dialog.dismiss() }
             create()
             show()
         }
+
+        // Observe the error state outside of the dialog to ensure it always gets observed
+        viewModel.error.observe(this@TambahLahanActivity) { hasError ->
+            if (hasError) {
+                viewModel.isError.observe(this@TambahLahanActivity) { errorMessage ->
+                    AlertDialog.Builder(this@TambahLahanActivity).apply {
+                        setTitle("Error")
+                        setMessage(errorMessage)
+                        setPositiveButton("OK") { dialog, _ ->
+                            dialog.dismiss()
+                        }
+                        create()
+                        show()
+                    }
+                }
+            } else {
+                Toast.makeText(
+                    this@TambahLahanActivity,
+                    "Data berhasil disimpan",
+                    Toast.LENGTH_SHORT
+                ).show()
+                val intent = Intent(this@TambahLahanActivity, MainActivity::class.java)
+                startActivity(intent)
+            }
+        }
     }
+
 
     private fun createMultipartBody(file: File): MultipartBody.Part {
         val requestFile = file.asRequestBody("image/png".toMediaTypeOrNull())
