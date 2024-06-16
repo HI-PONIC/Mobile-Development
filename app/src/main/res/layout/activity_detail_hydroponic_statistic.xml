@@ -19,7 +19,8 @@
             android:layout_height="match_parent"
             android:background="#FBFADA"
             android:minHeight="?attr/actionBarSize"
-            app:navigationIcon="@drawable/button_arrow" />
+            app:navigationIcon="@drawable/button_arrow"
+            app:menu="@menu/menu"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView

@@ -1,19 +1,21 @@
+// UserRepository.kt
 package com.example.hi_ponic.data
 
+import android.util.Log
 import com.example.hi_ponic.data.Response.LoginResponse
-import com.example.hi_ponic.data.Response.SensorResponse
 import com.example.hi_ponic.data.Response.PredictConditionResponse
+import com.example.hi_ponic.data.Response.SensorResponse
 import com.example.hi_ponic.data.pref.UserModel
 import com.example.hi_ponic.data.pref.UserPreference
 import com.example.hi_ponic.data.response.ErrorResponse
 import com.example.hi_ponic.data.response.ListTanamanResponse
 import com.example.hi_ponic.data.response.TambahTanamanResponse
 import com.example.hi_ponic.data.retrofit.ApiService
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.Dispatchers
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
@@ -65,6 +67,10 @@ class UserRepository private constructor(
         apiService.addPlant(token, name, date_added, image)
     }
 
+    suspend fun deletePlant(token: String,id: Int):TambahTanamanResponse{
+        return apiService.deletePlant(token, id)
+    }
+
     suspend fun getPlant(token: String):ListTanamanResponse{
         return apiService.getPlan(token)
     }
@@ -74,10 +80,11 @@ class UserRepository private constructor(
             try {
                 val sensorData = apiService.getSensorData()
                 emit(sensorData)
-                delay(120000) // Delay for 60 seconds (1 minute) before fetching data again
+                Log.d("UserRepository", "Successfully fetched sensor data")
             } catch (e: Exception) {
-                // Handle error
+                Log.e("UserRepository", "Failed to fetch sensor data", e)
             }
+            delay(120000) // Delay for 120 seconds (2 minutes) before fetching data again
         }
     }.flowOn(Dispatchers.IO)
 

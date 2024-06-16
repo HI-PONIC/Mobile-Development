@@ -25,10 +25,10 @@ class StatistikViewModel(private val repository: UserRepository) : ViewModel() {
             try {
                 repository.observeSensorValues().collect { sensorData ->
                     _dataStatistik.postValue(sensorData.sensorData!!)
+                    Log.d("StatistikViewModel", "Sensor data updated")
                 }
-                delay(120000)
             } catch (e: Exception) {
-                Log.d("error", "sensor error", e)
+                Log.e("StatistikViewModel", "Failed to observe sensor values", e)
             }
         }
     }

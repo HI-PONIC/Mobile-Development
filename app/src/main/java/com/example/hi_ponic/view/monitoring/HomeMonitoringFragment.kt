@@ -78,6 +78,7 @@ class HomeMonitoringFragment : Fragment() {
         val toDetail = Intent(requireContext(),DetailHydroponicStatisticActivity::class.java)
         toDetail.putExtra(DetailHydroponicStatisticActivity.EXTRA_TANGGAL, plantsItem.dateAdded)
         toDetail.putExtra(DetailHydroponicStatisticActivity.EXTRA_TUMBUHAN, plantsItem.name)
+        toDetail.putExtra(DetailHydroponicStatisticActivity.EXTRA_ID, plantsItem.id)
         startActivity(toDetail)
     }
 

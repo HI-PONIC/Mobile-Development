@@ -1,18 +1,33 @@
 package com.example.hi_ponic.view.monitoring
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.example.hi_ponic.R
+import com.example.hi_ponic.data.UserRepository
+import com.example.hi_ponic.data.response.ErrorResponse
 import com.example.hi_ponic.databinding.ActivityDetailHydroponicStatisticBinding
+import com.example.hi_ponic.view.ViewModelFactory
+import com.example.hi_ponic.view.mainView.MainActivity
 import com.example.hi_ponic.view.mainView.SectionPagerAdapter
+import com.example.hi_ponic.view.monitoring.view_model.HomeMonitoringViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.gson.Gson
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
@@ -20,18 +35,25 @@ import java.util.TimeZone
 class DetailHydroponicStatisticActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailHydroponicStatisticBinding
+
+    private val viewModel by viewModels<HomeMonitoringViewModel> {
+        ViewModelFactory.getInstance(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_detail_hydroponic_statistic)
+
+        // Inisialisasi binding
+        binding = ActivityDetailHydroponicStatisticBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // Setup window insets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        binding = ActivityDetailHydroponicStatisticBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         setTabLayout()
         pageLayout()
@@ -63,6 +85,37 @@ class DetailHydroponicStatisticActivity : AppCompatActivity() {
     private fun topAppbarHandle() {
         binding.topAppbar.setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()
+        }
+        binding.topAppbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.delete -> {
+                    AlertDialog.Builder(this).apply {
+                        setTitle("Delete Plant")
+                        setMessage("Are you sure to delete this plant?")
+                        setPositiveButton("OK") { _, _ ->
+                            val id = intent.getIntExtra(EXTRA_ID,0)
+                            viewModel.deletePlant(id)
+                            viewModel.isError.observe(this@DetailHydroponicStatisticActivity){
+                                if (it.isNotEmpty()){
+                                    Toast.makeText(this@DetailHydroponicStatisticActivity, "Plant deleted successfully", Toast.LENGTH_SHORT).show()
+                                    val intent = Intent(this@DetailHydroponicStatisticActivity,MainActivity::class.java)
+                                    startActivity(intent)
+                                }else{
+                                    Toast.makeText(this@DetailHydroponicStatisticActivity, it, Toast.LENGTH_SHORT).show()
+                                }
+                            }
+
+                        }
+                        setNegativeButton("Cancel") { dialog, _ ->
+                            dialog.dismiss()
+                        }
+                        create()
+                        show()
+                    }
+                    true
+                }
+                else -> false
+            }
         }
     }
 
@@ -109,6 +162,8 @@ class DetailHydroponicStatisticActivity : AppCompatActivity() {
             R.string.statistik,
             R.string.cek
         )
+
+        const val EXTRA_ID="extra_id"
         const val EXTRA_TUMBUHAN = "extra_tumbuhan"
         const val EXTRA_TANGGAL = "extra_tanggal"
     }
