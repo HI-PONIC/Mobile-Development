@@ -8,6 +8,7 @@ import com.example.hi_ponic.data.response.ListTanamanResponse
 import com.example.hi_ponic.data.response.TambahTanamanResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -15,6 +16,7 @@ import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Path
 
 interface ApiService {
 
@@ -59,22 +61,32 @@ interface ApiService {
         @Header("Authorization") token: String
     ): ListTanamanResponse
 
+    @FormUrlEncoded
     @POST("/password/reset-password")
     suspend fun resetPassword(
         @Field("code") code : String,
         @Field("newPassword") newPassword: String
     ): ErrorResponse
 
+    @DELETE("plants/{id}")
+    suspend fun deletePlant(
+        @Header("Authorization") token: String,
+        @Path("id") id : Int
+    ):TambahTanamanResponse
+
+    @FormUrlEncoded
     @POST("/password/forgot-password")
     suspend fun forgotPassword(
         @Field("email") email: String
     ):ErrorResponse
 
+    @FormUrlEncoded
     @POST("/auth/change-username")
     suspend fun changeUsername(
         @Field("newUsername") username : String
     ): ErrorResponse
 
+    @FormUrlEncoded
     @POST("/auth/change-password")
     suspend fun changePassword(
         @Field("newPassword") newPassword : String,
