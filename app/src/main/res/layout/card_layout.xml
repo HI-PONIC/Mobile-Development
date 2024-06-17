@@ -39,16 +39,27 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/TanggalTanamView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserratregular"
+                    android:text="Planting Date:"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/Plant"
+                    app:layout_constraintTop_toBottomOf="@+id/Plant" />
+
+                <TextView
                     android:id="@+id/TanggalTanam"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserratregular"
-                    android:text="Tangal Tanam:"
+                    android:text="Planting Date:"
                     android:textColor="@android:color/black"
-                    android:textSize="7dp"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/Plant"
-                    app:layout_constraintTop_toBottomOf="@+id/Plant" />
+                    app:layout_constraintTop_toBottomOf="@+id/TanggalTanamView" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout

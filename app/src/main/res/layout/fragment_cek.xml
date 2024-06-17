@@ -38,14 +38,14 @@
                         style="@style/textStyleTitleCek"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cek Kesehatan Tanaman" />
+                        android:text="Plant Health Check" />
 
                     <TextView
                         android:id="@+id/cekterakhir"
                         style="@style/textStyleDescCek"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cek terakhir: " />
+                        android:text="Last check: " />
 
                     <TextView
                         android:id="@+id/HasilKlasisifikasi"
@@ -53,7 +53,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:text="Hasil: Sehat" />
+                        android:text="Result: Healthy" />
 
                     <Button
                         android:id="@+id/btnCekKesehatanTanaman"
@@ -123,7 +123,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="Prediksi Hasil Panen"
+                        android:text="Harvest Prediction"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -133,7 +133,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="Estimasi panen: "
+                        android:text="Harvest estimate: "
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -142,7 +142,7 @@
                         style="@style/textStyleDescCek"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cek terakhir: "
+                        android:text="Last check: "
                         android:textSize="12dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tvHasilPrediksiPanen" />
@@ -152,7 +152,7 @@
                         style="@style/textStyleDescCek"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cek terakhir: "
+                        android:text="Last check: "
                         android:textSize="12dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tvCekTerakhirHasil" />

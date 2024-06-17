@@ -115,7 +115,7 @@
                     style="@style/cardTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kelembapan" />
+                    android:text="Humidity" />
 
                 <ImageView
                     android:id="@+id/ivKelembapan"
@@ -155,7 +155,7 @@
                     style="@style/cardTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Suhu" />
+                    android:text="Temp" />
 
                 <ImageView
                     android:id="@+id/ivSuhu"

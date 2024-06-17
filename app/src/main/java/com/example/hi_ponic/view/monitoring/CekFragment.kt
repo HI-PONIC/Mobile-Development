@@ -111,7 +111,7 @@ class CekFragment : Fragment() {
             val lastResult = sharedPreferences.getString("lastResult", "No result")
             val lastImagePath = sharedPreferences.getString("lastImagePath", null)
 
-            binding.HasilKlasisifikasi.text = "Hasil: $lastResult"
+            binding.HasilKlasisifikasi.text = "Result: $lastResult"
 
             if (lastImagePath != null) {
                 val file = File(lastImagePath)
@@ -124,7 +124,7 @@ class CekFragment : Fragment() {
             val panenData = panenPreference.getPanenData().first()
             if (panenData.lastCheckDate.isNotEmpty() && panenData.predictionResult != -1) {
                 binding.tvCekTerakhirHasilPanen.text = "${panenData.lastCheckDate}"
-                binding.tvHasilPrediksiPanen.text = "Estimasi panen: ${panenData.predictionResult} hari lagi"
+                binding.tvHasilPrediksiPanen.text = "Harvest estimate: ${panenData.predictionResult} days left"
             }
         }
     }

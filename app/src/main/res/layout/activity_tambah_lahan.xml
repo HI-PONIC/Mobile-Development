@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserratbold"
-                android:text="Tambah Lahan"
+                android:text="Add Plant"
                 android:textColor="#436850"
                 android:textSize="35sp"
                 android:textStyle="bold"
@@ -82,7 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="Nama Tumbuhan"
+                    android:hint="plant name"
                     android:textColor="#12372A" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,7 +105,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="Tanggal"
+                    android:hint="date added"
                     android:textColor="#12372A" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -127,7 +127,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="Kode Alat"
+                    android:hint="iot code"
                     android:textColor="#12372A" />
             </com.google.android.material.textfield.TextInputLayout>
 

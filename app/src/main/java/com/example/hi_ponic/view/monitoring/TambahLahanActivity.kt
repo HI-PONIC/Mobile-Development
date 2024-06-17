@@ -181,7 +181,7 @@ class TambahLahanActivity : AppCompatActivity() {
                 val tanggal = binding.TanggalEditText.text.toString()
 
                 if (namaTumbuhan.isEmpty() || tanggal.isEmpty()) {
-                    Toast.makeText(this, "Harap isi semua data", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Input all data needed", Toast.LENGTH_SHORT).show()
                 } else {
                     showConfirmationDialog(namaTumbuhan, tanggal)
                 }
@@ -193,12 +193,12 @@ class TambahLahanActivity : AppCompatActivity() {
 
     private fun showConfirmationDialog(namaTumbuhan: String, tanggal: String) {
         AlertDialog.Builder(this).apply {
-            setTitle("Konfirmasi")
-            setMessage("Apakah Anda yakin ingin menyimpan data ini?")
-            setPositiveButton("Ya") { _, _ ->
+            setTitle("Confirmation")
+            setMessage("Are you sure want to add this plant?")
+            setPositiveButton("yes") { _, _ ->
                 viewModel.addPlant(namaTumbuhan, tanggal, createMultipartBody(selectedFile))
             }
-            setNegativeButton("Tidak") { dialog, _ -> dialog.dismiss() }
+            setNegativeButton("cancel") { dialog, _ -> dialog.dismiss() }
             create()
             show()
         }
@@ -220,7 +220,7 @@ class TambahLahanActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(
                     this@TambahLahanActivity,
-                    "Data berhasil disimpan",
+                    "Plant added successfully",
                     Toast.LENGTH_SHORT
                 ).show()
                 val intent = Intent(this@TambahLahanActivity, MainActivity::class.java)

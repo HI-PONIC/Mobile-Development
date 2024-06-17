@@ -46,7 +46,7 @@ class ListLahanAdapter : ListAdapter<PlantsItem, ListLahanAdapter.MyViewHolder>(
 
         fun bind(plantsItem: PlantsItem) {
             binding.Plant.text = plantsItem.name
-            binding.TanggalTanam.text = "Tanggal tanam: ${plantsItem.dateAdded?.let {
+            binding.TanggalTanam.text = "${plantsItem.dateAdded?.let {
                 formatDateString(
                     it
                 )

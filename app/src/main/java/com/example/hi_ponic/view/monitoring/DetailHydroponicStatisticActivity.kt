@@ -65,7 +65,7 @@ class DetailHydroponicStatisticActivity : AppCompatActivity() {
         val tanaman = intent.getStringExtra(EXTRA_TUMBUHAN)
         val tanggal = intent.getStringExtra(EXTRA_TANGGAL)
 
-        binding.TanggalTanam.text = "Tanggal Tanam : ${formatDateString(tanggal.toString())}"
+        binding.TanggalTanam.text = "Planting date : ${formatDateString(tanggal.toString())}"
         binding.tvTumbuhan.text = tanaman
     }
 

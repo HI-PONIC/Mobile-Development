@@ -85,54 +85,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="16dp">
 
-            <!-- Plants Icon and Count -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/tanaman_icon" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="5"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/montserratregular"
-                    android:textStyle="bold"
-                    android:layout_marginTop="4dp"/>
-            </LinearLayout>
-
-            <!-- Divider -->
-            <View
-                android:layout_width="16dp"
-                android:layout_height="match_parent" />
-
-            <!-- Computer Icon and Count -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/alat_iot" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="5"
-                    android:fontFamily="@font/montserratregular"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="4dp"/>
-            </LinearLayout>
         </LinearLayout>
 
         <!-- Edit Profile Button -->
