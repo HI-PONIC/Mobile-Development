@@ -8,7 +8,6 @@
     android:background="#FBFADA"
     tools:context=".view.profile.edit_username">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -35,7 +34,6 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout2">
-
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profileImageView"
@@ -67,7 +65,7 @@
                     android:layout_height="49dp"
                     android:ems="10"
                     android:hint="username"
-                    android:textColor="#FBFADA" />
+                    android:textColor="#000000" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button

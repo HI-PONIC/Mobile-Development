@@ -13,7 +13,6 @@ import com.example.hi_ponic.view.monitoring.view_model.CekPanenViewModel
 import com.example.hi_ponic.view.monitoring.view_model.HomeMonitoringViewModel
 import com.example.hi_ponic.view.monitoring.view_model.StatistikViewModel
 import com.example.hi_ponic.view.monitoring.view_model.TambahLahanViewModel
-import com.example.hi_ponic.view.profile.ProfileFragment
 import com.example.hi_ponic.view.profile.ProfileViewModel
 
 class ViewModelFactory(private val repository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
@@ -26,11 +25,14 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(repository) as T
-            }modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
+            }
+            modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
                 ProfileViewModel(repository) as T
-            }modelClass.isAssignableFrom(SignupViewModel::class.java) -> {
+            }
+            modelClass.isAssignableFrom(SignupViewModel::class.java) -> {
                 SignupViewModel(repository) as T
-            }modelClass.isAssignableFrom(CekPanenViewModel::class.java) -> {
+            }
+            modelClass.isAssignableFrom(CekPanenViewModel::class.java) -> {
                 CekPanenViewModel(repository) as T
             }
             modelClass.isAssignableFrom(CekKesehatanViewModel::class.java) -> {
@@ -38,9 +40,11 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(StatistikViewModel::class.java) -> {
                 StatistikViewModel(repository) as T
-            }modelClass.isAssignableFrom(HomeMonitoringViewModel::class.java) -> {
+            }
+            modelClass.isAssignableFrom(HomeMonitoringViewModel::class.java) -> {
                 HomeMonitoringViewModel(repository) as T
-            }modelClass.isAssignableFrom(TambahLahanViewModel::class.java) -> {
+            }
+            modelClass.isAssignableFrom(TambahLahanViewModel::class.java) -> {
                 TambahLahanViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

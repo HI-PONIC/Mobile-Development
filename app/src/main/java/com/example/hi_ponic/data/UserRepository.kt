@@ -59,7 +59,7 @@ class UserRepository private constructor(
         return apiService.changeUsername(newUsername)
     }
 
-    suspend fun changePassword(newPassword: String, currentPassword: String): ErrorResponse{
+    suspend fun changePassword(newPassword: String, currentPassword: String): ErrorResponse {
         return apiService.changePassword(newPassword, currentPassword)
     }
 

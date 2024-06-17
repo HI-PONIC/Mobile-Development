@@ -1,7 +1,9 @@
 package com.example.hi_ponic.view.profile
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -48,21 +50,29 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
 
-
         binding.aboutAppButton.setOnClickListener {
             val intent = Intent(requireContext(), tentang_aplikasi::class.java)
             startActivity(intent)
         }
 
         binding.logoutIcon.setOnClickListener {
-            viewModel.logout()
+            showLogoutConfirmationDialog()
         }
 
         setData()
-
     }
 
-
+    private fun showLogoutConfirmationDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setMessage("Are you sure you want to log out?")
+            .setPositiveButton("Yes") { dialog, id ->
+                viewModel.logout()
+            }
+            .setNegativeButton("No") { dialog, id ->
+                dialog.dismiss()
+            }
+        builder.create().show()
+    }
 
     private fun setData() {
         lifecycleScope.launch {

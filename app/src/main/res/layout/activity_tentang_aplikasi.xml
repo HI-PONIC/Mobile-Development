@@ -111,18 +111,20 @@
                         android:layout_marginEnd="16dp"
                         android:orientation="vertical">
 
-                        <ImageView
+
+                        <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/profil1"
                             android:layout_width="121dp"
                             android:layout_height="97dp"
-                            android:src="@drawable/button_profile" />
+                            android:src="@drawable/elvindo_foto" />
+
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="Elvindo" />
+                            android:text="Elvindo \n Mobile Developer" />
                     </LinearLayout>
 
                     <!-- Profile Item 2 -->
