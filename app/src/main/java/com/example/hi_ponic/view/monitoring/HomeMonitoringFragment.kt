@@ -60,7 +60,7 @@ class HomeMonitoringFragment : Fragment() {
 
     private fun setList() {
         viewModel.getPlant()
-        viewModel.plantData.observe(viewLifecycleOwner){data->
+        viewModel.plantData.observe(viewLifecycleOwner){ data->
             val adapter = ListLahanAdapter()
             adapter.submitList(data.plants)
             adapter.setOnItemClickCallback(object : ListLahanAdapter.OnItemClickCallback{
@@ -70,6 +70,14 @@ class HomeMonitoringFragment : Fragment() {
             })
             binding.recyclerView.adapter = adapter
             binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+            if (data.plants?.isEmpty() == true) {
+                binding.recyclerView.visibility = View.GONE
+                binding.placeholderImage.visibility = View.VISIBLE
+            } else {
+                binding.recyclerView.visibility = View.VISIBLE
+                binding.placeholderImage.visibility = View.GONE
+            }
         }
         viewModel.isLoading.observe(viewLifecycleOwner){showLoading(it)}
     }
@@ -97,5 +105,4 @@ class HomeMonitoringFragment : Fragment() {
             binding.progressBar.visibility = View.GONE
         }
     }
-
 }

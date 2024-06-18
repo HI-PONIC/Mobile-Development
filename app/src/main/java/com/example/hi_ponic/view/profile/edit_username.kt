@@ -10,9 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.example.hi_ponic.R
 import com.example.hi_ponic.databinding.ActivityEditUsernameBinding
 import com.example.hi_ponic.view.ViewModelFactory
+import kotlinx.coroutines.launch
 
 class edit_username : AppCompatActivity() {
 
@@ -41,8 +43,6 @@ class edit_username : AppCompatActivity() {
             }
         }
 
-        // Ensure correct import for Observe
-
         binding.topAppBar.setNavigationOnClickListener {
             onBackPressed()
         }
@@ -51,5 +51,18 @@ class edit_username : AppCompatActivity() {
             val intent = Intent(this, change_password::class.java)
             startActivity(intent)
         }
+
+        observeViewModel()
+    }
+
+    private fun observeViewModel() {
+        lifecycleScope.launch {
+            profileViewModel.changeUsernameResponse.collect { response ->
+                response?.let {
+                    Toast.makeText(this@edit_username, it.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 }
+

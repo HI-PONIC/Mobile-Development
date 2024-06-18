@@ -28,10 +28,11 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="410dp"
+            android:layout_height="669dp"
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout3">
 
@@ -64,7 +65,7 @@
                 android:id="@+id/ivDetail"
                 android:layout_width="match_parent"
                 android:layout_height="345dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:contentDescription="Insert Photo"
                 android:scaleType="centerCrop"
                 android:src="@drawable/image_uplod"
@@ -80,30 +81,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="*click image to insert photo"
+                app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivDetail" />
+                app:layout_constraintTop_toBottomOf="@+id/ivDetail"
+                app:layout_constraintVertical_bias="0.133" />
 
             <TextView
                 android:id="@+id/tvHasilmessege"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text=""
                 app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/ivDetail"
-                app:layout_constraintVertical_bias="0.937" />
+                app:layout_constraintTop_toBottomOf="@+id/tvhint" />
 
             <Button
                 android:id="@+id/btnSubmit"
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="244dp"
                 android:layout_height="54dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="132dp"
                 android:text="submit"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ivDetail" />
 

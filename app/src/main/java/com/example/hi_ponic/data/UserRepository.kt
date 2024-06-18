@@ -56,12 +56,12 @@ class UserRepository private constructor(
         return apiService.forgotPassword(email)
     }
 
-    suspend fun changeUsername(newUsername : String): ErrorResponse{
-        return apiService.changeUsername(newUsername)
+    suspend fun changeUsername(token: String, newUsername: String): ErrorResponse {
+        return apiService.changeUsername(token, newUsername)
     }
 
-    suspend fun changePassword(newPassword: String, currentPassword: String): ErrorResponse {
-        return apiService.changePassword(newPassword, currentPassword)
+    suspend fun changePassword(token: String, newPassword: String, currentPassword: String): ErrorResponse {
+        return apiService.changePassword(token, newPassword, currentPassword)
     }
 
     suspend fun addPlant(token: String, name: RequestBody, date_added: RequestBody, image: MultipartBody.Part) {
@@ -85,7 +85,7 @@ class UserRepository private constructor(
             } catch (e: Exception) {
                 Log.e("UserRepository", "Failed to fetch sensor data", e)
             }
-            delay(120000) // Delay for 120 seconds (2 minutes) before fetching data again
+            delay(120000)
         }
     }.flowOn(Dispatchers.IO)
 

@@ -16,6 +16,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Part
 import retrofit2.http.Path
 
@@ -57,40 +58,42 @@ interface ApiService {
         @Part image: MultipartBody.Part
     ): TambahTanamanResponse
 
-    @GET("Plants")
+    @GET("plants")
     suspend fun getPlan(
         @Header("Authorization") token: String
     ): ListTanamanResponse
 
     @FormUrlEncoded
-    @POST("/password/reset-password")
+    @POST("password/reset-password")
     suspend fun resetPassword(
-        @Field("code") code : String,
+        @Field("code") code: String,
         @Field("newPassword") newPassword: String
     ): ErrorResponse
 
     @DELETE("plants/{id}")
     suspend fun deletePlant(
         @Header("Authorization") token: String,
-        @Path("id") id : Int
-    ):TambahTanamanResponse
+        @Path("id") id: Int
+    ): TambahTanamanResponse
 
     @FormUrlEncoded
-    @POST("/password/forgot-password")
+    @POST("password/forgot-password")
     suspend fun forgotPassword(
         @Field("email") email: String
-    ):ErrorResponse
-
-    @FormUrlEncoded
-    @POST("/auth/change-username")
-    suspend fun changeUsername(
-        @Field("newUsername") username : String
     ): ErrorResponse
 
     @FormUrlEncoded
-    @POST("/auth/change-password")
+    @PUT("auth/change-username")
+    suspend fun changeUsername(
+        @Header("Authorization") token: String,
+        @Field("newUsername") username: String
+    ): ErrorResponse
+
+    @FormUrlEncoded
+    @PUT("auth/change-password")
     suspend fun changePassword(
-        @Field("newPassword") newPassword : String,
-        @Field("currentPassword") currentPassword : String
+        @Header("Authorization") token: String,
+        @Field("newPassword") newPassword: String,
+        @Field("currentPassword") currentPassword: String
     ): ErrorResponse
 }

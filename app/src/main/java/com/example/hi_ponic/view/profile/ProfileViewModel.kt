@@ -18,15 +18,21 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
 
     fun changeUsername(newUsername: String) {
         viewModelScope.launch {
-            val response = repository.changeUsername(newUsername)
-            _changeUsernameResponse.value = response
+            repository.getSession().collect { userModel ->
+                val token = "Bearer ${userModel.token}"
+                val response = repository.changeUsername(token, newUsername)
+                _changeUsernameResponse.value = response
+            }
         }
     }
 
     fun changePassword(currentPassword: String, newPassword: String) {
         viewModelScope.launch {
-            val response = repository.changePassword(newPassword, currentPassword)
-            _changePasswordResponse.value = response
+            repository.getSession().collect { userModel ->
+                val token = "Bearer ${userModel.token}"
+                val response = repository.changePassword(token, newPassword, currentPassword)
+                _changePasswordResponse.value = response
+            }
         }
     }
 
@@ -36,3 +42,4 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
         }
     }
 }
+
