@@ -180,11 +180,12 @@ class TambahLahanActivity : AppCompatActivity() {
             if (::selectedFile.isInitialized) {
                 val namaTumbuhan = binding.NamaTumbuhanEditText.text.toString()
                 val tanggal = binding.TanggalEditText.text.toString()
+                val code = binding.KodeAlatEditText.text.toString()
 
-                if (namaTumbuhan.isEmpty() || tanggal.isEmpty()) {
+                if (namaTumbuhan.isEmpty() || tanggal.isEmpty()|| code.isEmpty()) {
                     Toast.makeText(this, "Input all data needed", Toast.LENGTH_SHORT).show()
                 } else {
-                    showConfirmationDialog(namaTumbuhan, tanggal)
+                    showConfirmationDialog(namaTumbuhan, tanggal,code)
                 }
             } else {
                 Toast.makeText(this, "Please select an image first", Toast.LENGTH_SHORT).show()
@@ -192,13 +193,13 @@ class TambahLahanActivity : AppCompatActivity() {
         }
     }
 
-    private fun showConfirmationDialog(namaTumbuhan: String, tanggal: String) {
+    private fun showConfirmationDialog(namaTumbuhan: String, tanggal: String,code: String) {
         val dialog = AlertDialog.Builder(this).apply {
             setTitle("Confirmation")
             setMessage("Are you sure you want to add this plant?")
             setPositiveButton("Yes") { _, _ ->
                 showLoading(true)
-                viewModel.addPlant(namaTumbuhan, tanggal, createMultipartBody(selectedFile))
+                viewModel.addPlant(namaTumbuhan, tanggal, createMultipartBody(selectedFile),code)
             }
             setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
             create()

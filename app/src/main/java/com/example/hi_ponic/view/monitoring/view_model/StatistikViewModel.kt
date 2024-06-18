@@ -9,6 +9,7 @@ import com.example.hi_ponic.data.Response.SensorData
 import com.example.hi_ponic.data.UserRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class StatistikViewModel(private val repository: UserRepository) : ViewModel() {
@@ -16,14 +17,18 @@ class StatistikViewModel(private val repository: UserRepository) : ViewModel() {
     private val _dataStatistik = MutableLiveData<SensorData>()
     val dataStatistik: LiveData<SensorData> = _dataStatistik
 
-    init {
-        observeRTSensorValue()
+    private var plantId: Int = 0
+
+    fun setId(id: Int) {
+        plantId = id
+        observeRTSensorValue(plantId)
     }
 
-    private fun observeRTSensorValue() {
+    private fun observeRTSensorValue(id: Int) {
         viewModelScope.launch {
             try {
-                repository.observeSensorValues().collect { sensorData ->
+                val token = repository.getSession().first().token
+                repository.observeSensorValues("Bearer $token", id).collect { sensorData ->
                     _dataStatistik.postValue(sensorData.sensorData!!)
                     Log.d("StatistikViewModel", "Sensor data updated")
                 }

@@ -11,13 +11,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.hi_ponic.R
-import com.example.hi_ponic.data.UserRepository
-import com.example.hi_ponic.data.response.ErrorResponse
 import com.example.hi_ponic.databinding.ActivityDetailHydroponicStatisticBinding
 import com.example.hi_ponic.view.ViewModelFactory
 import com.example.hi_ponic.view.mainView.MainActivity
@@ -25,10 +21,6 @@ import com.example.hi_ponic.view.mainView.SectionPagerAdapter
 import com.example.hi_ponic.view.monitoring.view_model.HomeMonitoringViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.google.gson.Gson
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
-import retrofit2.HttpException
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
@@ -126,7 +118,8 @@ class DetailHydroponicStatisticActivity : AppCompatActivity() {
     }
 
     private fun pageLayout() {
-        val sectionsPagerAdapter = SectionPagerAdapter(this)
+        val id = intent.getIntExtra(EXTRA_ID, 0)
+        val sectionsPagerAdapter = SectionPagerAdapter(this, id)
         val viewPager: ViewPager2 = findViewById(R.id.viewPager)
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tablayout)

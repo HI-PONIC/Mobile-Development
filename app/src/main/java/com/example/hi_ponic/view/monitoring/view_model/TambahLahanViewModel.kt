@@ -1,6 +1,5 @@
 package com.example.hi_ponic.view.monitoring.view_model
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,7 +10,6 @@ import com.google.gson.Gson
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.HttpException
 
@@ -26,15 +24,16 @@ class TambahLahanViewModel(private val repository: UserRepository) : ViewModel()
     private val _error = MutableLiveData<Boolean>()
     val error: LiveData<Boolean> = _error
 
-    fun addPlant(name: String, date_added: String, image: MultipartBody.Part) {
+    fun addPlant(name: String, date_added: String, image: MultipartBody.Part,code:String) {
         _isLoading.value = true
         _error.value = false
         viewModelScope.launch {
             try {
                 val nameRequestBody = name.toRequestBody(MultipartBody.FORM)
                 val dateAddedRequestBody = date_added.toRequestBody(MultipartBody.FORM)
+                val codeRequestBody = code.toRequestBody(MultipartBody.FORM)
                 val token = repository.getSession().first().token
-                repository.addPlant("Bearer $token", nameRequestBody, dateAddedRequestBody, image)
+                repository.addPlant("Bearer $token", nameRequestBody, dateAddedRequestBody, image, codeRequestBody)
                 _isLoading.value = false
                 _error.value = false
             } catch (e: HttpException) {

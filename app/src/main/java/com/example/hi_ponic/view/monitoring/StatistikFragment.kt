@@ -29,6 +29,9 @@ class StatistikFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val id = arguments?.getInt(ARG_ID) ?: 0
+        viewModel.setId(id) // Update ViewModel with the ID
+
         viewModel.dataStatistik.observe(viewLifecycleOwner) { data ->
             val kelembapan = data.humidity.toString()
             val suhu = data.temp.toString()
@@ -39,6 +42,16 @@ class StatistikFragment : Fragment() {
             binding.tvSuhuValue.text = getString(R.string.temperature_format, suhu)
             binding.tvTDSValue.text = getString(R.string.tds_format, tds)
             binding.tvpHValue.text = getString(R.string.ph_format, ph)
+        }
+    }
+
+    companion object {
+        private const val ARG_ID = "arg_id"
+
+        fun newInstance(id: Int) = StatistikFragment().apply {
+            arguments = Bundle().apply {
+                putInt(ARG_ID, id)
+            }
         }
     }
 }

@@ -43,11 +43,17 @@ interface ApiService {
         @Part image: MultipartBody.Part
     ): PredictConditionResponse
 
-    @GET("iot/device/allSensor")
-    suspend fun getSensorData(): SensorResponse
+    @GET("plants/monitoring/{id}")
+    suspend fun getSensorData(
+        @Header("Authorization") token: String,
+        @Path("id") id : Int
+    ): SensorResponse
 
-    @GET("iot/device/average")
-    suspend fun getAverageSensorData(): AverageResponse
+    @GET("plants/average/{id}")
+    suspend fun getAverageSensorData(
+        @Header("Authorization") token: String,
+        @Path("id") id : Int
+    ): AverageResponse
 
     @Multipart
     @POST("plants") // update the endpoint accordingly
@@ -55,7 +61,8 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Part("name") name: RequestBody,
         @Part("date_added") date_added: RequestBody,
-        @Part image: MultipartBody.Part
+        @Part image: MultipartBody.Part,
+        @Part("device_id") deviceid: RequestBody
     ): TambahTanamanResponse
 
     @GET("plants")

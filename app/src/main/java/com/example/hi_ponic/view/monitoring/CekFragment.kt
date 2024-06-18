@@ -84,7 +84,8 @@ class CekFragment : Fragment() {
         )
 
         binding.btnCekPanen.setOnClickListener {
-            viewModel.getSensorValue()
+            val id = arguments?.getInt(CekFragment.ARG_ID) ?: 0
+            viewModel.getSensorValue(id)
             viewModel.cekPanen.observe(viewLifecycleOwner) { data ->
                 if (data != null) {
                     val temp = data.avgTemp
@@ -145,5 +146,15 @@ class CekFragment : Fragment() {
         super.onDestroyView()
         // Unregister broadcast receiver
         LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(resultReceiver)
+    }
+
+    companion object {
+        private const val ARG_ID = "arg_id"
+
+        fun newInstance(id: Int) = CekFragment().apply {
+            arguments = Bundle().apply {
+                putInt(ARG_ID, id)
+            }
+        }
     }
 }
