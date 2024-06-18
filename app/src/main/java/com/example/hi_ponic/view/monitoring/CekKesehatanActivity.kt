@@ -24,7 +24,6 @@ import com.example.hi_ponic.databinding.ActivityCekKesehatanBinding
 import com.example.hi_ponic.view.ViewModelFactory
 import com.example.hi_ponic.view.monitoring.view_model.CekKesehatanViewModel
 import com.google.android.material.snackbar.Snackbar
-import de.hdodenhof.circleimageview.BuildConfig
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -103,7 +102,7 @@ class CekKesehatanActivity : AppCompatActivity() {
                         currentPhotoPath = photoFile.absolutePath
                         photoURI = FileProvider.getUriForFile(
                             this,
-                            "${BuildConfig.APPLICATION_ID}.fileprovider",
+                            "${packageName}.fileprovider",
                             photoFile
                         )
                         takePicture.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
@@ -124,6 +123,8 @@ class CekKesehatanActivity : AppCompatActivity() {
         }
         builder.show()
     }
+
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
