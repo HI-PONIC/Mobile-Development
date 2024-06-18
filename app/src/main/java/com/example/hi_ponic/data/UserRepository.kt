@@ -7,6 +7,7 @@ import com.example.hi_ponic.data.Response.PredictConditionResponse
 import com.example.hi_ponic.data.Response.SensorResponse
 import com.example.hi_ponic.data.pref.UserModel
 import com.example.hi_ponic.data.pref.UserPreference
+import com.example.hi_ponic.data.response.AverageResponse
 import com.example.hi_ponic.data.response.ErrorResponse
 import com.example.hi_ponic.data.response.ListTanamanResponse
 import com.example.hi_ponic.data.response.TambahTanamanResponse
@@ -87,6 +88,10 @@ class UserRepository private constructor(
             delay(120000) // Delay for 120 seconds (2 minutes) before fetching data again
         }
     }.flowOn(Dispatchers.IO)
+
+    suspend fun getAverageSensor():AverageResponse{
+        return apiService.getAverageSensorData()
+    }
 
     suspend fun uploadImage(file: MultipartBody.Part): PredictConditionResponse {
         return apiService.uploadImage(file)

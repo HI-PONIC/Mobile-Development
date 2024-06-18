@@ -1,5 +1,3 @@
-// CekFragment.kt
-
 package com.example.hi_ponic.view.monitoring
 
 import android.content.BroadcastReceiver
@@ -86,15 +84,24 @@ class CekFragment : Fragment() {
         )
 
         binding.btnCekPanen.setOnClickListener {
+            viewModel.getSensorValue()
             viewModel.cekPanen.observe(viewLifecycleOwner) { data ->
-                val temp = data.temp
-                val tds = data.tds
-                val ph = data.ph
-                val humidity = data.humidity
+                if (data != null) {
+                    val temp = data.avgTemp
+                    val tds = data.avgTds
+                    val ph = data.avgPh
+                    val humidity = data.avgHumidity
 
-                val inputArray = arrayOf(floatArrayOf(temp!!, tds!!, ph!!, humidity!!))
-                val input3DArray = arrayOf(inputArray)
-                prediksiPanenHelper.predict(input3DArray)
+                    if (temp != null && tds != null && ph != null && humidity != null) {
+                        val inputArray = arrayOf(floatArrayOf(temp, tds, ph, humidity))
+                        val input3DArray = arrayOf(inputArray)
+                        prediksiPanenHelper.predict(input3DArray)
+                    } else {
+                        Toast.makeText(requireContext(), "Sensor data is incomplete", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(requireContext(), "Failed to retrieve sensor data", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
@@ -103,7 +110,6 @@ class CekFragment : Fragment() {
             startActivity(intent)
         }
     }
-
 
     private fun loadSavedData() {
         lifecycleScope.launch {

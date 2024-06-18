@@ -3,6 +3,7 @@ package com.example.hi_ponic.data.retrofit
 import com.example.hi_ponic.data.Response.LoginResponse
 import com.example.hi_ponic.data.Response.PredictConditionResponse
 import com.example.hi_ponic.data.Response.SensorResponse
+import com.example.hi_ponic.data.response.AverageResponse
 import com.example.hi_ponic.data.response.ErrorResponse
 import com.example.hi_ponic.data.response.ListTanamanResponse
 import com.example.hi_ponic.data.response.TambahTanamanResponse
@@ -44,8 +45,8 @@ interface ApiService {
     @GET("iot/device/allSensor")
     suspend fun getSensorData(): SensorResponse
 
-    @GET("")
-    suspend fun getEverageSensorData(): SensorResponse
+    @GET("iot/device/average")
+    suspend fun getAverageSensorData(): AverageResponse
 
     @Multipart
     @POST("plants") // update the endpoint accordingly
