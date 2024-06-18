@@ -2,24 +2,26 @@ package com.example.hi_ponic.view.profile
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.example.hi_ponic.R
+import com.example.hi_ponic.data.pref.UserPreference
 import com.example.hi_ponic.databinding.ActivityEditUsernameBinding
 import com.example.hi_ponic.view.ViewModelFactory
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class edit_username : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditUsernameBinding
     private val profileViewModel: ProfileViewModel by viewModels { ViewModelFactory.getInstance(this) }
+    private lateinit var userPreference: UserPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +39,7 @@ class edit_username : AppCompatActivity() {
         binding.editProfileButton.setOnClickListener {
             val newUsername = binding.usernameEditText.text.toString().trim()
             if (newUsername.isNotEmpty()) {
-                profileViewModel.changeUsername(newUsername)
+                showConfirmationDialog(newUsername)
             } else {
                 Toast.makeText(this, "Please enter a username", Toast.LENGTH_SHORT).show()
             }
@@ -55,6 +57,30 @@ class edit_username : AppCompatActivity() {
         observeViewModel()
     }
 
+    private fun showConfirmationDialog(newUsername: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.apply {
+            setTitle("Confirm Changes")
+            setMessage("Are you sure you want to change your username to \"$newUsername\"?")
+            setPositiveButton("Yes") { dialog, _ ->
+
+                profileViewModel.changeUsername(newUsername)
+                dialog.dismiss()
+                lifecycleScope.launch {
+                    userPreference.saveUsername(newUsername)
+                }
+
+            }
+            setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss()
+            }
+        }
+        val dialog = builder.create()
+        dialog.show()
+
+    }
+
+
     private fun observeViewModel() {
         lifecycleScope.launch {
             profileViewModel.changeUsernameResponse.collect { response ->
@@ -65,4 +91,3 @@ class edit_username : AppCompatActivity() {
         }
     }
 }
-

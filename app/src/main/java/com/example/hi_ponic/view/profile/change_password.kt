@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -15,6 +16,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class change_password : AppCompatActivity() {
+
     private lateinit var binding: ActivityChangePasswordBinding
     private val profileViewModel: ProfileViewModel by viewModels {
         ViewModelFactory.getInstance(applicationContext)
@@ -32,12 +34,12 @@ class change_password : AppCompatActivity() {
             insets
         }
 
-        topAppbarHandle()
+        setupAppBar()
         setupListeners()
         observeViewModel()
     }
 
-    private fun topAppbarHandle() {
+    private fun setupAppBar() {
         binding.topAppBar.setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
@@ -47,8 +49,26 @@ class change_password : AppCompatActivity() {
         binding.submitButton.setOnClickListener {
             val currentPassword = binding.passwordEditText.text.toString()
             val newPassword = binding.confirmpasswordEditText.text.toString()
-            profileViewModel.changePassword(currentPassword, newPassword)
+            showConfirmationDialog(currentPassword, newPassword)
         }
+    }
+
+    private fun showConfirmationDialog(currentPassword: String, newPassword: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.apply {
+            setTitle("Confirm Password Change")
+            setMessage("Are you sure you want to change your password?")
+            setPositiveButton("Yes") { dialog, _ ->
+
+                profileViewModel.changePassword(currentPassword, newPassword)
+                dialog.dismiss()
+            }
+            setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss()
+            }
+        }
+        val dialog = builder.create()
+        dialog.show()
     }
 
     private fun observeViewModel() {
@@ -61,4 +81,3 @@ class change_password : AppCompatActivity() {
         }
     }
 }
-

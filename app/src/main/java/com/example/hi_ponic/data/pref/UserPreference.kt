@@ -40,6 +40,12 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
+    suspend fun saveUsername(username: String) {
+        dataStore.edit { preferences ->
+            preferences[NAME_KEY] = username
+        }
+    }
+
     suspend fun logout() {
         dataStore.edit { preferences ->
             preferences.clear()

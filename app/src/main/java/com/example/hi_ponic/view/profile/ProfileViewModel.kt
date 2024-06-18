@@ -30,7 +30,7 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
         viewModelScope.launch {
             repository.getSession().collect { userModel ->
                 val token = "Bearer ${userModel.token}"
-                val response = repository.changePassword(token, newPassword, currentPassword)
+                val response = repository.changePassword(token, currentPassword, newPassword)
                 _changePasswordResponse.value = response
             }
         }
@@ -38,8 +38,8 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
 
     fun logout() {
         viewModelScope.launch {
-            repository.logout()
+            val logoutResponse = repository.logout()
+            // Handle logout response if needed
         }
     }
 }
-
