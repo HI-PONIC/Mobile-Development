@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.example.hi_ponic.R
 import com.example.hi_ponic.data.UserRepository
 import com.example.hi_ponic.data.response.ErrorResponse
@@ -64,9 +65,14 @@ class DetailHydroponicStatisticActivity : AppCompatActivity() {
     private fun setData() {
         val tanaman = intent.getStringExtra(EXTRA_TUMBUHAN)
         val tanggal = intent.getStringExtra(EXTRA_TANGGAL)
+        val image = intent.getStringExtra(EXTRA_IMAGE)
 
         binding.TanggalTanam.text = "Planting date : ${formatDateString(tanggal.toString())}"
         binding.tvTumbuhan.text = tanaman
+        Glide.with(binding.root)
+            .load(image)
+            .error(R.drawable.ic_launcher_background)
+            .into(binding.gambartanaman)
     }
 
     private fun formatDateString(dateString: String): String {
@@ -166,5 +172,6 @@ class DetailHydroponicStatisticActivity : AppCompatActivity() {
         const val EXTRA_ID="extra_id"
         const val EXTRA_TUMBUHAN = "extra_tumbuhan"
         const val EXTRA_TANGGAL = "extra_tanggal"
+        const val EXTRA_IMAGE = "extra_image"
     }
 }

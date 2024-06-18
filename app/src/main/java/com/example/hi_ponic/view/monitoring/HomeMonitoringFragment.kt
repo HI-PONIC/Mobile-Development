@@ -71,7 +71,7 @@ class HomeMonitoringFragment : Fragment() {
             binding.recyclerView.adapter = adapter
             binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         }
-
+        viewModel.isLoading.observe(viewLifecycleOwner){showLoading(it)}
     }
 
     private fun selectedPlant(plantsItem: PlantsItem) {
@@ -79,6 +79,7 @@ class HomeMonitoringFragment : Fragment() {
         toDetail.putExtra(DetailHydroponicStatisticActivity.EXTRA_TANGGAL, plantsItem.dateAdded)
         toDetail.putExtra(DetailHydroponicStatisticActivity.EXTRA_TUMBUHAN, plantsItem.name)
         toDetail.putExtra(DetailHydroponicStatisticActivity.EXTRA_ID, plantsItem.id)
+        toDetail.putExtra(DetailHydroponicStatisticActivity.EXTRA_IMAGE, plantsItem.image)
         startActivity(toDetail)
     }
 
@@ -86,6 +87,14 @@ class HomeMonitoringFragment : Fragment() {
         lifecycleScope.launch {
             val name = userPreference.getName().first()
             binding.tvGreeting.text = getString(R.string.hi,name)
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
         }
     }
 

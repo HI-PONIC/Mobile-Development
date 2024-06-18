@@ -24,6 +24,9 @@ class HomeMonitoringViewModel(private val repository: UserRepository) : ViewMode
     private val _isError = MutableLiveData<String>()
     val isError: LiveData<String> = _isError
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
     fun getName(){
         viewModelScope.launch {
             val name = repository.getName()
@@ -33,14 +36,17 @@ class HomeMonitoringViewModel(private val repository: UserRepository) : ViewMode
     }
 
     fun getPlant(){
+        _isLoading.value = true
         viewModelScope.launch {
             try {
                 val token = repository.getSession().first().token
                 val response = repository.getPlant("Bearer $token")
 
                 _plantData.value = response
+                _isLoading.value = false
             }catch (e: Exception){
                 Log.d("error","list tanamana error")
+                _isLoading.value = false
             }
         }
     }

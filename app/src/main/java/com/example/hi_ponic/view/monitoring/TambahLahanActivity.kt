@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -192,46 +193,57 @@ class TambahLahanActivity : AppCompatActivity() {
     }
 
     private fun showConfirmationDialog(namaTumbuhan: String, tanggal: String) {
-        AlertDialog.Builder(this).apply {
+        val dialog = AlertDialog.Builder(this).apply {
             setTitle("Confirmation")
-            setMessage("Are you sure want to add this plant?")
-            setPositiveButton("yes") { _, _ ->
+            setMessage("Are you sure you want to add this plant?")
+            setPositiveButton("Yes") { _, _ ->
+                showLoading(true)
                 viewModel.addPlant(namaTumbuhan, tanggal, createMultipartBody(selectedFile))
             }
-            setNegativeButton("cancel") { dialog, _ -> dialog.dismiss() }
+            setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
             create()
-            show()
         }
+
+        dialog.show()
 
         // Observe the error state outside of the dialog to ensure it always gets observed
         viewModel.error.observe(this@TambahLahanActivity) { hasError ->
             if (hasError) {
+                showLoading(false)
                 viewModel.isError.observe(this@TambahLahanActivity) { errorMessage ->
                     AlertDialog.Builder(this@TambahLahanActivity).apply {
                         setTitle("Error")
                         setMessage(errorMessage)
-                        setPositiveButton("OK") { dialog, _ ->
-                            dialog.dismiss()
-                        }
+                        setPositiveButton("OK") { errorDialog, _ -> errorDialog.dismiss() }
                         create()
                         show()
                     }
                 }
             } else {
-                Toast.makeText(
-                    this@TambahLahanActivity,
-                    "Plant added successfully",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this@TambahLahanActivity, "Plant added successfully", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this@TambahLahanActivity, MainActivity::class.java)
                 startActivity(intent)
+                finish()
             }
         }
+
+        viewModel.isLoading.observe(this@TambahLahanActivity) { isLoading ->
+            showLoading(isLoading)
+        }
     }
+
 
 
     private fun createMultipartBody(file: File): MultipartBody.Part {
         val requestFile = file.asRequestBody("image/png".toMediaTypeOrNull())
         return MultipartBody.Part.createFormData("image", file.name, requestFile)
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
+        }
     }
 }

@@ -20,7 +20,7 @@ data class PlantsItem(
 	val dateAdded: String? = null,
 
 	@field:SerializedName("image")
-	val image: Any? = null,
+	val image: String? = null,
 
 	@field:SerializedName("user_id")
 	val userId: Int? = null,

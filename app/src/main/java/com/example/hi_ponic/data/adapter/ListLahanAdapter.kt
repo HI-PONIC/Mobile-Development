@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.hi_ponic.R
 import com.example.hi_ponic.data.adapter.ListLahanAdapter.MyViewHolder.Companion.DIFF_CALLBACK
 import com.example.hi_ponic.data.response.PlantsItem
 import com.example.hi_ponic.databinding.CardLayoutBinding
@@ -46,16 +48,18 @@ class ListLahanAdapter : ListAdapter<PlantsItem, ListLahanAdapter.MyViewHolder>(
 
         fun bind(plantsItem: PlantsItem) {
             binding.Plant.text = plantsItem.name
-            binding.TanggalTanam.text = "${plantsItem.dateAdded?.let {
-                formatDateString(
-                    it
-                )
-            }}"
+            binding.TanggalTanam.text = "${
+                plantsItem.dateAdded?.let {
+                    formatDateString(
+                        it
+                    )
+                }
+            }"
             // Uncomment and update the following lines if you need to load an image
-            // Glide.with(holder.itemView.context)
-            //     .load(plantsItem.image)
-            //     .error(R.drawable.ic_launcher_background)
-            //     .into(binding.image)
+            Glide.with(binding.root)
+                .load(plantsItem.image)
+                .error(R.drawable.ic_launcher_background)
+                .into(binding.image)
         }
 
         private fun formatDateString(dateString: String): String {
