@@ -17,7 +17,8 @@ We primarily developed the UI directly in Android Studio, based on the wireframe
 
 | Login                                                | Register                                               |
 |-------------------------------------------------------|--------------------------------------------------------|
-| ![Login](https://github.com/HI-PONIC/Mobile-Development/assets/100133797/3bb5cd54-05c0-4a63-a53a-b06db86e06c4) | ![Register](https://github.com/HI-PONIC/Mobile-Development/assets/100133797/239e522d-60b8-48b8-9163-f754d8f9f2e6) |
+| ![Login](https://github.com/HI-PONIC/Mobile-Development/assets/100133797/3bb5cd54-05c0-4a63-a53a-b06db86e06c4) | ![Register](https://github.com/HI-PONIC/Mobile-Development/assets/100133797/43995d0d-f738-468f-b64c-dade88fcb8a0)
+ |
 
 ### Resources
 In developing this application, not all assets were created by us. Some were sourced from the following websites:
