@@ -1,6 +1,7 @@
 // UserRepository.kt
 package com.example.hi_ponic.data
 
+import android.devicelock.DeviceId
 import android.util.Log
 import com.example.hi_ponic.data.Response.LoginResponse
 import com.example.hi_ponic.data.Response.PredictConditionResponse
@@ -64,8 +65,8 @@ class UserRepository private constructor(
         return apiService.changePassword(newPassword, currentPassword)
     }
 
-    suspend fun addPlant(token: String, name: RequestBody, date_added: RequestBody, image: MultipartBody.Part) {
-        apiService.addPlant(token, name, date_added, image)
+    suspend fun addPlant(token: String, name: RequestBody, date_added: RequestBody, image: MultipartBody.Part, device_id: RequestBody) {
+        apiService.addPlant(token, name, date_added, image, device_id)
     }
 
     suspend fun deletePlant(token: String,id: Int):TambahTanamanResponse{
@@ -76,10 +77,10 @@ class UserRepository private constructor(
         return apiService.getPlan(token)
     }
 
-    fun observeSensorValues(): Flow<SensorResponse> = flow {
+    fun observeSensorValues(token: String, id: Int): Flow<SensorResponse> = flow {
         while (true) {
             try {
-                val sensorData = apiService.getSensorData()
+                val sensorData = apiService.getSensorData(token,id)
                 emit(sensorData)
                 Log.d("UserRepository", "Successfully fetched sensor data")
             } catch (e: Exception) {
@@ -89,8 +90,8 @@ class UserRepository private constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    suspend fun getAverageSensor():AverageResponse{
-        return apiService.getAverageSensorData()
+    suspend fun getAverageSensor(token: String, id: Int):AverageResponse{
+        return apiService.getAverageSensorData(token, id)
     }
 
     suspend fun uploadImage(file: MultipartBody.Part): PredictConditionResponse {
