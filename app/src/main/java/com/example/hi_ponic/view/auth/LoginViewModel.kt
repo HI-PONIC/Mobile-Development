@@ -13,19 +13,16 @@ import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
-class LoginViewModel(private val repository: UserRepository) : ViewModel()  {
+class LoginViewModel(private val repository: UserRepository) : ViewModel() {
 
     private val _loginUser = MutableLiveData<LoginResponse>()
     val loginUser: LiveData<LoginResponse> = _loginUser
-    private val _resetPass = MutableLiveData<ErrorResponse>()
-    val resetPass: LiveData<ErrorResponse> = _resetPass
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
     private val _isError = MutableLiveData<String>()
     val isError: LiveData<String> = _isError
-
 
 
     fun saveSession(user: UserModel) {
@@ -39,7 +36,11 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel()  {
         viewModelScope.launch {
             try {
                 val response = repository.login(email, password)
-                val user = UserModel(response.loginResult?.name.toString(),email,response.loginResult?.token.toString())
+                val user = UserModel(
+                    response.loginResult?.name.toString(),
+                    email,
+                    response.loginResult?.token.toString()
+                )
                 saveSession(user)
                 _isLoading.value = false
                 _loginUser.value = response
@@ -50,23 +51,23 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel()  {
         }
     }
 
-    fun getCode(email: String){
+    fun getCode(email: String) {
         viewModelScope.launch {
             try {
                 repository.forgotPassword(email)
-            } catch (e: Exception){
-                Log.d("code","message : $e")
+            } catch (e: Exception) {
+                Log.d("code", "message : $e")
             }
         }
     }
-    fun resetPassword(code: String, newPassword: String){
+
+    fun resetPassword(code: String, newPassword: String) {
         _isLoading.value = true
         viewModelScope.launch {
             try {
-               val response = repository.resetPassword(code, newPassword)
-                _resetPass.value = response
+                repository.resetPassword(code, newPassword)
                 _isLoading.value = false
-            }catch (e: HttpException){
+            } catch (e: HttpException) {
                 val jsonInString = e.response()?.errorBody()?.string()
                 val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
                 val errorMessage = errorBody.message

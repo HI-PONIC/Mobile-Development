@@ -2,6 +2,7 @@ package com.example.hi_ponic.view.auth
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -41,6 +42,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
     private fun getCode() {
         val email = binding.emailEditText.text
+        Log.d("message","email: $email")
         binding.buttonForgotPassword.setOnClickListener {
             viewModel.getCode(email.toString())
             val intent = Intent(this,ResetPasswordActivity::class.java)
