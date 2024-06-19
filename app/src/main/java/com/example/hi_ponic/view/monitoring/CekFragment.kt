@@ -118,6 +118,13 @@ class CekFragment : Fragment() {
             val lastResult = sharedPreferences.getString("lastResult", "No result")
             val lastImagePath = sharedPreferences.getString("lastImagePath", null)
 
+            // Ambil data terakhir cek dari panenPreference
+            val panenData = panenPreference.getPanenData(id).first()
+            val lastCheckDate = if (panenData.lastCheckDate.isNotEmpty()) panenData.lastCheckDate else "No date available"
+
+            // Tampilkan tanggal terakhir cek
+            binding.cekterakhir.text = "Last Check: $lastCheckDate"
+
             binding.HasilKlasisifikasi.text = "Result: $lastResult"
 
             if (lastImagePath != null) {
@@ -128,13 +135,13 @@ class CekFragment : Fragment() {
                 }
             }
 
-            val panenData = panenPreference.getPanenData(id).first()
             if (panenData.lastCheckDate.isNotEmpty() && panenData.predictionResult != -1) {
                 binding.tvCekTerakhirHasilPanen.text = "${panenData.lastCheckDate}"
                 binding.tvHasilPrediksiPanen.text = "Harvest estimate: ${panenData.predictionResult} days left"
             }
         }
     }
+
 
     private val resultReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
@@ -145,7 +152,6 @@ class CekFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        // Unregister broadcast receiver
         LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(resultReceiver)
     }
 

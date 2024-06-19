@@ -134,18 +134,18 @@
                         android:layout_marginEnd="16dp"
                         android:orientation="vertical">
 
-                        <ImageView
+                        <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/profil2"
                             android:layout_width="121dp"
                             android:layout_height="97dp"
-                            android:src="@drawable/button_profile" />
+                            android:src="@drawable/nopal" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="Elvindo" />
+                            android:text="Nopal \n Mobile Developer" />
                     </LinearLayout>
 
                     <!-- Profile Item 3 -->
@@ -155,18 +155,18 @@
                         android:layout_marginEnd="16dp"
                         android:orientation="vertical">
 
-                        <ImageView
+                        <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/profil3"
                             android:layout_width="121dp"
                             android:layout_height="97dp"
-                            android:src="@drawable/button_profile" />
+                            android:src="@drawable/kukuh" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="Elvindo" />
+                            android:text="Kukuh \n Machine Learning" />
                     </LinearLayout>
 
                     <!-- Profile Item 4 -->
@@ -176,18 +176,18 @@
                         android:layout_marginEnd="16dp"
                         android:orientation="vertical">
 
-                        <ImageView
+                        <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/profil4"
                             android:layout_width="121dp"
                             android:layout_height="97dp"
-                            android:src="@drawable/button_profile" />
+                            android:src="@drawable/Deo" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="Elvindo" />
+                            android:text="Deo \n Machine Learning" />
                     </LinearLayout>
 
                     <!-- Profile Item 5 -->
@@ -197,18 +197,18 @@
                         android:layout_marginEnd="16dp"
                         android:orientation="vertical">
 
-                        <ImageView
+                        <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/profil5"
                             android:layout_width="121dp"
                             android:layout_height="97dp"
-                            android:src="@drawable/button_profile" />
+                            android:src="@drawable/Figo" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="Elvindo" />
+                            android:text="Figo \n Machine Learning" />
                     </LinearLayout>
 
                     <!-- Profile Item 6 -->
@@ -218,18 +218,18 @@
                         android:layout_marginEnd="16dp"
                         android:orientation="vertical">
 
-                        <ImageView
+                        <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/profil6"
                             android:layout_width="121dp"
                             android:layout_height="97dp"
-                            android:src="@drawable/button_profile" />
+                            android:src="@drawable/Anrico" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="Elvindo" />
+                            android:text="Anrico \n Cloud Computing" />
                     </LinearLayout>
 
                     <!-- Profile Item 7 -->
@@ -239,18 +239,18 @@
                         android:layout_marginEnd="16dp"
                         android:orientation="vertical">
 
-                        <ImageView
+                        <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/profil7"
                             android:layout_width="121dp"
                             android:layout_height="97dp"
-                            android:src="@drawable/button_profile" />
+                            android:src="@drawable/fikri" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="Elvindo" />
+                            android:text="Fikri \n Cloud Computing" />
                     </LinearLayout>
 
                 </LinearLayout>
