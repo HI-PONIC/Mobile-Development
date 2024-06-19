@@ -59,7 +59,8 @@ class CekFragment : Fragment() {
         LocalBroadcastManager.getInstance(requireContext()).registerReceiver(resultReceiver, filter)
 
         // Load saved data
-        loadSavedData()
+        val id = arguments?.getInt(CekFragment.ARG_ID) ?: 0
+        loadSavedData(id)
 
         prediksiPanenHelper = PrediksiPanenHelper(
             context = requireContext(),
@@ -75,7 +76,7 @@ class CekFragment : Fragment() {
 
                 // Save to DataStore
                 lifecycleScope.launch {
-                    panenPreference.savePanenData(currentDate, prediksiPanen)
+                    panenPreference.savePanenData(id, currentDate, prediksiPanen)
                 }
             },
             onError = { errorMessage ->
@@ -84,7 +85,6 @@ class CekFragment : Fragment() {
         )
 
         binding.btnCekPanen.setOnClickListener {
-            val id = arguments?.getInt(CekFragment.ARG_ID) ?: 0
             viewModel.getSensorValue(id)
             viewModel.cekPanen.observe(viewLifecycleOwner) { data ->
                 if (data != null) {
@@ -112,7 +112,7 @@ class CekFragment : Fragment() {
         }
     }
 
-    private fun loadSavedData() {
+    private fun loadSavedData(id: Int) {
         lifecycleScope.launch {
             val sharedPreferences = requireContext().getSharedPreferences("CekKesehatanPrefs", Context.MODE_PRIVATE)
             val lastResult = sharedPreferences.getString("lastResult", "No result")
@@ -128,7 +128,7 @@ class CekFragment : Fragment() {
                 }
             }
 
-            val panenData = panenPreference.getPanenData().first()
+            val panenData = panenPreference.getPanenData(id).first()
             if (panenData.lastCheckDate.isNotEmpty() && panenData.predictionResult != -1) {
                 binding.tvCekTerakhirHasilPanen.text = "${panenData.lastCheckDate}"
                 binding.tvHasilPrediksiPanen.text = "Harvest estimate: ${panenData.predictionResult} days left"
@@ -138,7 +138,8 @@ class CekFragment : Fragment() {
 
     private val resultReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            loadSavedData()
+            val id = arguments?.getInt(CekFragment.ARG_ID) ?: 0
+            loadSavedData(id)
         }
     }
 

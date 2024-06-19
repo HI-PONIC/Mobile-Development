@@ -6,6 +6,7 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -62,6 +63,22 @@ class TambahLahanActivity : AppCompatActivity() {
         dateInput()
         binding.ivDetail.setOnClickListener { pickImage() }
         handleSubmitButton()
+
+        keyboardAdjuster()
+    }
+
+    private fun keyboardAdjuster() {
+        binding.scrollView.viewTreeObserver.addOnGlobalLayoutListener {
+            val r = Rect()
+            binding.scrollView.getWindowVisibleDisplayFrame(r)
+            val screenHeight: Int = binding.scrollView.rootView.height
+            val keypadHeight: Int = screenHeight - r.bottom
+            if (keypadHeight > screenHeight * 0.15) { // if keyboard is visible
+                binding.scrollView.post {
+                    binding.scrollView.smoothScrollTo(0, binding.scrollView.bottom)
+                }
+            }
+        }
     }
 
     private fun dateInput() {

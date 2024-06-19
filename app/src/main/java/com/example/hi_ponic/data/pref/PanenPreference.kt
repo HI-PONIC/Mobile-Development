@@ -14,18 +14,18 @@ val Context.panenDataStore: DataStore<Preferences> by preferencesDataStore(name 
 
 class PanenPreference private constructor(private val dataStore: DataStore<Preferences>) {
 
-    suspend fun savePanenData(date: String, result: Int) {
+    suspend fun savePanenData(id: Int, date: String, result: Int) {
         dataStore.edit { preferences ->
-            preferences[DATE_KEY] = date
-            preferences[RESULT_KEY] = result
+            preferences[stringPreferencesKey("last_check_date_$id")] = date
+            preferences[intPreferencesKey("prediction_result_$id")] = result
         }
     }
 
-    fun getPanenData(): Flow<PanenModel> {
+    fun getPanenData(id: Int): Flow<PanenModel> {
         return dataStore.data.map { preferences ->
             PanenModel(
-                preferences[DATE_KEY] ?: "",
-                preferences[RESULT_KEY] ?: -1
+                preferences[stringPreferencesKey("last_check_date_$id")] ?: "",
+                preferences[intPreferencesKey("prediction_result_$id")] ?: -1
             )
         }
     }
@@ -33,9 +33,6 @@ class PanenPreference private constructor(private val dataStore: DataStore<Prefe
     companion object {
         @Volatile
         private var INSTANCE: PanenPreference? = null
-
-        private val DATE_KEY = stringPreferencesKey("last_check_date")
-        private val RESULT_KEY = intPreferencesKey("prediction_result")
 
         fun getInstance(dataStore: DataStore<Preferences>): PanenPreference {
             return INSTANCE ?: synchronized(this) {
@@ -50,8 +47,4 @@ class PanenPreference private constructor(private val dataStore: DataStore<Prefe
 data class PanenModel(
     val lastCheckDate: String,
     val predictionResult: Int
-)
-
-data class cekkesehatan(
-    val lastCheckDate: String,
 )

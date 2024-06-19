@@ -65,8 +65,7 @@
             android:exported="false" />
         <activity
             android:name=".view.auth.SignupActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
+            android:exported="false" />
         <activity
             android:name=".view.mainView.MainActivity"
             android:exported="true">
