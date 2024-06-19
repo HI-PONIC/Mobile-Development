@@ -15,7 +15,7 @@ import com.example.hi_ponic.data.pref.UserPreference
 import com.example.hi_ponic.data.pref.dataStore
 import com.example.hi_ponic.databinding.FragmentProfileBinding
 import com.example.hi_ponic.view.ViewModelFactory
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class ProfileFragment : Fragment() {
@@ -30,7 +30,6 @@ class ProfileFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Initialize userPreference here
         userPreference = UserPreference.getInstance(requireContext().dataStore)
     }
 
@@ -59,7 +58,7 @@ class ProfileFragment : Fragment() {
             showLogoutConfirmationDialog()
         }
 
-        setData()
+        observeData()
     }
 
     private fun showLogoutConfirmationDialog() {
@@ -74,13 +73,17 @@ class ProfileFragment : Fragment() {
         builder.create().show()
     }
 
-    private fun setData() {
+    private fun observeData() {
         lifecycleScope.launch {
-            val name = userPreference.getName().first()
-            val email = userPreference.getSession().first().email
-            binding.usernameTextView.text = getString(R.string.name, name)
+            userPreference.getName().collect { name ->
+                binding.usernameTextView.text = name
+            }
+        }
 
-            binding.emailTextView.text = email
+        lifecycleScope.launch {
+            userPreference.getSession().collect { userModel ->
+                binding.emailTextView.text = userModel.email
+            }
         }
     }
 
