@@ -78,6 +78,8 @@ class CekFragment : Fragment() {
                 lifecycleScope.launch {
                     panenPreference.savePanenData(id, currentDate, prediksiPanen)
                 }
+
+                (activity as? DetailHydroponicStatisticActivity)?.adjustFragmentHeight()
             },
             onError = { errorMessage ->
                 Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
@@ -103,6 +105,8 @@ class CekFragment : Fragment() {
                 } else {
                     Toast.makeText(requireContext(), "Failed to retrieve sensor data", Toast.LENGTH_SHORT).show()
                 }
+
+                (activity as? DetailHydroponicStatisticActivity)?.adjustFragmentHeight()
             }
         }
 
@@ -111,6 +115,7 @@ class CekFragment : Fragment() {
             startActivity(intent)
         }
     }
+
 
     private fun loadSavedData(id: Int) {
         lifecycleScope.launch {

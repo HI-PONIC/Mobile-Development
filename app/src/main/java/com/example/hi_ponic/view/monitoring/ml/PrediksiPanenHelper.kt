@@ -29,22 +29,28 @@ class PrediksiPanenHelper(
     }
 
     private fun initializeTfLite() {
+        Log.d(TAG, "Initializing TensorFlow Lite")
         TfLiteGpu.isGpuDelegateAvailable(context).onSuccessTask { gpuAvailable ->
+            Log.d(TAG, "GPU available: $gpuAvailable")
             val optionsBuilder = TfLiteInitializationOptions.builder()
             if (gpuAvailable) {
                 optionsBuilder.setEnableGpuDelegateSupport(true)
                 isGPUSupported = true
             }
             TfLite.initialize(context, optionsBuilder.build()).addOnSuccessListener {
+                Log.d(TAG, "TensorFlow Lite initialized successfully")
                 loadLocalModel()
             }.addOnFailureListener { exception ->
-                onError(context.getString(R.string.tflite_is_not_initialized_yet))
-                Log.e(TAG, "TfLite initialization failed", exception)
+                handleInitializationError("TfLite initialization failed", exception)
             }
         }.addOnFailureListener { exception ->
-            onError(context.getString(R.string.tflite_is_not_initialized_yet))
-            Log.e(TAG, "GPU availability check failed", exception)
+            handleInitializationError("GPU availability check failed", exception)
         }
+    }
+
+    private fun handleInitializationError(message: String, exception: Exception) {
+        onError(context.getString(R.string.tflite_is_not_initialized_yet))
+        Log.e(TAG, message, exception)
     }
 
     private fun loadLocalModel() {
@@ -52,10 +58,13 @@ class PrediksiPanenHelper(
             val buffer: ByteBuffer = loadModelFile(context.assets, modelName)
             initializeInterpreter(buffer)
         } catch (ioException: IOException) {
-            ioException.printStackTrace()
-            onError(context.getString(R.string.model_loading_error))
-            Log.e(TAG, "Model loading failed", ioException)
+            handleModelLoadingError(ioException)
         }
+    }
+
+    private fun handleModelLoadingError(ioException: IOException) {
+        onError(context.getString(R.string.model_loading_error))
+        Log.e(TAG, "Model loading failed", ioException)
     }
 
     private fun loadModelFile(assetManager: AssetManager, modelPath: String): MappedByteBuffer {
@@ -80,9 +89,13 @@ class PrediksiPanenHelper(
             interpreter = InterpreterApi.create(model, options)
             Log.d(TAG, "TFLite interpreter successfully loaded")
         } catch (e: Exception) {
-            onError(context.getString(R.string.interpreter_initialization_failed))
-            Log.e(TAG, "Interpreter initialization failed", e)
+            handleInterpreterInitializationError(e)
         }
+    }
+
+    private fun handleInterpreterInitializationError(e: Exception) {
+        onError(context.getString(R.string.interpreter_initialization_failed))
+        Log.e(TAG, "Interpreter initialization failed", e)
     }
 
     fun predict(input: Array<Array<FloatArray>>) {
@@ -108,13 +121,16 @@ class PrediksiPanenHelper(
                 interpreter?.run(input, outputArray)
                 onResult(outputArray[0][0][0].toString())
             } else {
-                onError(context.getString(R.string.inference_error))
-                Log.e(TAG, "Invalid input shape: ${inputShape?.contentToString()}")
+                handleInferenceError("Invalid input shape: ${inputShape?.contentToString()}")
             }
         } catch (e: Exception) {
-            onError(context.getString(R.string.inference_error))
-            Log.e(TAG, "Inference error", e)
+            handleInferenceError(e.message ?: "Inference error")
         }
+    }
+
+    private fun handleInferenceError(message: String) {
+        onError(context.getString(R.string.inference_error))
+        Log.e(TAG, message)
     }
 
     fun close() {

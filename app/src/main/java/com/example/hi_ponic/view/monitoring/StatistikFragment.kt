@@ -42,8 +42,11 @@ class StatistikFragment : Fragment() {
             binding.tvSuhuValue.text = getString(R.string.temperature_format, suhu)
             binding.tvTDSValue.text = getString(R.string.tds_format, tds)
             binding.tvpHValue.text = getString(R.string.ph_format, ph)
+
+            (activity as? DetailHydroponicStatisticActivity)?.adjustFragmentHeight()
         }
     }
+
 
     companion object {
         private const val ARG_ID = "arg_id"

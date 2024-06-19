@@ -3,6 +3,7 @@ package com.example.hi_ponic.view.monitoring
 import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -154,6 +155,22 @@ class DetailHydroponicStatisticActivity : AppCompatActivity() {
         defaultTab?.select()
         defaultTab?.view?.setBackgroundResource(R.drawable.tab_selected_background)
     }
+
+    fun adjustFragmentHeight() {
+        binding.viewPager.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                val viewPagerHeight = binding.viewPager.measuredHeight
+                val tabLayoutHeight = binding.tablayout.measuredHeight
+                val totalHeight = viewPagerHeight + tabLayoutHeight
+
+                binding.viewPager.layoutParams.height = totalHeight
+                binding.viewPager.requestLayout()
+
+                binding.viewPager.viewTreeObserver.removeOnGlobalLayoutListener(this)
+            }
+        })
+    }
+
 
     companion object {
         @StringRes

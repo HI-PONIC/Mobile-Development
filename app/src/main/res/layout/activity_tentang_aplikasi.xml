@@ -180,7 +180,7 @@
                             android:id="@+id/profil4"
                             android:layout_width="121dp"
                             android:layout_height="97dp"
-                            android:src="@drawable/Deo" />
+                            android:src="@drawable/deo" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -201,7 +201,7 @@
                             android:id="@+id/profil5"
                             android:layout_width="121dp"
                             android:layout_height="97dp"
-                            android:src="@drawable/Figo" />
+                            android:src="@drawable/figo" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -222,7 +222,7 @@
                             android:id="@+id/profil6"
                             android:layout_width="121dp"
                             android:layout_height="97dp"
-                            android:src="@drawable/Anrico" />
+                            android:src="@drawable/anrico" />
 
                         <TextView
                             android:layout_width="wrap_content"
