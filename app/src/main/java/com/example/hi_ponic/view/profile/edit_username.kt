@@ -11,9 +11,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.hi_ponic.R
-import com.example.hi_ponic.data.pref.UserPreference
 import com.example.hi_ponic.databinding.ActivityEditUsernameBinding
 import com.example.hi_ponic.view.ViewModelFactory
+import com.example.hi_ponic.view.mainView.MainActivity
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -21,7 +21,6 @@ class edit_username : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditUsernameBinding
     private val profileViewModel: ProfileViewModel by viewModels { ViewModelFactory.getInstance(this) }
-    private lateinit var userPreference: UserPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,13 +62,8 @@ class edit_username : AppCompatActivity() {
             setTitle("Confirm Changes")
             setMessage("Are you sure you want to change your username to \"$newUsername\"?")
             setPositiveButton("Yes") { dialog, _ ->
-
                 profileViewModel.changeUsername(newUsername)
                 dialog.dismiss()
-                lifecycleScope.launch {
-                    userPreference.saveUsername(newUsername)
-                }
-
             }
             setNegativeButton("No") { dialog, _ ->
                 dialog.dismiss()
@@ -77,15 +71,18 @@ class edit_username : AppCompatActivity() {
         }
         val dialog = builder.create()
         dialog.show()
-
     }
-
 
     private fun observeViewModel() {
         lifecycleScope.launch {
             profileViewModel.changeUsernameResponse.collect { response ->
                 response?.let {
                     Toast.makeText(this@edit_username, it.message, Toast.LENGTH_SHORT).show()
+                    if (response.error == false) {
+                        val intent = Intent(this@edit_username, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()  // Finish the activity when the username change is successful
+                    }
                 }
             }
         }

@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.hi_ponic.data.UserRepository
+import com.example.hi_ponic.data.pref.UserPreference
+import com.example.hi_ponic.data.pref.dataStore
 import com.example.hi_ponic.di.Injection
 import com.example.hi_ponic.view.auth.LoginViewModel
 import com.example.hi_ponic.view.auth.SignupViewModel
@@ -15,7 +17,10 @@ import com.example.hi_ponic.view.monitoring.view_model.StatistikViewModel
 import com.example.hi_ponic.view.monitoring.view_model.TambahLahanViewModel
 import com.example.hi_ponic.view.profile.ProfileViewModel
 
-class ViewModelFactory(private val repository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
+class ViewModelFactory(
+    private val repository: UserRepository,
+    private val userPreference: UserPreference
+) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -27,7 +32,7 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
                 LoginViewModel(repository) as T
             }
             modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
-                ProfileViewModel(repository) as T
+                ProfileViewModel(repository, userPreference) as T
             }
             modelClass.isAssignableFrom(SignupViewModel::class.java) -> {
                 SignupViewModel(repository) as T
@@ -52,6 +57,10 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
     }
 
     companion object {
-        fun getInstance(context: Context) = ViewModelFactory(Injection.provideRepository(context))
+        fun getInstance(context: Context): ViewModelFactory {
+            val repository = Injection.provideRepository(context)
+            val userPreference = UserPreference.getInstance(context.dataStore)
+            return ViewModelFactory(repository, userPreference)
+        }
     }
 }
