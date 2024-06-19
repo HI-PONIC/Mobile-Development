@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.hi_ponic.data.Response.SensorData
+import com.example.hi_ponic.data.Response.SensorDataResponse
 import com.example.hi_ponic.data.UserRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
@@ -14,8 +14,8 @@ import kotlinx.coroutines.launch
 
 class StatistikViewModel(private val repository: UserRepository) : ViewModel() {
 
-    private val _dataStatistik = MutableLiveData<SensorData>()
-    val dataStatistik: LiveData<SensorData> = _dataStatistik
+    private val _dataStatistik = MutableLiveData<SensorDataResponse>()
+    val dataStatistik: LiveData<SensorDataResponse> = _dataStatistik
 
     private var plantId: Int = 0
 

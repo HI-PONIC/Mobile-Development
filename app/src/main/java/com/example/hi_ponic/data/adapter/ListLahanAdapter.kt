@@ -37,25 +37,17 @@ class ListLahanAdapter : ListAdapter<PlantsItem, ListLahanAdapter.MyViewHolder>(
         holder.bind(plant)
         holder.itemView.setOnClickListener {
             onItemClickCallback.OnItemCLicked(plant)
-
-            val intent =
-                Intent(holder.itemView.context, DetailHydroponicStatisticActivity::class.java)
         }
     }
 
-    class MyViewHolder(private val binding: CardLayoutBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
+    class MyViewHolder(private val binding: CardLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(plantsItem: PlantsItem) {
             binding.Plant.text = plantsItem.name
-            binding.TanggalTanam.text = "${
-                plantsItem.dateAdded?.let {
-                    formatDateString(
-                        it
-                    )
-                }
-            }"
-            // Uncomment and update the following lines if you need to load an image
+            binding.TanggalTanam.text = plantsItem.dateAdded?.let { formatDateString(it) }
+            binding.humidity.text = plantsItem.sensorData?.humidity.toString()
+            binding.ph.text = plantsItem.sensorData?.ph.toString()
+            binding.temp.text = plantsItem.sensorData?.temp.toString()
+            binding.inten.text = plantsItem.sensorData?.tds.toString()
             Glide.with(binding.root)
                 .load(plantsItem.image)
                 .error(R.drawable.ic_launcher_background)
@@ -64,8 +56,7 @@ class ListLahanAdapter : ListAdapter<PlantsItem, ListLahanAdapter.MyViewHolder>(
 
         private fun formatDateString(dateString: String): String {
             return try {
-                val inputFormat =
-                    SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+                val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
                 inputFormat.timeZone = TimeZone.getTimeZone("UTC")
                 val outputFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
                 val date = inputFormat.parse(dateString)

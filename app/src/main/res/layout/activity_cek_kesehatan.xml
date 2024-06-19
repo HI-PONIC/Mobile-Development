@@ -28,8 +28,8 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="410dp"
-            android:layout_height="669dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -45,7 +45,6 @@
                 android:textColor="#436850"
                 android:textSize="35sp"
                 android:textStyle="bold"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,37 +54,43 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Growth photos and Health chekup"
+                android:text="Growth photos and Health checkup"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_greeting" />
 
-            <ImageView
-                android:id="@+id/ivDetail"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardView"
                 android:layout_width="match_parent"
                 android:layout_height="345dp"
                 android:layout_marginTop="8dp"
-                android:contentDescription="Insert Photo"
-                android:scaleType="centerCrop"
-                android:src="@drawable/image_uplod"
-                android:transitionName="photoTransition"
-                app:layout_constraintDimensionRatio="H,16:9"
+                android:backgroundTint="#FBFADA"
+                app:strokeWidth="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView4" />
+                app:layout_constraintTop_toBottomOf="@id/textView4"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp">
+
+                <ImageView
+                    android:id="@+id/ivDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Insert Photo"
+                    android:src="@drawable/image_uplod"
+                    android:transitionName="photoTransition"
+                    app:layout_constraintDimensionRatio="H,16:9" />
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:id="@+id/tvhint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="*click image to insert photo"
-                app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivDetail"
-                app:layout_constraintVertical_bias="0.133" />
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
             <TextView
                 android:id="@+id/tvHasilmessege"
@@ -107,7 +112,7 @@
                 android:text="submit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivDetail" />
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
