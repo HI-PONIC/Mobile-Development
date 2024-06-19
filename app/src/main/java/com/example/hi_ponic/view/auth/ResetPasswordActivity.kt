@@ -1,5 +1,6 @@
 package com.example.hi_ponic.view.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -34,17 +35,20 @@ class ResetPasswordActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         resetPassword()
-        viewModel.isError.observe(this){
-            if (it.isNotEmpty()){
-                AlertDialog.Builder(this).apply {
-                    setTitle("Error")
-                    setMessage(it)
-                    setPositiveButton("OK") { dialog, _ ->
-                        dialog.dismiss()
-                    }
-                    create()
-                    show()
-                }
+
+        viewModel.isLoading.observe(this) { isLoading ->
+            showLoading(isLoading)
+        }
+
+        viewModel.isError.observe(this) { errorMessage ->
+            if (errorMessage.isNotEmpty()) {
+                showErrorDialog(errorMessage)
+            }
+        }
+
+        viewModel.isSuccess.observe(this) { isSuccess ->
+            if (isSuccess) {
+                showSuccessDialog()
             }
         }
 
@@ -58,16 +62,42 @@ class ResetPasswordActivity : AppCompatActivity() {
             val code = binding.codeEditText.text.toString()
             val newPassword = binding.newPasswordEditText.text.toString()
 
-            viewModel.resetPassword(code,newPassword)
-
+            viewModel.resetPassword(code, newPassword)
         }
     }
 
     private fun showLoading(isLoading: Boolean) {
-        if (isLoading) {
-            binding.progressbar .visibility = View.VISIBLE
-        } else {
-            binding.progressbar.visibility = View.GONE
+        binding.progressbar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showErrorDialog(message: String) {
+        AlertDialog.Builder(this).apply {
+            setTitle("Error")
+            setMessage(message)
+            setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+            create()
+            show()
         }
+    }
+
+    private fun showSuccessDialog() {
+        AlertDialog.Builder(this).apply {
+            setTitle("Success")
+            setMessage("Password reset successfully")
+            setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+                navigateToLogin()
+            }
+            create()
+            show()
+        }
+    }
+
+    private fun navigateToLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

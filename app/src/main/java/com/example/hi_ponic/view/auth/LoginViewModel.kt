@@ -24,6 +24,8 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
     private val _isError = MutableLiveData<String>()
     val isError: LiveData<String> = _isError
 
+    private val _isSuccess = MutableLiveData<Boolean>()
+    val isSuccess: LiveData<Boolean> = _isSuccess
 
     fun saveSession(user: UserModel) {
         viewModelScope.launch {
@@ -52,11 +54,23 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
     }
 
     fun getCode(email: String) {
+        _isLoading.value = true
         viewModelScope.launch {
             try {
                 repository.forgotPassword(email)
+                _isLoading.value = false
+                _isSuccess.value = true
+            } catch (e: HttpException) {
+                val jsonInString = e.response()?.errorBody()?.string()
+                val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
+                val errorMessage = errorBody.message
+                _isError.value = errorMessage!!
+                _isLoading.value = false
+                _isSuccess.value = false
             } catch (e: Exception) {
-                Log.d("code", "message : $e")
+                _isError.value = e.message ?: "Unknown error occurred"
+                _isLoading.value = false
+                _isSuccess.value = false
             }
         }
     }
@@ -67,12 +81,18 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
             try {
                 repository.resetPassword(code, newPassword)
                 _isLoading.value = false
+                _isSuccess.value = true
             } catch (e: HttpException) {
                 val jsonInString = e.response()?.errorBody()?.string()
                 val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
                 val errorMessage = errorBody.message
                 _isError.value = errorMessage!!
                 _isLoading.value = false
+                _isSuccess.value = false
+            } catch (e: Exception) {
+                _isError.value = e.message ?: "Unknown error occurred"
+                _isLoading.value = false
+                _isSuccess.value = false
             }
         }
     }
