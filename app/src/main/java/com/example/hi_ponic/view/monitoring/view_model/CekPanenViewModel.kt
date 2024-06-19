@@ -9,6 +9,7 @@ import com.example.hi_ponic.data.UserRepository
 import com.example.hi_ponic.data.response.AverageData
 import com.example.hi_ponic.data.response.ErrorResponse
 import com.google.gson.Gson
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
@@ -17,10 +18,11 @@ class CekPanenViewModel(private val repository: UserRepository) : ViewModel() {
     private val _cekPanen = MutableLiveData<AverageData?>()
     val cekPanen: LiveData<AverageData?> = _cekPanen
 
-    fun getSensorValue() {
+    fun getSensorValue(id: Int) {
         viewModelScope.launch {
             try {
-                val response = repository.getAverageSensor()
+                val token = repository.getSession().first().token
+                val response = repository.getAverageSensor("Bearer $token", id)
                 _cekPanen.value = response.averageData
             } catch (e: HttpException) {
                 val jsonInString = e.response()?.errorBody()?.string()
